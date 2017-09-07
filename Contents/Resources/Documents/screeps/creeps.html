@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Creeps | Screeps Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.screeps.com/creeps.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://docs.screeps.com/creeps.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="http://docs.screeps.com/zh-tw/creeps.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://docs.screeps.com/zh-cn/creeps.html">
+    
+      <link rel="alternative" hreflang="ru" href="http://docs.screeps.com/ru/creeps.html">
+    
+      <link rel="alternative" hreflang="ko" href="http://docs.screeps.com/ko/creeps.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="./icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="./icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="./css/navy.css?1">
+  <link rel="stylesheet" href="./css/prism.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="./atom.xml" title="Screeps Documentation">
+  <!-- Open Graph -->
+  <meta name="description" content="You build (spawn) units called creeps the same way as in other strategy games, but with one exception: you construct the &amp;quot;body&amp;quot; of a new creep out of 7 available body part types, the resulti">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Creeps">
+<meta property="og:url" content="http://docs.screeps.com/creeps.html">
+<meta property="og:site_name" content="Screeps Documentation">
+<meta property="og:description" content="You build (spawn) units called creeps the same way as in other strategy games, but with one exception: you construct the &amp;quot;body&amp;quot; of a new creep out of 7 available body part types, the resulti">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://docs.screeps.com/img/bodyparts.png">
+<meta property="og:updated_time" content="2017-09-07T09:25:14.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Creeps">
+<meta name="twitter:description" content="You build (spawn) units called creeps the same way as in other strategy games, but with one exception: you construct the &amp;quot;body&amp;quot; of a new creep out of 7 available body part types, the resulti">
+<meta name="twitter:image" content="http://docs.screeps.com/img/bodyparts.png">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="https://screeps.com" id="logo">Screeps</a>
+      <a href="./index.html" id="logo-docs">docs</a>
+    </h1>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <div id="header-main"></div>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name" id="top">Creeps</h1>
+                <a href="https://github.com/screeps/docs/edit/master/source/creeps.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                
+                <p>You build (spawn) units called <strong>creeps</strong> the same way as in other strategy games, but with one exception: you construct the &quot;body&quot; of a new creep out of 7 available <strong>body part types</strong>, the resulting body being a sequence up to 50 parts. It allows thousands of creep types and their roles: ordinary workers, huge construction machines able to build or repair a structure within a few cycles, weaselly couriers, heavy capacious trucks, fast and cheap scouts, well-equipped fighters with regeneration ability, etc. It may even be creeps resembling towers or fortresses for mining, defending, or seizing, with very little speed (couple of tiles per minute), but monstrous characteristics. Everything is up to you, your tactics and imagination.</p>
+<p><img src="img/bodyparts.png" alt=""></p>
+<p>However, remember that any creep has a life cycle of 1500 game ticks (approx. 30-60 minutes depending on the tick duration). Then it &quot;ages&quot; and dies. So you not only need to control existing creeps but set up manufacturing and automatic control of superseding generations of your creeps as well.</p>
+<p>A standard spawn (structure) can only spawn regular creeps with the total cost of up to <strong>300 energy units</strong>. Spawning more expensive creeps requires a <strong>spawn extension</strong> in the room. Each extension can contain up to <strong>50 extra energy units</strong> that may be spent on creation of a creep. The exact location of extensions within a room does not matter, but they should be in the same room with the spawn (one extension can be used by several spawns). All the necessary energy should be in the spawn and extensions in the beginning of the creep creation.</p>
+<p>The amount of extensions available for construction depends on the Room Controller in the room. Read more in <a href="./control.html">Global control</a>.</p>
+<h2 id="Creeps-Skills" class="article-heading"><a href="#Creeps-Skills" class="headerlink" title="Creeps Skills"></a>Creeps Skills<a class="article-anchor" href="#Creeps-Skills" aria-hidden="true"></a></h2><p>Possible part types of a creep body:</p>
+<ul>
+<li><code style="background: #333; color: #ffe56d;">WORK</code> – ability to harvest energy, construct and repair structures, upgrade controllers.</li>
+<li><code style="background: #333; color: #a9b7c6;">MOVE</code> – ability to move.</li>
+<li><code style="background: #333; color: #777;">CARRY</code> – ability to transfer energy.</li>
+<li><code style="background: #333; color: #f93842;">ATTACK</code> – ability of short-range attack.</li>
+<li><code style="background: #333; color: #5d80b2;">RANGED_ATTACK</code> – ability of ranged attack.</li>
+<li><code style="background: #333; color: #65fd62;">HEAL</code> – ability to heal others.</li>
+<li><code style="background: #333; color: #b99cfb;">CLAIM</code> - ability to claim territory control.</li>
+<li><code style="background: #333; color: #fff;">TOUGH</code> – &quot;empty&quot; part with the sole purpose of defense.</li>
+</ul>
+<p>The effectiveness of an ability depends on the amount of parts of a corresponding type. For example, a worker creep with 3 parts of the <code>WORK</code> type will work 3 times as effectively as a creep with only 1 <code>WORK</code>part. The same applies to all the other types and actions.</p>
+<h2 id="Movement" class="article-heading"><a href="#Movement" class="headerlink" title="Movement"></a>Movement<a class="article-anchor" href="#Movement" aria-hidden="true"></a></h2><p>Each body part has its own physical weight: the more parts a creep bears, the more difficult it is for it to move. Each body part (except <code>MOVE</code>) generates fatigue points when the creep moves: 1 point per body part on roads, 2 on plain land, 10 on swamp. Each <code>MOVE</code> body part decreases fatigue points by 2 per tick. The creep cannot move when its fatigue is greater than zero.</p>
+<blockquote class="note info"><p>To maintain the maximum movement speed of 1 square per tick, a creep needs to have as many <code>MOVE</code> parts as all the other parts of its body combined.</p>
+</blockquote>
+<p>In other words, one <code>MOVE</code> part can move one other part one square per tick. If a creep has less <code>MOVE</code> parts, its movement will be proportionally slowed which is seen by the increasing fatigue.</p>
+<p>It&#39;s worth noting that empty <code>CARRY</code> parts don&#39;t generate fatigue.</p>
+<p>Samples:</p>
+<ul>
+<li>Creep <code>[CARRY, WORK, MOVE]</code> will move 1 square per tick if it does not bear energy, and 1 square per 2 ticks if loaded.</li>
+<li>Creep <code>[TOUGH, ATTACK, ATTACK, MOVE, MOVE, MOVE]</code> will move at maximum speed of 1 square per tick.</li>
+<li>Creep <code>[TOUGH, ATTACK, ATTACK, MOVE, MOVE]</code> will move 1 square per 2 ticks because of rounding up.</li>
+</ul>
+<h2 id="Damage" class="article-heading"><a href="#Damage" class="headerlink" title="Damage"></a>Damage<a class="article-anchor" href="#Damage" aria-hidden="true"></a></h2><p>The total amount of hits a creep has depends of the amount of its body parts – 100 hits per each part. The order in which the parts were specified during the spawning of a creep also has a bearing. Under attack, the first parts to take hits are those specified first. Full damage to a part leads to complete disabling of it – the creep can no longer perform this function.</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-09-07T09:25:14.854Z" itemprop="dateModified">Last updated: Sep 07, 2017</time>
+                <a href="./introduction.html" class="article-footer-prev"><i class="fa fa-chevron-left"></i><span>Introduction</span></a><a href="./control.html" class="article-footer-next"><span>Control</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creeps-Skills"><span class="toc-text">Creeps Skills</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Movement"><span class="toc-text">Movement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Damage"><span class="toc-text">Damage</span></a></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+            
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Gameplay</strong><a href="./introduction.html" class="sidebar-link">Introduction</a><a href="./creeps.html" class="sidebar-link current">Creeps</a><a href="./control.html" class="sidebar-link">Control</a><a href="./defense.html" class="sidebar-link">Defense</a><a href="./respawn.html" class="sidebar-link">Respawning</a><a href="./start-areas.html" class="sidebar-link">Start Areas</a><a href="./minerals.html" class="sidebar-link">Minerals</a><a href="./market.html" class="sidebar-link">Market</a><a href="./invaders.html" class="sidebar-link">NPC Invaders</a><a href="./power.html" class="sidebar-link">Power</a><strong class="sidebar-title">Scripting</strong><a href="./scripting-basics.html" class="sidebar-link">Scripting Basics</a><a href="./global-objects.html" class="sidebar-link">Global Objects</a><a href="./modules.html" class="sidebar-link">Modules</a><a href="./debugging.html" class="sidebar-link">Debugging</a><a href="./game-loop.html" class="sidebar-link">Game Loop</a><a href="./commit.html" class="sidebar-link">External Commit</a><a href="./simultaneous-actions.html" class="sidebar-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="sidebar-link">CPU Limit</a><strong class="sidebar-title">Other</strong><a href="./architecture.html" class="sidebar-link">Server-Side Architecture</a><a href="./subscription.html" class="sidebar-link">Why Subscription?</a><a href="./ptr.html" class="sidebar-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="sidebar-link">Third Party Tools</a><a href="./tos.html" class="sidebar-link">Terms of Service</a><a href="./privacy-policy.html" class="sidebar-link">Privacy Policy</a><strong class="sidebar-title">Resources</strong><a href="http://blog.screeps.com" class="sidebar-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="sidebar-link">Changelogs</a><a href="http://chat.screeps.com" class="sidebar-link">Chat</a><a href="https://screeps.com/forum/" class="sidebar-link">Forum</a><strong class="sidebar-title">Contributed Articles</strong><a href="./contributed/rules.html" class="sidebar-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="sidebar-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="sidebar-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="sidebar-link">Caching Overview</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://zespia.tw/" target="_blank">Screeps</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/screeps/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    
+      <a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Gameplay</strong><a href="./introduction.html" class="mobile-nav-link">Introduction</a><a href="./creeps.html" class="mobile-nav-link current">Creeps</a><a href="./control.html" class="mobile-nav-link">Control</a><a href="./defense.html" class="mobile-nav-link">Defense</a><a href="./respawn.html" class="mobile-nav-link">Respawning</a><a href="./start-areas.html" class="mobile-nav-link">Start Areas</a><a href="./minerals.html" class="mobile-nav-link">Minerals</a><a href="./market.html" class="mobile-nav-link">Market</a><a href="./invaders.html" class="mobile-nav-link">NPC Invaders</a><a href="./power.html" class="mobile-nav-link">Power</a><strong class="mobile-nav-title">Scripting</strong><a href="./scripting-basics.html" class="mobile-nav-link">Scripting Basics</a><a href="./global-objects.html" class="mobile-nav-link">Global Objects</a><a href="./modules.html" class="mobile-nav-link">Modules</a><a href="./debugging.html" class="mobile-nav-link">Debugging</a><a href="./game-loop.html" class="mobile-nav-link">Game Loop</a><a href="./commit.html" class="mobile-nav-link">External Commit</a><a href="./simultaneous-actions.html" class="mobile-nav-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="mobile-nav-link">CPU Limit</a><strong class="mobile-nav-title">Other</strong><a href="./architecture.html" class="mobile-nav-link">Server-Side Architecture</a><a href="./subscription.html" class="mobile-nav-link">Why Subscription?</a><a href="./ptr.html" class="mobile-nav-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="mobile-nav-link">Third Party Tools</a><a href="./tos.html" class="mobile-nav-link">Terms of Service</a><a href="./privacy-policy.html" class="mobile-nav-link">Privacy Policy</a><strong class="mobile-nav-title">Resources</strong><a href="http://blog.screeps.com" class="mobile-nav-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="mobile-nav-link">Changelogs</a><a href="http://chat.screeps.com" class="mobile-nav-link">Chat</a><a href="https://screeps.com/forum/" class="mobile-nav-link">Forum</a><strong class="mobile-nav-title">Contributed Articles</strong><a href="./contributed/rules.html" class="mobile-nav-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="mobile-nav-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="mobile-nav-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="mobile-nav-link">Caching Overview</a>
+    
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+<!-- Algolia -->
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<h1 id="Mineral"><a href="#Mineral" class="headerlink" title="Mineral"></a>Mineral</h1><p>A mineral deposit. Can be harvested by creeps with a <code>WORK</code> body part using the extractor structure. 
+Learn more about minerals from <a href="./minerals.html">this article</a>.</p>
+<table class="table gameplay-info">
+    <tbody>
+    <tr>
+        <td><strong>Regeneration amount</strong></td>
+        <td><code>DENSITY_LOW</code>: 15,000 <br> <code>DENSITY_MODERATE</code>: 35,000<br> <code>DENSITY_HIGH</code>: 70,000 <br> <code>DENSITY_ULTRA</code>: 100,000</td>
+    </tr>
+    <tr>
+        <td><strong>Regeneration time</strong></td>
+        <td>50,000 ticks</td>
+    </tr>
+    <tr>
+        <td><strong>Density change probability</strong></td>
+        <td><code>DENSITY_LOW</code>: 100% chance <br> <code>DENSITY_MODERATE</code>: 5% chance<br> <code>DENSITY_HIGH</code>: 5% chance <br> <code>DENSITY_ULTRA</code>: 100% chance</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 id="pos" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">pos</span><span class="api-property__type"><a href="#RoomPosition">RoomPosition</a></span></h2>
+<p>An object representing the position of this object in the room.</p>
+<h2 id="room" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">room</span><span class="api-property__type"><a href="#Room">Room</a></span></h2>
+<p>The link to the Room object. May be undefined in case if an object is a flag or a construction site and is placed in a room that is not visible to you.</p>
+ 
+<h2 id="density" class="api-property api-property--property "><span class="api-property__name">density</span><span class="api-property__type">number</span></h2>
+<p>The density of this mineral deposit, one of the <code>DENSITY_*</code> constants.</p>
+<h2 id="mineralAmount" class="api-property api-property--property "><span class="api-property__name">mineralAmount</span><span class="api-property__type">number</span></h2>
+<p>The remaining amount of resources.</p>
+<h2 id="mineralType" class="api-property api-property--property "><span class="api-property__name">mineralType</span><span class="api-property__type">string</span></h2>
+<p>The resource type, one of the <code>RESOURCE_*</code> constants.</p>
+<h2 id="id" class="api-property api-property--property "><span class="api-property__name">id</span><span class="api-property__type">string</span></h2>
+<p>A unique object identificator. You can use <a href="#Game.getObjectById"><code>Game.getObjectById</code></a> method to retrieve an object instance by its <code>id</code>.</p>
+<h2 id="ticksToRegeneration" class="api-property api-property--property "><span class="api-property__name">ticksToRegeneration</span><span class="api-property__type">number</span></h2>
+<p>The remaining time after which the deposit will be refilled.</p>

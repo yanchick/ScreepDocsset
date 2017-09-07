@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Global Objects | Screeps Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.screeps.com/global-objects.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://docs.screeps.com/global-objects.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="http://docs.screeps.com/zh-tw/global-objects.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://docs.screeps.com/zh-cn/global-objects.html">
+    
+      <link rel="alternative" hreflang="ru" href="http://docs.screeps.com/ru/global-objects.html">
+    
+      <link rel="alternative" hreflang="ko" href="http://docs.screeps.com/ko/global-objects.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="./icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="./icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="./css/navy.css?1">
+  <link rel="stylesheet" href="./css/prism.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="./atom.xml" title="Screeps Documentation">
+  <!-- Open Graph -->
+  <meta name="description" content="Game objectYou operate the game through the global Game object which is described in detail in the API Reference section. This object lets you access the complete list of your creeps, &amp;quot;review&amp;quo">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Global Objects">
+<meta property="og:url" content="http://docs.screeps.com/global-objects.html">
+<meta property="og:site_name" content="Screeps Documentation">
+<meta property="og:description" content="Game objectYou operate the game through the global Game object which is described in detail in the API Reference section. This object lets you access the complete list of your creeps, &amp;quot;review&amp;quo">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-07T09:25:14.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Global Objects">
+<meta name="twitter:description" content="Game objectYou operate the game through the global Game object which is described in detail in the API Reference section. This object lets you access the complete list of your creeps, &amp;quot;review&amp;quo">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="https://screeps.com" id="logo">Screeps</a>
+      <a href="./index.html" id="logo-docs">docs</a>
+    </h1>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <div id="header-main"></div>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name" id="top">Global Objects</h1>
+                <a href="https://github.com/screeps/docs/edit/master/source/global-objects.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                
+                <h2 id="Game-object" class="article-heading"><a href="#Game-object" class="headerlink" title="Game object"></a><code>Game</code> object<a class="article-anchor" href="#Game-object" aria-hidden="true"></a></h2><p>You operate the game through the global <a href="./api/#Game"><code>Game</code></a> object which is described in detail in the <a href="./api/">API Reference</a> section. This object lets you access the complete list of your creeps, &quot;review&quot; rooms, pass commands, etc.</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">var</span> target <span class="token operator">=</span> Game<span class="token punctuation">.</span>spawns<span class="token punctuation">.</span>Spawn1<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>No changes in the <code>Game</code> object are passed from tick to tick. Even if you manually change any properties of the object, it will not affect the game state. Changing properties and giving commands are possible only through special methods of game objects.</p>
+<p>The <code>Game</code> object is created from scratch and filled with data at each tick. In order to memorize information between game ticks, you can use the Memory object. See the next article for more about it.</p>
+<h2 id="Memory-object" class="article-heading"><a href="#Memory-object" class="headerlink" title="Memory object"></a><code>Memory</code> object<a class="article-anchor" href="#Memory-object" aria-hidden="true"></a></h2><p>Each player has access to the global object <code>Memory</code> in which he/she may store any information in the JSON format. All the changes written in it are automatically stored using <code>JSON.stringify</code> and passed from tick to tick, allowing you memorize the setting, your own decisions, and temporary data.</p>
+<pre class="highlight undefined tab-undefined "><code>Memory<span class="token punctuation">.</span>someData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p>The amount of memory available to a player is limited to <strong>2 MB</strong>.</p>
+<p>For your convenience, some game objects are linked to the global <code>Memory</code> object and store their own keys in it. For example, you may address the memory of an individual creep with the help of its <code>memory</code> property:</p>
+<pre class="highlight undefined tab-undefined "><code>Game<span class="token punctuation">.</span>creeps<span class="token punctuation">.</span>John<span class="token punctuation">.</span>memory <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p>Actually, this property is an alias for a corresponding key in the global <code>Memory</code> object:</p>
+<pre class="highlight undefined tab-undefined "><code>Game<span class="token punctuation">.</span>creeps<span class="token punctuation">.</span>John<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>role <span class="token operator">=</span> <span class="token string">'harvester'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>creeps<span class="token punctuation">.</span>John<span class="token punctuation">.</span>role<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 'harvester'</span></code></pre><p>Information is stored and recorded via the <code>Memory</code> object, but game objects just allow quick access to some corresponding keys. You can use the memory addressing method which is more convenient for you.</p>
+<h3 id="Storing-game-objects-in-memory" class="article-heading"><a href="#Storing-game-objects-in-memory" class="headerlink" title="Storing game objects in memory"></a>Storing game objects in memory<a class="article-anchor" href="#Storing-game-objects-in-memory" aria-hidden="true"></a></h3><p>You should not store functions or full game objects as is in <code>Memory</code>. The <code>Memory</code> object is for storing JSON data and cannot contain live objects references. Their data will not be relevant. Moreover, it will waste your memory which is limited.</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token comment" spellcheck="true">// This is an incorrect example!</span>
+<span class="token keyword">var</span> source <span class="token operator">=</span> creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span><span class="token function">findClosestByRange</span><span class="token punctuation">(</span>FIND_SOURCES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>source <span class="token operator">=</span> source<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ... </span>
+creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ERR_INVALID_TARGET</span></code></pre><p>Instead of storing live objects, it is better to store the <code>id</code> property that any game object has, and then use <a href="./api/#Game.getObjectById"><code>Game.getObjectById</code></a> to retrieve the game object by its <code>id</code>:</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token comment" spellcheck="true">// This is correct</span>
+<span class="token keyword">var</span> source <span class="token operator">=</span> creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span><span class="token function">findClosestByRange</span><span class="token punctuation">(</span>FIND_SOURCES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>sourceId <span class="token operator">=</span> source<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token keyword">var</span> source <span class="token operator">=</span> Game<span class="token punctuation">.</span><span class="token function">getObjectById</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>sourceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// OK</span></code></pre><h3 id="Serialization" class="article-heading"><a href="#Serialization" class="headerlink" title="Serialization"></a>Serialization<a class="article-anchor" href="#Serialization" aria-hidden="true"></a></h3><p>The Memory object is stored in the stringified form and is parsed each time upon the first in the tick access from your script with the help of the <code>JSON.parse</code> method. The CPU cost of this method execution is counted as your script expense. If you wish, you may write your own stringifier/destringifier using the global variable <a href="./api/#RawMemory"><code>RawMemory</code></a>. It stores the original memory representation as a string. In fact, the default work of the memory basically corresponds to the following code:</p>
+<pre class="highlight undefined tab-undefined "><code>Memory <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>RawMemory<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//on the first access to Memory object</span>
+<span class="token comment" spellcheck="true">// ...your script</span>
+RawMemory<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>Memory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>You can implement your own algorithm using <a href="./api/#RawMemory"><code>RawMemory</code></a> getter/setter.</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-09-07T09:25:14.854Z" itemprop="dateModified">Last updated: Sep 07, 2017</time>
+                <a href="./scripting-basics.html" class="article-footer-prev"><i class="fa fa-chevron-left"></i><span>Scripting Basics</span></a><a href="./modules.html" class="article-footer-next"><span>Modules</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Game-object"><span class="toc-text">Game object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-object"><span class="toc-text">Memory object</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Storing-game-objects-in-memory"><span class="toc-text">Storing game objects in memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Serialization"><span class="toc-text">Serialization</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+            
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Gameplay</strong><a href="./introduction.html" class="sidebar-link">Introduction</a><a href="./creeps.html" class="sidebar-link">Creeps</a><a href="./control.html" class="sidebar-link">Control</a><a href="./defense.html" class="sidebar-link">Defense</a><a href="./respawn.html" class="sidebar-link">Respawning</a><a href="./start-areas.html" class="sidebar-link">Start Areas</a><a href="./minerals.html" class="sidebar-link">Minerals</a><a href="./market.html" class="sidebar-link">Market</a><a href="./invaders.html" class="sidebar-link">NPC Invaders</a><a href="./power.html" class="sidebar-link">Power</a><strong class="sidebar-title">Scripting</strong><a href="./scripting-basics.html" class="sidebar-link">Scripting Basics</a><a href="./global-objects.html" class="sidebar-link current">Global Objects</a><a href="./modules.html" class="sidebar-link">Modules</a><a href="./debugging.html" class="sidebar-link">Debugging</a><a href="./game-loop.html" class="sidebar-link">Game Loop</a><a href="./commit.html" class="sidebar-link">External Commit</a><a href="./simultaneous-actions.html" class="sidebar-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="sidebar-link">CPU Limit</a><strong class="sidebar-title">Other</strong><a href="./architecture.html" class="sidebar-link">Server-Side Architecture</a><a href="./subscription.html" class="sidebar-link">Why Subscription?</a><a href="./ptr.html" class="sidebar-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="sidebar-link">Third Party Tools</a><a href="./tos.html" class="sidebar-link">Terms of Service</a><a href="./privacy-policy.html" class="sidebar-link">Privacy Policy</a><strong class="sidebar-title">Resources</strong><a href="http://blog.screeps.com" class="sidebar-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="sidebar-link">Changelogs</a><a href="http://chat.screeps.com" class="sidebar-link">Chat</a><a href="https://screeps.com/forum/" class="sidebar-link">Forum</a><strong class="sidebar-title">Contributed Articles</strong><a href="./contributed/rules.html" class="sidebar-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="sidebar-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="sidebar-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="sidebar-link">Caching Overview</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://zespia.tw/" target="_blank">Screeps</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/screeps/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    
+      <a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Gameplay</strong><a href="./introduction.html" class="mobile-nav-link">Introduction</a><a href="./creeps.html" class="mobile-nav-link">Creeps</a><a href="./control.html" class="mobile-nav-link">Control</a><a href="./defense.html" class="mobile-nav-link">Defense</a><a href="./respawn.html" class="mobile-nav-link">Respawning</a><a href="./start-areas.html" class="mobile-nav-link">Start Areas</a><a href="./minerals.html" class="mobile-nav-link">Minerals</a><a href="./market.html" class="mobile-nav-link">Market</a><a href="./invaders.html" class="mobile-nav-link">NPC Invaders</a><a href="./power.html" class="mobile-nav-link">Power</a><strong class="mobile-nav-title">Scripting</strong><a href="./scripting-basics.html" class="mobile-nav-link">Scripting Basics</a><a href="./global-objects.html" class="mobile-nav-link current">Global Objects</a><a href="./modules.html" class="mobile-nav-link">Modules</a><a href="./debugging.html" class="mobile-nav-link">Debugging</a><a href="./game-loop.html" class="mobile-nav-link">Game Loop</a><a href="./commit.html" class="mobile-nav-link">External Commit</a><a href="./simultaneous-actions.html" class="mobile-nav-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="mobile-nav-link">CPU Limit</a><strong class="mobile-nav-title">Other</strong><a href="./architecture.html" class="mobile-nav-link">Server-Side Architecture</a><a href="./subscription.html" class="mobile-nav-link">Why Subscription?</a><a href="./ptr.html" class="mobile-nav-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="mobile-nav-link">Third Party Tools</a><a href="./tos.html" class="mobile-nav-link">Terms of Service</a><a href="./privacy-policy.html" class="mobile-nav-link">Privacy Policy</a><strong class="mobile-nav-title">Resources</strong><a href="http://blog.screeps.com" class="mobile-nav-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="mobile-nav-link">Changelogs</a><a href="http://chat.screeps.com" class="mobile-nav-link">Chat</a><a href="https://screeps.com/forum/" class="mobile-nav-link">Forum</a><strong class="mobile-nav-title">Contributed Articles</strong><a href="./contributed/rules.html" class="mobile-nav-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="mobile-nav-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="mobile-nav-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="mobile-nav-link">Caching Overview</a>
+    
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+<!-- Algolia -->
+
+
+</body>
+</html>

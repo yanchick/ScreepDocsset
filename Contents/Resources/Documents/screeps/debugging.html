@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Debugging | Screeps Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.screeps.com/debugging.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://docs.screeps.com/debugging.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="http://docs.screeps.com/zh-tw/debugging.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://docs.screeps.com/zh-cn/debugging.html">
+    
+      <link rel="alternative" hreflang="ru" href="http://docs.screeps.com/ru/debugging.html">
+    
+      <link rel="alternative" hreflang="ko" href="http://docs.screeps.com/ko/debugging.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="./icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="./icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="./css/navy.css?1">
+  <link rel="stylesheet" href="./css/prism.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="./atom.xml" title="Screeps Documentation">
+  <!-- Open Graph -->
+  <meta name="description" content="There is a standard console.log() method as everywhere in Javascript world. for(var i in Game.creeps) {     console.log(Game.creeps[i]); }Each action command returns code OK if the execution was succe">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Debugging">
+<meta property="og:url" content="http://docs.screeps.com/debugging.html">
+<meta property="og:site_name" content="Screeps Documentation">
+<meta property="og:description" content="There is a standard console.log() method as everywhere in Javascript world. for(var i in Game.creeps) {     console.log(Game.creeps[i]); }Each action command returns code OK if the execution was succe">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://docs.screeps.com/img/chrome_2016-06-21_22-21-36.png">
+<meta property="og:updated_time" content="2017-09-07T09:25:14.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Debugging">
+<meta name="twitter:description" content="There is a standard console.log() method as everywhere in Javascript world. for(var i in Game.creeps) {     console.log(Game.creeps[i]); }Each action command returns code OK if the execution was succe">
+<meta name="twitter:image" content="http://docs.screeps.com/img/chrome_2016-06-21_22-21-36.png">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="https://screeps.com" id="logo">Screeps</a>
+      <a href="./index.html" id="logo-docs">docs</a>
+    </h1>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <div id="header-main"></div>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name" id="top">Debugging</h1>
+                <a href="https://github.com/screeps/docs/edit/master/source/debugging.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                
+                <p>There is a standard <code>console.log()</code> method as everywhere in Javascript world.</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Each action command returns code <code>OK</code> if the execution was successful and one of the <code>ERR_*</code> codes in case of error.</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token keyword">var</span> result <span class="token operator">=</span> creep<span class="token punctuation">.</span><span class="token function">attack</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>result <span class="token operator">!=</span> OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>creep <span class="token operator">+</span> <span class="token string">' failed to attack the target '</span> <span class="token operator">+</span> target <span class="token operator">+</span>
+                    <span class="token string">' with the code: '</span> <span class="token operator">+</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Note that a seemingly successful command may not always be executed (for example, your creep faces an obstacle it did not know about when the script started).</p>
+<p>In order to safely test your scripts in a parallel copy of the world, you can use our <a href="./ptr.html">Public Test Realm</a> server.</p>
+<h2 id="Debugging-in-the-web-version" class="article-heading"><a href="#Debugging-in-the-web-version" class="headerlink" title="Debugging in the web version"></a>Debugging in the web version<a class="article-anchor" href="#Debugging-in-the-web-version" aria-hidden="true"></a></h2><p>When playing using the web version of the game, all the console output is being forwarded to the browser console. When you are in the Simulation mode and your script is executed in your browser, that allows you to expand the objects, see and traverse their properties, etc.</p>
+<p>Also, in Chrome browser you can use <code>debugger</code> JavaScript keyword to put a breakpoint in the Simulation mode which allows you to pause your script execution for debugging:</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token keyword">var</span> result <span class="token operator">=</span> creep<span class="token punctuation">.</span><span class="token function">attack</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>result <span class="token operator">!=</span> OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">debugger</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><h2 id="Memory-inspector" class="article-heading"><a href="#Memory-inspector" class="headerlink" title="Memory inspector"></a>Memory inspector<a class="article-anchor" href="#Memory-inspector" aria-hidden="true"></a></h2><p>If you want to track some values in real-time, write them into Memory and add the corresponding watches in the Memory inspector panel. They will be updated automatically each tick.</p>
+<p><img src="img/chrome_2016-06-21_22-21-36.png" alt=""></p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-09-07T09:25:14.854Z" itemprop="dateModified">Last updated: Sep 07, 2017</time>
+                <a href="./modules.html" class="article-footer-prev"><i class="fa fa-chevron-left"></i><span>Modules</span></a><a href="./game-loop.html" class="article-footer-next"><span>Game Loop</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Debugging-in-the-web-version"><span class="toc-text">Debugging in the web version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-inspector"><span class="toc-text">Memory inspector</span></a></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+            
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Gameplay</strong><a href="./introduction.html" class="sidebar-link">Introduction</a><a href="./creeps.html" class="sidebar-link">Creeps</a><a href="./control.html" class="sidebar-link">Control</a><a href="./defense.html" class="sidebar-link">Defense</a><a href="./respawn.html" class="sidebar-link">Respawning</a><a href="./start-areas.html" class="sidebar-link">Start Areas</a><a href="./minerals.html" class="sidebar-link">Minerals</a><a href="./market.html" class="sidebar-link">Market</a><a href="./invaders.html" class="sidebar-link">NPC Invaders</a><a href="./power.html" class="sidebar-link">Power</a><strong class="sidebar-title">Scripting</strong><a href="./scripting-basics.html" class="sidebar-link">Scripting Basics</a><a href="./global-objects.html" class="sidebar-link">Global Objects</a><a href="./modules.html" class="sidebar-link">Modules</a><a href="./debugging.html" class="sidebar-link current">Debugging</a><a href="./game-loop.html" class="sidebar-link">Game Loop</a><a href="./commit.html" class="sidebar-link">External Commit</a><a href="./simultaneous-actions.html" class="sidebar-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="sidebar-link">CPU Limit</a><strong class="sidebar-title">Other</strong><a href="./architecture.html" class="sidebar-link">Server-Side Architecture</a><a href="./subscription.html" class="sidebar-link">Why Subscription?</a><a href="./ptr.html" class="sidebar-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="sidebar-link">Third Party Tools</a><a href="./tos.html" class="sidebar-link">Terms of Service</a><a href="./privacy-policy.html" class="sidebar-link">Privacy Policy</a><strong class="sidebar-title">Resources</strong><a href="http://blog.screeps.com" class="sidebar-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="sidebar-link">Changelogs</a><a href="http://chat.screeps.com" class="sidebar-link">Chat</a><a href="https://screeps.com/forum/" class="sidebar-link">Forum</a><strong class="sidebar-title">Contributed Articles</strong><a href="./contributed/rules.html" class="sidebar-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="sidebar-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="sidebar-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="sidebar-link">Caching Overview</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://zespia.tw/" target="_blank">Screeps</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/screeps/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    
+      <a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Gameplay</strong><a href="./introduction.html" class="mobile-nav-link">Introduction</a><a href="./creeps.html" class="mobile-nav-link">Creeps</a><a href="./control.html" class="mobile-nav-link">Control</a><a href="./defense.html" class="mobile-nav-link">Defense</a><a href="./respawn.html" class="mobile-nav-link">Respawning</a><a href="./start-areas.html" class="mobile-nav-link">Start Areas</a><a href="./minerals.html" class="mobile-nav-link">Minerals</a><a href="./market.html" class="mobile-nav-link">Market</a><a href="./invaders.html" class="mobile-nav-link">NPC Invaders</a><a href="./power.html" class="mobile-nav-link">Power</a><strong class="mobile-nav-title">Scripting</strong><a href="./scripting-basics.html" class="mobile-nav-link">Scripting Basics</a><a href="./global-objects.html" class="mobile-nav-link">Global Objects</a><a href="./modules.html" class="mobile-nav-link">Modules</a><a href="./debugging.html" class="mobile-nav-link current">Debugging</a><a href="./game-loop.html" class="mobile-nav-link">Game Loop</a><a href="./commit.html" class="mobile-nav-link">External Commit</a><a href="./simultaneous-actions.html" class="mobile-nav-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="mobile-nav-link">CPU Limit</a><strong class="mobile-nav-title">Other</strong><a href="./architecture.html" class="mobile-nav-link">Server-Side Architecture</a><a href="./subscription.html" class="mobile-nav-link">Why Subscription?</a><a href="./ptr.html" class="mobile-nav-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="mobile-nav-link">Third Party Tools</a><a href="./tos.html" class="mobile-nav-link">Terms of Service</a><a href="./privacy-policy.html" class="mobile-nav-link">Privacy Policy</a><strong class="mobile-nav-title">Resources</strong><a href="http://blog.screeps.com" class="mobile-nav-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="mobile-nav-link">Changelogs</a><a href="http://chat.screeps.com" class="mobile-nav-link">Chat</a><a href="https://screeps.com/forum/" class="mobile-nav-link">Forum</a><strong class="mobile-nav-title">Contributed Articles</strong><a href="./contributed/rules.html" class="mobile-nav-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="mobile-nav-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="mobile-nav-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="mobile-nav-link">Caching Overview</a>
+    
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+<!-- Algolia -->
+
+
+</body>
+</html>

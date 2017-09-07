@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Minerals | Screeps Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.screeps.com/minerals.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://docs.screeps.com/minerals.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="http://docs.screeps.com/zh-tw/minerals.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://docs.screeps.com/zh-cn/minerals.html">
+    
+      <link rel="alternative" hreflang="ru" href="http://docs.screeps.com/ru/minerals.html">
+    
+      <link rel="alternative" hreflang="ko" href="http://docs.screeps.com/ko/minerals.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="./icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="./icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="./css/navy.css?1">
+  <link rel="stylesheet" href="./css/prism.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="./atom.xml" title="Screeps Documentation">
+  <!-- Open Graph -->
+  <meta name="description" content="If energy is the basic construction material in the Screeps world, the minerals are its jewels. By mining and processing minerals, you can significantly speed up your economy and boost the effectivene">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Minerals">
+<meta property="og:url" content="http://docs.screeps.com/minerals.html">
+<meta property="og:site_name" content="Screeps Documentation">
+<meta property="og:description" content="If energy is the basic construction material in the Screeps world, the minerals are its jewels. By mining and processing minerals, you can significantly speed up your economy and boost the effectivene">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://docs.screeps.com/img/minerals-01.png">
+<meta property="og:image" content="http://docs.screeps.com/img/mining_minerals.png">
+<meta property="og:image" content="http://docs.screeps.com/img/minerals-02.png">
+<meta property="og:image" content="http://docs.screeps.com/img/2016-03-09_10-32-33.gif">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/H.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZK.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/Z.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/K.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UL.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/U.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/L.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/G.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZK.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UL.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/U.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/H.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/U.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/K.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/H.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/K.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/L.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/H.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/L.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/Z.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/H.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/Z.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/G.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/H.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/G.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GO.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/OH.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XUH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XUHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/UHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XKH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XKHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/KHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XLH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XLHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/LHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XZH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XZHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/ZHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XGH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GH2O.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/XGHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/GHO2.png">
+<meta property="og:image" content="http://static.screeps.com/upload/mineral-icons/X.png">
+<meta property="og:updated_time" content="2017-09-07T09:25:14.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Minerals">
+<meta name="twitter:description" content="If energy is the basic construction material in the Screeps world, the minerals are its jewels. By mining and processing minerals, you can significantly speed up your economy and boost the effectivene">
+<meta name="twitter:image" content="http://docs.screeps.com/img/minerals-01.png">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="https://screeps.com" id="logo">Screeps</a>
+      <a href="./index.html" id="logo-docs">docs</a>
+    </h1>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <div id="header-main"></div>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name" id="top">Minerals</h1>
+                <a href="https://github.com/screeps/docs/edit/master/source/minerals.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                
+                <p>If energy is the basic construction material in the Screeps world, the minerals are its jewels. By mining and processing minerals, you can significantly speed up your economy and boost the effectiveness of your creeps.</p>
+<p>Working with minerals consists of 3 steps:</p>
+<ul>
+<li><strong>Mining base minerals</strong></li>
+<li><strong>Producing mineral compounds</strong></li>
+<li><strong>Boosting creeps</strong></li>
+</ul>
+<h2 id="Mining" class="article-heading"><a href="#Mining" class="headerlink" title="Mining"></a>Mining<a class="article-anchor" href="#Mining" aria-hidden="true"></a></h2><p>There are 7 types of base minerals shown in the picture below.</p>
+<p><img src="img/minerals-01.png" alt=""></p>
+<p>Each room contains only one mineral type, so in order to handle them effectively you need either access to several suitable rooms or trade relationships with other players.</p>
+<p><img src="img/mining_minerals.png" align="right">A mineral deposit is located in a room at a spot marked by a special symbol. To start mining the deposit, you need to construct the special structure <strong>Extractor</strong> on top of it (available at Room Controller Level 6). Upon building it, you can start applying the method <code>harvest</code> to the deposit thus mining the corresponding mineral in the same way you harvest energy.</p>
+<h2 id="Mineral-compounds" class="article-heading"><a href="#Mineral-compounds" class="headerlink" title="Mineral compounds"></a>Mineral compounds<a class="article-anchor" href="#Mineral-compounds" aria-hidden="true"></a></h2><p>Base minerals are useless on their own. In order to impart some useful capabilities to them, you have to combine them according to special formulas in the structure called <strong>Lab</strong>.</p>
+<p><img src="img/minerals-02.png" alt=""></p>
+<p>One reaction requires three labs: two as reagent sources, and the third one as the produce collector. The labs should be within the range of 2 squares from each other. </p>
+<p>A lab can produce 1 unit of produce per tick, so you can build parallel chains of labs in one or more rooms to speed up the process. One lab cannot contain more than one mineral type at the same time.</p>
+<p><img src="img/2016-03-09_10-32-33.gif" align="right"></p>
+<pre class="highlight undefined tab-undefined "><code><span class="token keyword">var</span> labs <span class="token operator">=</span> room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_MY_STRUCTURES<span class="token punctuation">,</span> 
+    <span class="token punctuation">{</span>filter<span class="token punctuation">:</span> <span class="token punctuation">{</span>structureType<span class="token punctuation">:</span> STRUCTURE_LAB<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+labs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">runReaction</span><span class="token punctuation">(</span>labs<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> labs<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// on the next tick...</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mineralType<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// -> OH</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labs<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mineralType<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// -> O</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labs<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mineralType<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// -> H</span></code></pre><h2 id="Creep-boosts" class="article-heading"><a href="#Creep-boosts" class="headerlink" title="Creep boosts"></a>Creep boosts<a class="article-anchor" href="#Creep-boosts" aria-hidden="true"></a></h2><p>Apart from running chemical reactions with minerals, a lab can use resulting compounds to permanently upgrade your creeps boosting their specific properties.</p>
+<p>Each compound is applied to one body part of the creep of a certain type using <code>Structure.boostCreep</code> method according to the table below and boosts the effectiveness of one of the actions of this creep. The boosted part works as two, three, or even four corresponding parts. To boost the whole creep, you need to boost all its parts of the given type.</p>
+<p>Boosting one body part takes 30 mineral compound units and 20 energy units. One body part can be boosted only with one compound type.</p>
+<style>
+.minerals td {
+    border-top: 1px solid #333;
+    color: #bbb;
+    background-color: #222;
+    font-size: 13px;
+}
+@media (min-width: 1280px) {
+    .minerals td:first-child {
+        white-space: nowrap;
+    }
+}
+.minerals td:nth-child(2) {
+    white-space: nowrap;
+}
+.minerals td:nth-child(3) {
+    min-width: 80px;
+}
+.minerals code {
+    background-color: #333;
+    color: #eee;
+    word-break: break-all;
+}
+.minerals img {
+    margin-right: 5px;
+    vertical-align: middle;
+} 
+.minerals__divider th {
+    background-color: #333;
+    color: #ffe099;
+    text-align: center;
+    font-size: 13px;
+}
+.minerals__head th {
+    background-color: #222;
+    color: #ccc;
+    font-weight: normal !important;
+}
+</style>
+
+
+<table class="minerals">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr class="minerals__head">
+<th>Name</th>
+<th>Formula</th>
+<th>Body part</th>
+<th>Effect</th>
+</tr>
+<tr class="minerals__divider">
+<th colspan="4" align="center">Base compounds</th>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt="">hydroxide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/H.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/O.png" alt=""></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZK.png" alt="">zynthium keanite</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/Z.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/K.png" alt=""></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UL.png" alt="">utrium lemergite</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/U.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/L.png" alt=""></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/G.png" alt="">ghodium</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZK.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/UL.png" alt=""></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="minerals__divider">
+<th colspan="4" align="center">Tier 1 compounds</th>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UH.png" alt="">utrium hydride</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/U.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/H.png" alt=""></td>
+<td><code>ATTACK</code></td>
+<td>+100% <code>attack</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UO.png" alt="">utrium oxide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/U.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/O.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+200% <code>harvest</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KH.png" alt="">keanium hydride</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/K.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/H.png" alt=""></td>
+<td><code>CARRY</code></td>
+<td>+50 capacity</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KO.png" alt="">keanium oxide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/K.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/O.png" alt=""></td>
+<td><code>RANGED_ATTACK</code></td>
+<td>+100% <code>rangedAttack</code> and <code>rangedMassAttack</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LH.png" alt="">lemergium hydride</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/L.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/H.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+50% <code>repair</code> and <code>build</code> effectiveness without increasing the energy cost</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LO.png" alt="">lemergium oxide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/L.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/O.png" alt=""></td>
+<td><code>HEAL</code></td>
+<td>+100% <code>heal</code> and <code>rangedHeal</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZH.png" alt="">zynthium hydride</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/Z.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/H.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+100% <code>dismantle</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZO.png" alt="">zynthium oxide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/Z.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/O.png" alt=""></td>
+<td><code>MOVE</code></td>
+<td>+100% fatigue decrease speed</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GH.png" alt="">ghodium hydride</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/G.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/H.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+50% <code>upgradeController</code> effectiveness without increasing the energy cost</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GO.png" alt="">ghodium oxide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/G.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/O.png" alt=""></td>
+<td><code>TOUGH</code></td>
+<td>-30% damage taken</td>
+</tr>
+<tr class="minerals__divider">
+<th colspan="4" align="center">Tier 2 compounds</th>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UH2O.png" alt="">utrium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UH.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>ATTACK</code></td>
+<td>+200% <code>attack</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UHO2.png" alt="">utrium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UO.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+400% <code>harvest</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KH2O.png" alt="">keanium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KH.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>CARRY</code></td>
+<td>+100 capacity</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KHO2.png" alt="">keanium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KO.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>RANGED_ATTACK</code></td>
+<td>+200% <code>rangedAttack</code> and <code>rangedMassAttack</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LH2O.png" alt="">lemergium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LH.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+80% <code>repair</code> and <code>build</code> effectiveness without increasing the energy cost</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LHO2.png" alt="">lemergium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LO.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>HEAL</code></td>
+<td>+200% <code>heal</code> and <code>rangedHeal</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZH2O.png" alt="">zynthium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZH.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+200% <code>dismantle</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZHO2.png" alt="">zynthium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZO.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>MOVE</code></td>
+<td>+200% fatigue decrease speed</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GH2O.png" alt="">ghodium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GH.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+80% <code>upgradeController</code> effectiveness without increasing the energy cost</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GHO2.png" alt="">ghodium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GO.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/OH.png" alt=""></td>
+<td><code>TOUGH</code></td>
+<td>-50% damage taken</td>
+</tr>
+<tr class="minerals__divider">
+<th colspan="4" align="center">Tier 3 compounds</th>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XUH2O.png" alt="">catalyzed utrium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UH2O.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>ATTACK</code></td>
+<td>+300% <code>attack</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XUHO2.png" alt="">catalyzed utrium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/UHO2.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+600% <code>harvest</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XKH2O.png" alt="">catalyzed keanium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KH2O.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>CARRY</code></td>
+<td>+150 capacity</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XKHO2.png" alt="">catalyzed keanium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/KHO2.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>RANGED_ATTACK</code></td>
+<td>+300% <code>rangedAttack</code> and <code>rangedMassAttack</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XLH2O.png" alt="">catalyzed lemergium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LH2O.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+100% <code>repair</code> and <code>build</code> effectiveness without increasing the energy cost</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XLHO2.png" alt="">catalyzed lemergium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/LHO2.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>HEAL</code></td>
+<td>+300% <code>heal</code> and <code>rangedHeal</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XZH2O.png" alt="">catalyzed zynthium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZH2O.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+300% <code>dismantle</code> effectiveness</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XZHO2.png" alt="">catalyzed zynthium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/ZHO2.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>MOVE</code></td>
+<td>+300% fatigue decrease speed</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XGH2O.png" alt="">catalyzed ghodium acid</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GH2O.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>WORK</code></td>
+<td>+100% <code>upgradeController</code> effectiveness without increasing the energy cost</td>
+</tr>
+<tr>
+<td><img src="http://static.screeps.com/upload/mineral-icons/XGHO2.png" alt="">catalyzed ghodium alkalide</td>
+<td><img src="http://static.screeps.com/upload/mineral-icons/GHO2.png" alt=""> + <img src="http://static.screeps.com/upload/mineral-icons/X.png" alt=""></td>
+<td><code>TOUGH</code></td>
+<td>-70% damage taken</td>
+</tr>
+</tbody>
+</table>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-09-07T09:25:14.854Z" itemprop="dateModified">Last updated: Sep 07, 2017</time>
+                <a href="./start-areas.html" class="article-footer-prev"><i class="fa fa-chevron-left"></i><span>Start Areas</span></a><a href="./market.html" class="article-footer-next"><span>Market</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mining"><span class="toc-text">Mining</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mineral-compounds"><span class="toc-text">Mineral compounds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creep-boosts"><span class="toc-text">Creep boosts</span></a></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+            
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Gameplay</strong><a href="./introduction.html" class="sidebar-link">Introduction</a><a href="./creeps.html" class="sidebar-link">Creeps</a><a href="./control.html" class="sidebar-link">Control</a><a href="./defense.html" class="sidebar-link">Defense</a><a href="./respawn.html" class="sidebar-link">Respawning</a><a href="./start-areas.html" class="sidebar-link">Start Areas</a><a href="./minerals.html" class="sidebar-link current">Minerals</a><a href="./market.html" class="sidebar-link">Market</a><a href="./invaders.html" class="sidebar-link">NPC Invaders</a><a href="./power.html" class="sidebar-link">Power</a><strong class="sidebar-title">Scripting</strong><a href="./scripting-basics.html" class="sidebar-link">Scripting Basics</a><a href="./global-objects.html" class="sidebar-link">Global Objects</a><a href="./modules.html" class="sidebar-link">Modules</a><a href="./debugging.html" class="sidebar-link">Debugging</a><a href="./game-loop.html" class="sidebar-link">Game Loop</a><a href="./commit.html" class="sidebar-link">External Commit</a><a href="./simultaneous-actions.html" class="sidebar-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="sidebar-link">CPU Limit</a><strong class="sidebar-title">Other</strong><a href="./architecture.html" class="sidebar-link">Server-Side Architecture</a><a href="./subscription.html" class="sidebar-link">Why Subscription?</a><a href="./ptr.html" class="sidebar-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="sidebar-link">Third Party Tools</a><a href="./tos.html" class="sidebar-link">Terms of Service</a><a href="./privacy-policy.html" class="sidebar-link">Privacy Policy</a><strong class="sidebar-title">Resources</strong><a href="http://blog.screeps.com" class="sidebar-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="sidebar-link">Changelogs</a><a href="http://chat.screeps.com" class="sidebar-link">Chat</a><a href="https://screeps.com/forum/" class="sidebar-link">Forum</a><strong class="sidebar-title">Contributed Articles</strong><a href="./contributed/rules.html" class="sidebar-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="sidebar-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="sidebar-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="sidebar-link">Caching Overview</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://zespia.tw/" target="_blank">Screeps</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/screeps/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    
+      <a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Gameplay</strong><a href="./introduction.html" class="mobile-nav-link">Introduction</a><a href="./creeps.html" class="mobile-nav-link">Creeps</a><a href="./control.html" class="mobile-nav-link">Control</a><a href="./defense.html" class="mobile-nav-link">Defense</a><a href="./respawn.html" class="mobile-nav-link">Respawning</a><a href="./start-areas.html" class="mobile-nav-link">Start Areas</a><a href="./minerals.html" class="mobile-nav-link current">Minerals</a><a href="./market.html" class="mobile-nav-link">Market</a><a href="./invaders.html" class="mobile-nav-link">NPC Invaders</a><a href="./power.html" class="mobile-nav-link">Power</a><strong class="mobile-nav-title">Scripting</strong><a href="./scripting-basics.html" class="mobile-nav-link">Scripting Basics</a><a href="./global-objects.html" class="mobile-nav-link">Global Objects</a><a href="./modules.html" class="mobile-nav-link">Modules</a><a href="./debugging.html" class="mobile-nav-link">Debugging</a><a href="./game-loop.html" class="mobile-nav-link">Game Loop</a><a href="./commit.html" class="mobile-nav-link">External Commit</a><a href="./simultaneous-actions.html" class="mobile-nav-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="mobile-nav-link">CPU Limit</a><strong class="mobile-nav-title">Other</strong><a href="./architecture.html" class="mobile-nav-link">Server-Side Architecture</a><a href="./subscription.html" class="mobile-nav-link">Why Subscription?</a><a href="./ptr.html" class="mobile-nav-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="mobile-nav-link">Third Party Tools</a><a href="./tos.html" class="mobile-nav-link">Terms of Service</a><a href="./privacy-policy.html" class="mobile-nav-link">Privacy Policy</a><strong class="mobile-nav-title">Resources</strong><a href="http://blog.screeps.com" class="mobile-nav-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="mobile-nav-link">Changelogs</a><a href="http://chat.screeps.com" class="mobile-nav-link">Chat</a><a href="https://screeps.com/forum/" class="mobile-nav-link">Forum</a><strong class="mobile-nav-title">Contributed Articles</strong><a href="./contributed/rules.html" class="mobile-nav-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="mobile-nav-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="mobile-nav-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="mobile-nav-link">Caching Overview</a>
+    
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+<!-- Algolia -->
+
+
+</body>
+</html>

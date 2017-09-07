@@ -1,0 +1,307 @@
+<h1 id="RoomVisual"><a href="#RoomVisual" class="headerlink" title="RoomVisual"></a>RoomVisual</h1><p><img align="right" src="img/visual.png"></p>
+<p>Room visuals provide a way to show various visual debug info in game rooms. 
+You can use the <code>RoomVisual</code> object to draw simple shapes that are visible only to you. 
+Every existing <code>Room</code> object already contains the 
+<a href="#Room.visual"><code>visual</code></a> property, 
+but you also can create new <code>RoomVisual</code> objects for any room (even without visibility) 
+using the <a href="#RoomVisual.constructor">constructor</a>.</p>
+<p>Room visuals are not stored in the database, their only purpose is to display something in 
+your browser. All drawings will persist for one tick and will disappear if not updated. All 
+<code>RoomVisual</code> API calls have no added CPU cost (their cost is natural and mostly related to simple
+ <code>JSON.serialize</code> calls). However, there is a usage limit: you cannot post more than 500 KB 
+ of serialized data per one room (see <a href="#RoomVisual.getSize"><code>getSize</code></a> method).</p>
+<p>All draw coordinates are measured in game coordinates and centered to tile centers, i.e. (10,10) 
+will point to the center of the creep at <code>x:10; y:10</code> position. Fractional coordinates are allowed.</p>
+<h2 id="constructor" class="api-property   "><span class="api-property__name">constructor</span><span class="api-property__args">([roomName])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>rooms<span class="token punctuation">[</span><span class="token string">'W10N10'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>visual<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// the same as:</span>
+<span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W10N10'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token comment" spellcheck="true">// this text will be displayed in all rooms</span>
+<span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token string">'Some text'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>align<span class="token punctuation">:</span> <span class="token string">'left'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>You can directly create new <code>RoomVisual</code> object in any room, even if it&#39;s invisible to your script.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>roomName</code><br><em>optional</em></td><td>string</td><td><p>The room name. If undefined, visuals will be posted to all rooms simultaneously.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="roomName" class="api-property api-property--property "><span class="api-property__name">roomName</span><span class="api-property__type">string</span></h2>
+<p>The name of the room.</p>
+<h2 id="line" class="api-property api-property--method  "><span class="api-property__name">line</span><span class="api-property__args">(x1, y1, x2, y2, [style])<br>(pos1, pos2, [style])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span>visual<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> target<span class="token punctuation">.</span>pos<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>color<span class="token punctuation">:</span> <span class="token string">'red'</span><span class="token punctuation">,</span> style<span class="token punctuation">:</span> <span class="token string">'dashed'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Draw a line.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x1</code></td><td>number</td><td><p>The start X coordinate.</p>
+</td>
+</tr><tr><td><code>y1</code></td><td>number</td><td><p>The start Y coordinate.</p>
+</td>
+</tr><tr><td><code>x2</code></td><td>number</td><td><p>The finish X coordinate.</p>
+</td>
+</tr><tr><td><code>y2</code></td><td>number</td><td><p>The finish Y coordinate.</p>
+</td>
+</tr><tr><td><code>pos1</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The start position object.</p>
+</td>
+</tr><tr><td><code>pos2</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The finish position object.</p>
+</td>
+</tr><tr><td><code>style</code><br><em>optional</em></td><td>object</td><td><p>An object with the following properties:</p>
+<ul>
+    <li>
+        <div class="api-arg-title">width</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Line width, default is 0.1.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">color</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Line color in any web format, default is <code>#ffffff</code> (white).</div>
+    </li>
+    <li>
+        <div class="api-arg-title">opacity</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Opacity value, default is 0.5.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">lineStyle</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Either <code>undefined</code> (solid line), <code>dashed</code>, or <code>dotted</code>. Default is undefined.</div>
+    </li>
+</ul></td>
+</tr></tbody></table>
+
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>The
+<code>RoomVisual</code>
+object itself, so that you can chain calls.</p>
+<h2 id="circle" class="api-property api-property--method  "><span class="api-property__name">circle</span><span class="api-property__args">(x, y, [style])<br>(pos, [style])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span>visual<span class="token punctuation">.</span><span class="token function">circle</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>fill<span class="token punctuation">:</span> <span class="token string">'transparent'</span><span class="token punctuation">,</span> radius<span class="token punctuation">:</span> <span class="token number">0.55</span><span class="token punctuation">,</span> stroke<span class="token punctuation">:</span> <span class="token string">'red'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Draw a circle.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>The X coordinate of the center.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>The Y coordinate of the center.</p>
+</td>
+</tr><tr><td><code>pos</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The position object of the center.</p>
+</td>
+</tr><tr><td><code>style</code><br><em>optional</em></td><td>object</td><td><p>An object with the following properties:</p>
+<ul>
+    <li>
+        <div class="api-arg-title">radius</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Circle radius, default is 0.15.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">fill</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Fill color in any web format, default is <code>#ffffff</code> (white).</div>
+    </li>
+    <li>
+        <div class="api-arg-title">opacity</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Opacity value, default is 0.5.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">stroke</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Stroke color in any web format, default is undefined (no stroke).</div>
+    </li>
+    <li>
+        <div class="api-arg-title">strokeWidth</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Stroke line width, default is 0.1.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">lineStyle</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Either <code>undefined</code> (solid line), <code>dashed</code>, or <code>dotted</code>. Default is undefined.</div>
+    </li>
+</ul></td>
+</tr></tbody></table>
+
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>The
+<code>RoomVisual</code>
+object itself, so that you can chain calls.</p>
+<h2 id="rect" class="api-property api-property--method  "><span class="api-property__name">rect</span><span class="api-property__args">(x, y, width, hheight, [style])<br>(topLeftPos, width, height, [style])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token comment" spellcheck="true">// 9x9 area from (2,2) to (10,10)</span>
+<span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rect</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token comment" spellcheck="true">// a rectangle border on creep</span>
+creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span>visual<span class="token punctuation">.</span><span class="token function">rect</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x <span class="token operator">-</span> <span class="token number">0.6</span><span class="token punctuation">,</span> creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y <span class="token operator">-</span> <span class="token number">0.6</span><span class="token punctuation">,</span> 
+    <span class="token number">1.2</span><span class="token punctuation">,</span> <span class="token number">1.2</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>fill<span class="token punctuation">:</span> <span class="token string">'transparent'</span><span class="token punctuation">,</span> stroke<span class="token punctuation">:</span> <span class="token string">'#f00'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Draw a rectangle.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>The X coordinate of the top-left corner.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>The Y coordinate of the top-left corner.</p>
+</td>
+</tr><tr><td><code>topLeftPos</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The position object of the top-left corner.</p>
+</td>
+</tr><tr><td><code>width</code></td><td>number</td><td><p>The width of the rectangle.</p>
+</td>
+</tr><tr><td><code>height</code></td><td>number</td><td><p>The height of the rectangle.</p>
+</td>
+</tr><tr><td><code>style</code><br><em>optional</em></td><td>object</td><td><p>An object with the following properties:</p>
+<ul>
+    <li>
+        <div class="api-arg-title">fill</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Fill color in any web format, default is <code>#ffffff</code> (white).</div>
+    </li>
+    <li>
+        <div class="api-arg-title">opacity</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Opacity value, default is 0.5.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">stroke</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Stroke color in any web format, default is undefined (no stroke).</div>
+    </li>
+    <li>
+        <div class="api-arg-title">strokeWidth</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Stroke line width, default is 0.1.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">lineStyle</div>
+        <div class="api-arg-type">string</div>
+        <div class="api-arg-desc">Either <code>undefined</code> (solid line), <code>dashed</code>, or <code>dotted</code>. Default is undefined.</div>
+    </li>
+</ul></td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>The
+<code>RoomVisual</code>
+object itself, so that you can chain calls.</p>
+<h2 id="poly" class="api-property api-property--method  "><span class="api-property__name">poly</span><span class="api-property__args">(points, [style])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> points <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+points<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>creep1<span class="token punctuation">.</span>pos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+points<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+points<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RoomPosition</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">,</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">poly</span><span class="token punctuation">(</span>points<span class="token punctuation">,</span> <span class="token punctuation">{</span>fill<span class="token punctuation">:</span> <span class="token string">'aqua'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token comment" spellcheck="true">// visualize the path</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> Game<span class="token punctuation">.</span>rooms<span class="token punctuation">[</span><span class="token string">'W1N1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">findPath</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">poly</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token punctuation">{</span>stroke<span class="token punctuation">:</span> <span class="token string">'#fff'</span><span class="token punctuation">,</span> strokeWidth<span class="token punctuation">:</span> <span class="token punctuation">.</span><span class="token number">15</span><span class="token punctuation">,</span>
+    opacity<span class="token punctuation">:</span> <span class="token punctuation">.</span><span class="token number">2</span><span class="token punctuation">,</span> lineStyle<span class="token punctuation">:</span> <span class="token string">'dashed'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Draw a polyline.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>points</code></td><td>array</td><td><p>An array of points. Every item should be either an array with 2 numbers (i.e. <code>[10,15]</code>), or a <a href="#RoomPosition"><code>RoomPosition</code></a> object.</p>
+</td>
+</tr><tr><td><code>style</code><br><em>optional</em></td><td>object</td><td><p>An object with the following properties:
+                    <ul>
+                        <li>
+                            <div class="api-arg-title">fill</div>
+                            <div class="api-arg-type">string</div>
+                            <div class="api-arg-desc">Fill color in any web format, default is <code>undefined</code> (no fill).</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">opacity</div>
+                            <div class="api-arg-type">number</div>
+                            <div class="api-arg-desc">Opacity value, default is 0.5.</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">stroke</div>
+                            <div class="api-arg-type">string</div>
+                            <div class="api-arg-desc">Stroke color in any web format, default is <code>#ffffff</code> (white).</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">strokeWidth</div>
+                            <div class="api-arg-type">number</div>
+                            <div class="api-arg-desc">Stroke line width, default is 0.1.</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">lineStyle</div>
+                            <div class="api-arg-type">string</div>
+                            <div class="api-arg-desc">Either <code>undefined</code> (solid line), <code>dashed</code>, or <code>dotted</code>. Default is undefined.</div>
+                        </li>
+                    </ul></p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-3"><a href="#Return-value-3" class="headerlink" title="Return value"></a>Return value</h3><p>The
+<code>RoomVisual</code>
+object itself, so that you can chain calls.</p>
+<h2 id="text" class="api-property api-property--method  "><span class="api-property__name">text</span><span class="api-property__args">(text, x, y, [style])<br>(text, pos, [style])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token string">"Target💥"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>color<span class="token punctuation">:</span> <span class="token string">'green'</span><span class="token punctuation">,</span> font<span class="token punctuation">:</span> <span class="token number">0.8</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Draw a text label. You can use any valid Unicode characters, including <a href="http://unicode.org/emoji/charts/emoji-style.txt" target="_blank">emoji</a>.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>string</td><td><p>The text message.</p>
+</td>
+</tr><tr><td><code>x</code></td><td>number</td><td><p>The X coordinate of the label baseline point.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>The Y coordinate of the label baseline point.</p>
+</td>
+</tr><tr><td><code>pos</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The position object of the label baseline.</p>
+</td>
+</tr><tr><td><code>style</code><br><em>optional</em></td><td>object</td><td><p>An object with the following properties:
+                    <ul>
+                        <li>
+                            <div class="api-arg-title">color</div>
+                            <div class="api-arg-type">string</div>
+                            <div class="api-arg-desc">Font color in any web format, default is <code>#ffffff</code> (white).</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">font</div>
+                            <div class="api-arg-type">number, string</div>
+                            <div class="api-arg-desc">Either a number or a string in one of the following forms:
+                                <ul>
+                                    <li><code>0.7</code> - relative size in game coordinates</li>
+                                    <li><code>20px</code> - absolute size in pixels</li>
+                                    <li><code>0.7 serif</code></li>
+                                    <li><code>bold italic 1.5 Times New Roman</code></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">stroke</div>
+                            <div class="api-arg-type">string</div>
+                            <div class="api-arg-desc">Stroke color in any web format, default is undefined (no stroke).</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">strokeWidth</div>
+                            <div class="api-arg-type">number</div>
+                            <div class="api-arg-desc">Stroke width, default is 0.15.</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">backgroundColor</div>
+                            <div class="api-arg-type">string</div>
+                            <div class="api-arg-desc">Background color in any web format, default is undefined (no background). When background is enabled, text vertical align is set to middle (default is baseline).</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">backgroundPadding</div>
+                            <div class="api-arg-type">number</div>
+                            <div class="api-arg-desc">Background rectangle padding, default is 0.3.</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">align</div>
+                            <div class="api-arg-type">string</div>
+                            <div class="api-arg-desc">Text align, either <code>center</code>, <code>left</code>, or <code>right</code>. Default is <code>center</code>.</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">opacity</div>
+                            <div class="api-arg-type">number</div>
+                            <div class="api-arg-desc">Opacity value, default is 1.0.</div>
+                        </li>
+                    </ul></p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-4"><a href="#Return-value-4" class="headerlink" title="Return value"></a>Return value</h3><p>The
+<code>RoomVisual</code>
+object itself, so that you can chain calls.</p>
+<h2 id="clear" class="api-property api-property--method  "><span class="api-property__name">clear</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">new</span> <span class="token class-name">RoomVisual</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Remove all visuals from the room.</p>
+<h3 id="Return-value-5"><a href="#Return-value-5" class="headerlink" title="Return value"></a>Return value</h3><p>The
+<code>RoomVisual</code>
+object itself, so that you can chain calls.</p>
+<h2 id="getSize" class="api-property api-property--method  "><span class="api-property__name">getSize</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span>visual<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">512000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// cannot add more visuals in this tick</span>
+<span class="token punctuation">}</span></code></pre><p>Get the stored size of all visuals added in the room in the current tick. It must not exceed 512,000 (500 KB).</p>
+<h3 id="Return-value-6"><a href="#Return-value-6" class="headerlink" title="Return value"></a>Return value</h3><p>The size of the visuals in bytes.</p>

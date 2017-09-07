@@ -1,0 +1,155 @@
+<h1 id="PathFinder"><a href="#PathFinder" class="headerlink" title="PathFinder"></a>PathFinder</h1><p> Contains powerful methods for pathfinding in the game world. This module is written in fast native C++ code and supports custom navigation costs and paths which span multiple rooms. </p>
+<h2 id="PathFinder-search" class="api-property api-property--method  "><span class="api-property__name">PathFinder.search</span><span class="api-property__args">(origin, goal, [opts])</span>
+        <div class="api-property__cpu api-property__cpu--3" title="This method has high CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>  <span class="token keyword">let</span> creep <span class="token operator">=</span> Game<span class="token punctuation">.</span>creeps<span class="token punctuation">.</span>John<span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> goals <span class="token operator">=</span> _<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_SOURCES<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// We can't actually walk on sources-- set `range` to 1 </span>
+    <span class="token comment" spellcheck="true">// so we path next to it.</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> pos<span class="token punctuation">:</span> source<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> range<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> ret <span class="token operator">=</span> PathFinder<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>
+    creep<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> goals<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// We need to set the defaults costs higher so that we</span>
+      <span class="token comment" spellcheck="true">// can set the road cost lower in `roomCallback`</span>
+      plainCost<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      swampCost<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+
+      roomCallback<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>roomName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">let</span> room <span class="token operator">=</span> Game<span class="token punctuation">.</span>rooms<span class="token punctuation">[</span>roomName<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// In this example `room` will always exist, but since </span>
+        <span class="token comment" spellcheck="true">// PathFinder supports searches which span multiple rooms </span>
+        <span class="token comment" spellcheck="true">// you should be careful!</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>room<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> costs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PathFinder<span class="token punctuation">.</span>CostMatrix</span><span class="token punctuation">;</span>
+
+        room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_STRUCTURES<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>struct<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>struct<span class="token punctuation">.</span>structureType <span class="token operator">===</span> STRUCTURE_ROAD<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// Favor roads over plain tiles</span>
+            costs<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>struct<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x<span class="token punctuation">,</span> struct<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>struct<span class="token punctuation">.</span>structureType <span class="token operator">!==</span> STRUCTURE_CONTAINER <span class="token operator">&amp;&amp;</span>
+                     <span class="token punctuation">(</span>struct<span class="token punctuation">.</span>structureType <span class="token operator">!==</span> STRUCTURE_RAMPART <span class="token operator">||</span>
+                      <span class="token operator">!</span>struct<span class="token punctuation">.</span>my<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// Can't walk through non-walkable buildings</span>
+            costs<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>struct<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x<span class="token punctuation">,</span> struct<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0xff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Avoid creeps in the room</span>
+        room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_CREEPS<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>creep<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          costs<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x<span class="token punctuation">,</span> creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0xff</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> costs<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> pos <span class="token operator">=</span> ret<span class="token punctuation">.</span>path<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  creep<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span><span class="token function">getDirectionTo</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Find an optimal path between <code>origin</code> and <code>goal</code>.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>origin</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The start position.</p>
+</td>
+</tr><tr><td><code>goal</code></td><td>object</td><td><p>A goal or an array of goals. If more than one goal is supplied then the cheapest path found out of all the goals will be returned. A goal is either a RoomPosition or an object as defined below.</p>
+<p><em><strong>Important:</strong></em> Please note that if your goal is not walkable (for instance, a source) then you should set <code>range</code> to at least 1 or else you will waste many CPU cycles searching for a target that you can&#39;t walk on.
+                    <ul>
+                        <li>
+                            <div class="api-arg-title">pos</div>
+                            <div class="api-arg-type"><a href="#RoomPosition"><code>RoomPosition</code></a></div>
+                            <div class="api-arg-desc">The target.</div>
+                        </li>
+                        <li>
+                            <div class="api-arg-title">range</div>
+                            <div class="api-arg-type">number</div>
+                            <div class="api-arg-desc">Range to <code>pos</code> before goal is considered reached. The default is 0.</div>
+                        </li>
+                    </ul></p>
+</td>
+</tr><tr><td><code>opts</code><br><em>optional</em></td><td>object</td><td><p>An object containing additional pathfinding flags.</p>
+<ul>
+    <li>
+        <div class="api-arg-title">roomCallback</div>
+        <div class="api-arg-type">function</div>
+        <div class="api-arg-desc">Request from the pathfinder to generate a <a href="#CostMatrix"><code>CostMatrix</code></a> for a certain room. The callback accepts one argument, <code>roomName</code>. This callback will only be called once per room per search. If you are running multiple pathfinding operations in a single room and in a single tick you may consider caching your CostMatrix to speed up your code. Please read the CostMatrix documentation below for more information on CostMatrix. If you return <code>false</code> from the callback the requested room will not be searched, and it won&#39;t count against <code>maxRooms</code></div>
+    </li>
+    <li>
+        <div class="api-arg-title">plainCost</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Cost for walking on plain positions. The default is 1.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">swampCost</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Cost for walking on swamp positions. The default is 5.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">flee</div>
+        <div class="api-arg-type">boolean</div>
+        <div class="api-arg-desc">Instead of searching for a path <em>to</em> the goals this will search for a path <em>away</em> from the goals. The cheapest path that is out of <code>range</code> of every goal will be returned. The default is false.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">maxOps</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">The maximum allowed pathfinding operations. You can limit CPU time used for the search based on ratio 1 op ~ 0.001 CPU. The default value is 2000.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">maxRooms</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">The maximum allowed rooms to search. The default (and maximum) is 16.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">maxCost</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">The maximum allowed cost of the path returned. If at any point the pathfinder detects that it is impossible to find a path with a cost less than or equal to <code>maxCost</code> it will immediately halt the search. The default is Infinity.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">heuristicWeight</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Weight to apply to the heuristic in the A* formula <code>F = G + weight * H</code>. Use this option only if you understand the underlying A* algorithm mechanics! The default value is 1.2.</div>
+    </li>
+</ul></td>
+</tr></tbody></table>
+
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>An object containing the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td>An array of RoomPosition objects.</td>
+</tr>
+<tr>
+<td><code>ops</code></td>
+<td>Total number of operations performed before this path was calculated.</td>
+</tr>
+<tr>
+<td><code>cost</code></td>
+<td>The total cost of the path as derived from <code>plainCost</code>, <code>swampCost</code> and any given CostMatrix instances.</td>
+</tr>
+<tr>
+<td><code>incomplete</code></td>
+<td>If the pathfinder fails to find a complete path, this will be true. Note that <code>path</code> will still be populated with a partial path which represents the closest path it could find given the search parameters.            </td>
+</tr>
+</tbody>
+</table>
+<h2 id="PathFinder-use" class="api-property api-property--method  api-property--deprecated"><span class="api-property__name">PathFinder.use</span><span class="api-property__args">(isEnabled)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<div class="api-deprecated"><p>This method is deprecated and will be removed soon.</p>
+</div> 
+<pre class="highlight javascript tab-javascript "><code>PathFinder<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Game<span class="token punctuation">.</span>creeps<span class="token punctuation">.</span>John<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Specify whether to use this new experimental pathfinder in game objects methods. This method should be invoked every tick. It affects the following methods behavior: <a href="#Room.findPath"><code>Room.findPath</code></a>, <a href="#RoomPosition.findPathTo"><code>RoomPosition.findPathTo</code></a>, <a href="#RoomPosition.findClosestByPath"><code>RoomPosition.findClosestByPath</code></a>, <a href="#Creep.moveTo"><code>Creep.moveTo</code></a>.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>isEnabled</code></td><td>boolean</td><td><p>Whether to activate the new pathfinder or deactivate. The default is <code>true</code>.</p>
+</td>
+</tr></tbody></table>
+

@@ -1,0 +1,61 @@
+<h1 id="Flag"><a href="#Flag" class="headerlink" title="Flag"></a>Flag</h1><p>A flag. Flags can be used to mark particular spots in a room. Flags are visible to their owners only. You cannot have more than 10,000 flags.</p>
+<h2 id="pos" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">pos</span><span class="api-property__type"><a href="#RoomPosition">RoomPosition</a></span></h2>
+<p>An object representing the position of this object in the room.</p>
+<h2 id="room" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">room</span><span class="api-property__type"><a href="#Room">Room</a></span></h2>
+<p>The link to the Room object. May be undefined in case if an object is a flag or a construction site and is placed in a room that is not visible to you.</p>
+
+<h2 id="color" class="api-property api-property--property "><span class="api-property__name">color</span><span class="api-property__type">number</span></h2>
+<p>Flag primary color. One of the <code>COLOR_*</code> constants.</p>
+<h2 id="memory" class="api-property api-property--property "><span class="api-property__name">memory</span><span class="api-property__type">any</span></h2>
+<p>A shorthand to <code>Memory.flags[flag.name]</code>. You can use it for quick access the flag&#39;s specific memory data object.</p>
+<h2 id="name" class="api-property api-property--property "><span class="api-property__name">name</span><span class="api-property__type">string</span></h2>
+<p>Flag’s name. You can choose the name while creating a new flag, and it cannot be changed later. This name is a hash key to access the flag via the <a href="#Game.flags">Game.flags</a> object. The maximum name length is 60 charactes.</p>
+<h2 id="secondaryColor" class="api-property api-property--property "><span class="api-property__name">secondaryColor</span><span class="api-property__type">number</span></h2>
+<p>Flag secondary color. One of the <code>COLOR_*</code> constants.</p>
+<h2 id="remove" class="api-property api-property--method  "><span class="api-property__name">remove</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Remove the flag.</p>
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>Always returns
+OK
+.</p>
+<h2 id="setColor" class="api-property api-property--method  "><span class="api-property__name">setColor</span><span class="api-property__args">(color, [secondaryColor])</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>flags<span class="token punctuation">.</span>Flag1<span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>COLOR_GREEN<span class="token punctuation">,</span> COLOR_WHITE<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Set new color of the flag.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>color</code></td><td>string</td><td><p>Primary color of the flag. One of the <code>COLOR_*</code> constants.</p>
+</td>
+</tr><tr><td><code>secondaryColor</code><br><em>optional</em></td><td>string</td><td><p>Secondary color of the flag. One of the <code>COLOR_*</code> constants.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p><code>color</code> is not a valid color constant.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="setPosition" class="api-property api-property--method  "><span class="api-property__name">setPosition</span><span class="api-property__args">(x,y)<br>(pos)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>flags<span class="token punctuation">.</span>Flag1<span class="token punctuation">.</span><span class="token function">setPosition</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>flags<span class="token punctuation">.</span>Flag1<span class="token punctuation">.</span><span class="token function">setPosition</span><span class="token punctuation">(</span> <span class="token keyword">new</span> <span class="token class-name">RoomPosition</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token string">'W3S5'</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Set new position of the flag.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>The X position in the room.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>The Y position in the room.</p>
+</td>
+</tr><tr><td><code>pos</code></td><td>object</td><td><p>Can be a <a href="#RoomPosition">RoomPosition</a> object or any object containing <a href="#RoomPosition">RoomPosition</a>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_TARGET</code></td><td>-7</td><td><p>The target provided is invalid.</p>
+</td></tr>
+</tbody></table>
+</p>

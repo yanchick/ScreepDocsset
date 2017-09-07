@@ -1,0 +1,392 @@
+<h1 id="Room"><a href="#Room" class="headerlink" title="Room"></a>Room</h1><p>An object representing the room in which your units and structures are in.
+It can be used to look around, find paths, etc. Every <code>RoomObject</code> in the room contains
+its linked <code>Room</code> instance in the <code>room</code> property.</p>
+<h2 id="controller" class="api-property api-property--property "><span class="api-property__name">controller</span><span class="api-property__type"><a href="#StructureController">StructureController</a></span></h2>
+<p>The Controller structure of this room, if present, otherwise undefined.</p>
+<h2 id="energyAvailable" class="api-property api-property--property "><span class="api-property__name">energyAvailable</span><span class="api-property__type">number</span></h2>
+<p>Total amount of energy available in all spawns and extensions in the room.</p>
+<h2 id="energyCapacityAvailable" class="api-property api-property--property "><span class="api-property__name">energyCapacityAvailable</span><span class="api-property__type">number</span></h2>
+<p>Total amount of <code>energyCapacity</code> of all spawns and extensions in the room.</p>
+<h2 id="memory" class="api-property api-property--property "><span class="api-property__name">memory</span><span class="api-property__type">any</span></h2>
+<pre class="highlight javascript tab-javascript "><code>room<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>stage <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span></code></pre><p>A shorthand to <code>Memory.rooms[room.name]</code>. You can use it for quick access the room’s specific memory data object. <a href="./global-objects.html#Memory-object">Learn more about memory</a></p>
+<h2 id="name" class="api-property api-property--property "><span class="api-property__name">name</span><span class="api-property__type">string</span></h2>
+<p>The name of the room.</p>
+<h2 id="storage" class="api-property api-property--property "><span class="api-property__name">storage</span><span class="api-property__type"><a href="#StructureStorage">StructureStorage</a></span></h2>
+<p>The Storage structure of this room, if present, otherwise undefined.</p>
+<h2 id="terminal" class="api-property api-property--property "><span class="api-property__name">terminal</span><span class="api-property__type"><a href="#StructureTerminal">StructureTerminal</a></span></h2>
+<p>The Terminal structure of this room, if present, otherwise undefined.</p>
+<h2 id="visual" class="api-property api-property--property "><span class="api-property__name">visual</span><span class="api-property__type"><a href="#RoomVisual">RoomVisual</a></span></h2>
+<p>A <a href="#RoomVisual">RoomVisual</a> object for this room. You can use this object to draw simple shapes (lines, circles, text labels) in the room.</p>
+<h2 id="Room-serializePath" class="api-property api-property--method  "><span class="api-property__name">Room.serializePath</span><span class="api-property__args">(path)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> path <span class="token operator">=</span> spawn<span class="token punctuation">.</span>pos<span class="token punctuation">.</span><span class="token function">findPathTo</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Memory<span class="token punctuation">.</span>path <span class="token operator">=</span> Room<span class="token punctuation">.</span><span class="token function">serializePath</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span><span class="token function">moveByPath</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Serialize a path array into a short string representation, which is suitable to store in memory.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>path</code></td><td>array</td><td><p>A path array retrieved from <code><a href="#Room.findPath">Room.findPath</a></code>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>A serialized string form of the given path.</p>
+<h2 id="Room-deserializePath" class="api-property api-property--method  "><span class="api-property__name">Room.deserializePath</span><span class="api-property__args">(path)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> path <span class="token operator">=</span> Room<span class="token punctuation">.</span><span class="token function">deserializePath</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span><span class="token function">moveByPath</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Deserialize a short string path representation into an array form.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>path</code></td><td>string</td><td><p>A serialized path string.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>A path array.</p>
+<h2 id="createConstructionSite" class="api-property api-property--method  "><span class="api-property__name">createConstructionSite</span><span class="api-property__args">(x, y, structureType)<br>(pos, structureType)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>rooms<span class="token punctuation">.</span>sim<span class="token punctuation">.</span><span class="token function">createConstructionSite</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> STRUCTURE_ROAD<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Create new <a href="#ConstructionSite">ConstructionSite</a> at the specified location.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>The X position.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>The Y position.</p>
+</td>
+</tr><tr><td><code>pos</code></td><td>object</td><td><p>Can be a <a href="#RoomPosition">RoomPosition</a> object or any object containing <a href="#RoomPosition">RoomPosition</a>.</p>
+</td>
+</tr><tr><td><code>structureType</code></td><td>string</td><td><p>One of the <code>STRUCTURE_*</code> constants.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_TARGET</code></td><td>-7</td><td><p>The structure cannot be placed at the specified location.</p>
+</td></tr>
+<tr><td><code>ERR_FULL</code></td><td>-8</td><td><p>You have too many construction sites. The maximum number of construction sites per player is 100.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The location is incorrect.</p>
+</td></tr>
+<tr><td><code>ERR_RCL_NOT_ENOUGH</code></td><td>-14</td><td><p>Room Controller Level insufficient. <a href="./control.html">Learn more</a></p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="createFlag" class="api-property api-property--method  "><span class="api-property__name">createFlag</span><span class="api-property__args">(x, y, [name], [color], [secondaryColor])<br>(pos, [name], [color], [secondaryColor])</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>rooms<span class="token punctuation">.</span>sim<span class="token punctuation">.</span><span class="token function">createFlag</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token string">'Flag1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Create new <a href="#Flag">Flag</a> at the specified location.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>The X position.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>The Y position.</p>
+</td>
+</tr><tr><td><code>pos</code></td><td>object</td><td><p>Can be a <a href="#RoomPosition">RoomPosition</a> object or any object containing <a href="#RoomPosition">RoomPosition</a>.</p>
+</td>
+</tr><tr><td><code>name</code><br><em>optional</em></td><td>string</td><td><p>The name of a new flag. It should be unique, i.e. the <code>Game.flags</code> object should not contain another flag with the same name (hash key). If not defined, a random name will be generated. The maximum length is 60 characters.</p>
+</td>
+</tr><tr><td><code>color</code><br><em>optional</em></td><td>string</td><td><p>The color of a new flag. Should be one of the <code>COLOR_*</code> constants. The default value is <code>COLOR_WHITE</code>.</p>
+</td>
+</tr><tr><td><code>secondaryColor</code><br><em>optional</em></td><td>string</td><td><p>The secondary color of a new flag. Should be one of the <code>COLOR_*</code> constants. The default value is equal to <code>color</code>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-3"><a href="#Return-value-3" class="headerlink" title="Return value"></a>Return value</h3><p>The name of a new flag, or one of the following error codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>ERR_NAME_EXISTS</code></td><td>-3</td><td><p>There is a flag with the same name already.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The location or the color constant is incorrect.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="find" class="api-property api-property--method  "><span class="api-property__name">find</span><span class="api-property__args">(type, [opts])</span>
+        <div class="api-property__cpu api-property__cpu--2" title="This method has medium CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> targets <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_DROPPED_RESOURCES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>targets<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>targets<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    creep<span class="token punctuation">.</span><span class="token function">pickup</span><span class="token punctuation">(</span>targets<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> extensions <span class="token operator">=</span> Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_MY_STRUCTURES<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    filter<span class="token punctuation">:</span> <span class="token punctuation">{</span> structureType<span class="token punctuation">:</span> STRUCTURE_EXTENSION <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Spawn has '</span><span class="token operator">+</span>extensions<span class="token punctuation">.</span>length<span class="token operator">+</span><span class="token string">' extensions available'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> targets <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_HOSTILE_CREEPS<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    filter<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> object<span class="token punctuation">.</span><span class="token function">getActiveBodyparts</span><span class="token punctuation">(</span>ATTACK<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Find all objects of the specified type in the room.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td>number</td><td><p>One of the <code>FIND_*</code> constants.</p>
+</td>
+</tr><tr><td><code>opts</code><br><em>optional</em></td><td>object</td><td><p>An object with additional options:
+                    <ul>
+                        <li>
+                            <div class="api-arg-title">filter</div>
+                            <div class="api-arg-type">object, function, string</div>
+                            <div class="api-arg-desc">The result list will be filtered using the <a href="https://lodash.com/docs#filter" target="_blank" rel="external">Lodash.filter</a> method.</div>
+                        </li>
+                    </ul></p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-4"><a href="#Return-value-4" class="headerlink" title="Return value"></a>Return value</h3><p>An array with the objects found.</p>
+<h2 id="findExitTo" class="api-property api-property--method  "><span class="api-property__name">findExitTo</span><span class="api-property__args">(room)</span>
+        <div class="api-property__cpu api-property__cpu--3" title="This method has high CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> exitDir <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">findExitTo</span><span class="token punctuation">(</span>anotherCreep<span class="token punctuation">.</span>room<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> exit <span class="token operator">=</span> creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span><span class="token function">findClosestByRange</span><span class="token punctuation">(</span>exitDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// or simply:</span>
+creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>anotherCreep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RoomPosition</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">25</span><span class="token punctuation">,</span> anotherCreep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>roomName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Find the exit direction en route to another room. Please note that this method is not required for inter-room movement, you can simply pass the target in another room into <a href="#Creep.moveTo"><code>Creep.moveTo</code></a> method.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>room</code></td><td>string, <a href="#Room">Room</a></td><td><p>Another room name or room object.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-5"><a href="#Return-value-5" class="headerlink" title="Return value"></a>Return value</h3><p>The room direction constant, one of the following:</p>
+<ul>
+<li><code>FIND_EXIT_TOP</code></li>
+<li><code>FIND_EXIT_RIGHT</code></li>
+<li><code>FIND_EXIT_BOTTOM</code></li>
+<li><code>FIND_EXIT_LEFT</code></li>
+</ul>
+<p>Or one of the following error codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>ERR_NO_PATH</code></td><td>-2</td><td><p>Path can not be found.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The location is incorrect.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="findPath" class="api-property api-property--method  "><span class="api-property__name">findPath</span><span class="api-property__args">(fromPos, toPos, [opts])</span>
+        <div class="api-property__cpu api-property__cpu--3" title="This method has high CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> path <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">findPath</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> targetPos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+creep<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span>path<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>direction<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>PathFinder<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">findPath</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> targetPos<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    costCallback<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>roomName<span class="token punctuation">,</span> costMatrix<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>roomName <span class="token operator">==</span> <span class="token string">'W1N5'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// set anotherCreep's location as walkable</span>
+            costMatrix<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>anotherCreep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x<span class="token punctuation">,</span> anotherCreep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// set flag location as an obstacle</span>
+            costMatrix<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>flag<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x<span class="token punctuation">,</span> flag<span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// increase cost for (25,20) location to 50</span>
+            costMatrix<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> path <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">findPath</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> targetPos<span class="token punctuation">,</span> <span class="token punctuation">{</span>maxOps<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token operator">!</span>path<span class="token punctuation">.</span>length <span class="token operator">||</span> <span class="token operator">!</span>targetPos<span class="token punctuation">.</span><span class="token function">isEqualTo</span><span class="token punctuation">(</span>path<span class="token punctuation">[</span>path<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    path <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">findPath</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> targetPos<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        maxOps<span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span> ignoreDestructibleStructures<span class="token punctuation">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span> path<span class="token punctuation">.</span>length <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    creep<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span>path<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>direction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Find an optimal path inside the room between fromPos and toPos using <a href="http://en.wikipedia.org/wiki/Jump_point_search" target="_blank">Jump Point Search algorithm</a>.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>fromPos</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The start position.</p>
+</td>
+</tr><tr><td><code>toPos</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The end position.</p>
+</td>
+</tr><tr><td><code>opts</code><br><em>optional</em></td><td>object</td><td><p>An object containing additonal pathfinding flags:</p>
+<ul>
+    <li>
+        <div class="api-arg-title">ignoreCreeps</div>
+        <div class="api-arg-type">boolean</div>
+        <div class="api-arg-desc">Treat squares with creeps as walkable. Can be useful with too many moving creeps around or in some other cases. The default value is false.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">ignoreDestructibleStructures</div>
+        <div class="api-arg-type">boolean</div>
+        <div class="api-arg-desc">Treat squares with destructible structures (constructed walls, ramparts, spawns, extensions) as walkable. The default value is false.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">ignoreRoads</div>
+        <div class="api-arg-type">boolean</div>
+        <div class="api-arg-desc">Ignore road structures. Enabling this option can speed up the search. The default value is false. This is only used when the new <a href="#PathFinder"><code>PathFinder</code></a> is enabled.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">costCallback</div>
+        <div class="api-arg-type">function(string, CostMatrix)</div>
+        <div class="api-arg-desc">You can use this callback to modify a <a href="#PathFinder-CostMatrix"><code>CostMatrix</code></a> for any room during the search. The callback accepts two arguments, <code>roomName</code> and <code>costMatrix</code>. Use the <code>costMatrix</code> instance to make changes to the positions costs. If you return a new matrix from this callback, it will be used instead of the built-in cached one. This option is only used when the new <a href="#PathFinder"><code>PathFinder</code></a> is enabled.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">ignore</div>
+        <div class="api-arg-type">array</div>
+        <div class="api-arg-desc">An array of the room&#39;s objects or <a href="#RoomPosition">RoomPosition</a> objects which should be treated as walkable tiles during the search. This option cannot be used when the new <a href="#PathFinder"><code>PathFinder</code></a> is enabled (use <code>costCallback</code> option instead).</div>
+    </li>
+    <li>
+        <div class="api-arg-title">avoid</div>
+        <div class="api-arg-type">array</div>
+        <div class="api-arg-desc">An array of the room&#39;s objects or <a href="#RoomPosition">RoomPosition</a> objects which should be treated as obstacles during the search. This option cannot be used when the new <a href="#PathFinder"><code>PathFinder</code></a> is enabled (use <code>costCallback</code> option instead).</div>
+    </li>
+    <li>
+        <div class="api-arg-title">maxOps</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">The maximum limit of possible pathfinding operations. You can limit CPU time used for the search based on ratio 1 op ~ 0.001 CPU. The default value is 2000.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">heuristicWeight</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">Weight to apply to the heuristic in the A<em> formula <code>F = G + weight </code></em> H. Use this option only if you understand the underlying A* algorithm mechanics! The default value is 1.2.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">serialize</div>
+        <div class="api-arg-type">boolean</div>
+        <div class="api-arg-desc">If true, the result path will be serialized using <code><a href="#Room.serializePath">Room.serializePath</a></code>. The default is false.</div>
+    </li>
+    <li>
+        <div class="api-arg-title">maxRooms</div>
+        <div class="api-arg-type">number</div>
+        <div class="api-arg-desc">The maximum allowed rooms to search. The default (and maximum) is 16. This is only used when the new <a href="#PathFinder"><code>PathFinder</code></a> is enabled.</div>
+    </li>
+</ul></td>
+</tr></tbody></table>
+
+<h3 id="Return-value-6"><a href="#Return-value-6" class="headerlink" title="Return value"></a>Return value</h3><p>An array with path steps in the following format:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> dx<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>  dy<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> direction<span class="token punctuation">:</span> RIGHT <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> dx<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>  dy<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> direction<span class="token punctuation">:</span> BOTTOM <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span>  y<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span> dx<span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> dy<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> direction<span class="token punctuation">:</span> BOTTOM_LEFT <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">]</span></code></pre><h2 id="getPositionAt" class="api-property api-property--method  "><span class="api-property__name">getPositionAt</span><span class="api-property__args">(x, y)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> pos <span class="token operator">=</span> Game<span class="token punctuation">.</span>rooms<span class="token punctuation">.</span>sim<span class="token punctuation">.</span><span class="token function">getPositionAt</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> source <span class="token operator">=</span> pos<span class="token punctuation">.</span><span class="token function">findClosestByRange</span><span class="token punctuation">(</span>FIND_SOURCES_ACTIVE<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Creates a <a href="#RoomPosition">RoomPosition</a> object at the specified location.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>The X position.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>The Y position.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-7"><a href="#Return-value-7" class="headerlink" title="Return value"></a>Return value</h3><p>A
+<a href="#RoomPosition">RoomPosition</a>
+object or null if it cannot be obtained.</p>
+<h2 id="lookAt" class="api-property api-property--method  "><span class="api-property__name">lookAt</span><span class="api-property__args">(x, y)<br>(target)</span>
+        <div class="api-property__cpu api-property__cpu--2" title="This method has medium CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> look <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">lookAt</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+look<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>lookObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>lookObject<span class="token punctuation">.</span>type <span class="token operator">==</span> LOOK_CREEPS <span class="token operator">&amp;&amp;</span>
+       lookObject<span class="token punctuation">[</span>LOOK_CREEPS<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getActiveBodyparts</span><span class="token punctuation">(</span>ATTACK<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>lookObject<span class="token punctuation">.</span>creep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Get the list of objects at the specified room position.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>X position in the room.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>Y position in the room.</p>
+</td>
+</tr><tr><td><code>target</code></td><td>object</td><td><p>Can be a <a href="#RoomPosition">RoomPosition</a> object or any object containing <a href="#RoomPosition">RoomPosition</a>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-8"><a href="#Return-value-8" class="headerlink" title="Return value"></a>Return value</h3><p>An array with objects at the specified position in the following format:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'creep'</span><span class="token punctuation">,</span> creep<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'structure'</span><span class="token punctuation">,</span> structure<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+    <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre><h2 id="lookAtArea" class="api-property api-property--method  "><span class="api-property__name">lookAtArea</span><span class="api-property__args">(top, left, bottom, right, [asArray])</span>
+        <div class="api-property__cpu api-property__cpu--2" title="This method has medium CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> look <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">lookAtArea</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Get the list of objects at the specified room area.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>top</code></td><td>number</td><td><p>The top Y boundary of the area.</p>
+</td>
+</tr><tr><td><code>left</code></td><td>number</td><td><p>The left X boundary of the area.</p>
+</td>
+</tr><tr><td><code>bottom</code></td><td>number</td><td><p>The bottom Y boundary of the area.</p>
+</td>
+</tr><tr><td><code>right</code></td><td>number</td><td><p>The right X boundary of the area.</p>
+</td>
+</tr><tr><td><code>asArray</code><br><em>optional</em></td><td>boolean</td><td><p>Set to true if you want to get the result as a plain array.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-9"><a href="#Return-value-9" class="headerlink" title="Return value"></a>Return value</h3><p>If <code>asArray</code> is set to false or undefined, the method returns
+an object with all the objects in the specified area in the following format:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token comment" spellcheck="true">// 10,5,11,7</span>
+
+<span class="token punctuation">{</span>
+    <span class="token number">10</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token number">5</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'creep'</span><span class="token punctuation">,</span> creep<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">6</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">7</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token number">11</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token number">5</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'plain'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">6</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'structure'</span><span class="token punctuation">,</span> structure<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">7</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'wall'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p>If <code>asArray</code> is set to true, the method returns an array in the following format:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'creep'</span><span class="token punctuation">,</span> creep<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'plain'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'structure'</span><span class="token punctuation">,</span> structure<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'swamp'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'terrain'</span><span class="token punctuation">,</span> terrain<span class="token punctuation">:</span> <span class="token string">'wall'</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre><h2 id="lookForAt" class="api-property api-property--method  "><span class="api-property__name">lookForAt</span><span class="api-property__args">(type, x, y)<br>(type, target)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> found <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">lookForAt</span><span class="token punctuation">(</span>LOOK_CREEPS<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>found<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> found<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getActiveBodyparts</span><span class="token punctuation">(</span>ATTACK<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>found<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Get an object with the given type at the specified room position.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td>string</td><td><p>One of the <code>LOOK_*</code> constants.</p>
+</td>
+</tr><tr><td><code>x</code></td><td>number</td><td><p>X position in the room.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>Y position in the room.</p>
+</td>
+</tr><tr><td><code>target</code></td><td>object</td><td><p>Can be a <a href="#RoomPosition">RoomPosition</a> object or any object containing <a href="#RoomPosition">RoomPosition</a>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-10"><a href="#Return-value-10" class="headerlink" title="Return value"></a>Return value</h3><p>An array of objects of the given type at the specified position if found.</p>
+<h2 id="lookForAtArea" class="api-property api-property--method  "><span class="api-property__name">lookForAtArea</span><span class="api-property__args">(type, top, left, bottom, right, [asArray])</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> look <span class="token operator">=</span> creep<span class="token punctuation">.</span>room<span class="token punctuation">.</span><span class="token function">lookForAtArea</span><span class="token punctuation">(</span>LOOK_STRUCTURES<span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Get the list of objects with the given type at the specified room area.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td>string</td><td><p>One of the <code>LOOK_*</code> constants.</p>
+</td>
+</tr><tr><td><code>top</code></td><td>number</td><td><p>The top Y boundary of the area.</p>
+</td>
+</tr><tr><td><code>left</code></td><td>number</td><td><p>The left X boundary of the area.</p>
+</td>
+</tr><tr><td><code>bottom</code></td><td>number</td><td><p>The bottom Y boundary of the area.</p>
+</td>
+</tr><tr><td><code>right</code></td><td>number</td><td><p>The right X boundary of the area.</p>
+</td>
+</tr><tr><td><code>asArray</code><br><em>optional</em></td><td>boolean</td><td><p>Set to true if you want to get the result as a plain array.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-11"><a href="#Return-value-11" class="headerlink" title="Return value"></a>Return value</h3><p>If <code>asArray</code> is set to false or undefined, the method returns an object
+with all the objects of the given type in the specified area in the following format:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token comment" spellcheck="true">// 10,5,11,7</span>
+
+<span class="token punctuation">{</span>
+    <span class="token number">10</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token number">5</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">6</span><span class="token punctuation">:</span> undefined<span class="token punctuation">,</span>
+        <span class="token number">7</span><span class="token punctuation">:</span> undefined
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token number">11</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token number">5</span><span class="token punctuation">:</span> undefined<span class="token punctuation">,</span>
+        <span class="token number">6</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">7</span><span class="token punctuation">:</span> undefined
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p>If <code>asArray</code> is set to true, the method returns an array in the following format:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> structure<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> structure<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">,</span> structure<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>

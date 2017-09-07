@@ -1,0 +1,182 @@
+<h1 id="Game-map"><a href="#Game-map" class="headerlink" title="Game.map"></a>Game.map</h1><p>A global object representing world map. Use it to navigate between rooms.</p>
+<h2 id="Game-map-describeExits" class="api-property api-property--method  "><span class="api-property__name">Game.map.describeExits</span><span class="api-property__args">(roomName)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> exits <span class="token operator">=</span> Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">describeExits</span><span class="token punctuation">(</span><span class="token string">'W8N3'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>List all exits available from the room with the given name.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>roomName</code></td><td>string</td><td><p>The room name.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>The exits information in the following format, or null if the room not found.</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token punctuation">{</span>
+    <span class="token string">"1"</span><span class="token punctuation">:</span> <span class="token string">"W8N4"</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">// TOP</span>
+    <span class="token string">"3"</span><span class="token punctuation">:</span> <span class="token string">"W7N3"</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">// RIGHT</span>
+    <span class="token string">"5"</span><span class="token punctuation">:</span> <span class="token string">"W8N2"</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">// BOTTOM</span>
+    <span class="token string">"7"</span><span class="token punctuation">:</span> <span class="token string">"W9N3"</span>     <span class="token comment" spellcheck="true">// LEFT</span>
+<span class="token punctuation">}</span></code></pre><h2 id="Game-map-findExit" class="api-property api-property--method  "><span class="api-property__name">Game.map.findExit</span><span class="api-property__args">(fromRoom, toRoom, [opts])</span>
+        <div class="api-property__cpu api-property__cpu--3" title="This method has high CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">if</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room <span class="token operator">!=</span> anotherRoomName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> exitDir <span class="token operator">=</span> Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">findExit</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room<span class="token punctuation">,</span> anotherRoomName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> exit <span class="token operator">=</span> creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span><span class="token function">findClosestByRange</span><span class="token punctuation">(</span>exitDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// go to some place in another room</span>
+<span class="token punctuation">}</span></code></pre><pre class="highlight javascript tab-javascript "><code>creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RoomPosition</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> anotherRoomName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Find the exit direction from the given room en route to another room.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>fromRoom</code></td><td>string, <a href="#Room">Room</a></td><td><p>Start room name or room object.</p>
+</td>
+</tr><tr><td><code>toRoom</code></td><td>string, <a href="#Room">Room</a></td><td><p>Finish room name or room object.</p>
+</td>
+</tr><tr><td><code>opts</code><br><em>optional</em></td><td>object</td><td><p>An object with the pathfinding options. See <code><a href="#findRoute">findRoute</a></code>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>The room direction constant, one of the following:</p>
+<ul>
+<li><code>FIND_EXIT_TOP</code></li>
+<li><code>FIND_EXIT_RIGHT</code></li>
+<li><code>FIND_EXIT_BOTTOM</code></li>
+<li><code>FIND_EXIT_LEFT</code></li>
+</ul>
+<p>Or one of the following error codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>ERR_NO_PATH</code></td><td>-2</td><td><p>Path can not be found.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The location is incorrect.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Game-map-findRoute" class="api-property api-property--method  "><span class="api-property__name">Game.map.findRoute</span><span class="api-property__args">(fromRoom, toRoom, [opts])</span>
+        <div class="api-property__cpu api-property__cpu--3" title="This method has high CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> route <span class="token operator">=</span> Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">findRoute</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room<span class="token punctuation">,</span> anotherRoomName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>route<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Now heading to room '</span><span class="token operator">+</span>route<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>room<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> exit <span class="token operator">=</span> creep<span class="token punctuation">.</span>pos<span class="token punctuation">.</span><span class="token function">findClosestByRange</span><span class="token punctuation">(</span>route<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>exit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> route <span class="token operator">=</span> Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">findRoute</span><span class="token punctuation">(</span>creep<span class="token punctuation">.</span>room<span class="token punctuation">,</span> anotherRoomName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function">routeCallback</span><span class="token punctuation">(</span>roomName<span class="token punctuation">,</span> fromRoomName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>roomName <span class="token operator">==</span> <span class="token string">'W10S10'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// avoid this room</span>
+            <span class="token keyword">return</span> <span class="token number">Infinity</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> <span class="token keyword">from</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RoomPosition</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">'E1N1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> to <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RoomPosition</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token string">'E4N1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Use `findRoute` to calculate a high-level plan for this path,</span>
+<span class="token comment" spellcheck="true">// prioritizing highways and owned rooms</span>
+<span class="token keyword">let</span> allowedRooms <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span> <span class="token keyword">from</span><span class="token punctuation">.</span>roomName <span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">findRoute</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">.</span>roomName<span class="token punctuation">,</span> to<span class="token punctuation">.</span>roomName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function">routeCallback</span><span class="token punctuation">(</span>roomName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> parsed <span class="token operator">=</span> <span class="token regex">/^[WE]([0-9]+)[NS]([0-9]+)$/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>roomName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> isHighway <span class="token operator">=</span> <span class="token punctuation">(</span>parsed<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">10</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">||</span> 
+                        <span class="token punctuation">(</span>parsed<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">10</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> isMyRoom <span class="token operator">=</span> Game<span class="token punctuation">.</span>rooms<span class="token punctuation">[</span>roomName<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
+            Game<span class="token punctuation">.</span>rooms<span class="token punctuation">[</span>roomName<span class="token punctuation">]</span><span class="token punctuation">.</span>controller <span class="token operator">&amp;&amp;</span>
+            Game<span class="token punctuation">.</span>rooms<span class="token punctuation">[</span>roomName<span class="token punctuation">]</span><span class="token punctuation">.</span>controller<span class="token punctuation">.</span>my<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isHighway <span class="token operator">||</span> isMyRoom<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token number">2.5</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    allowedRooms<span class="token punctuation">[</span>info<span class="token punctuation">.</span>room<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Invoke PathFinder, allowing access only to rooms from `findRoute`</span>
+<span class="token keyword">let</span> ret <span class="token operator">=</span> PathFinder<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function">roomCallback</span><span class="token punctuation">(</span>roomName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>allowedRooms<span class="token punctuation">[</span>roomName<span class="token punctuation">]</span> <span class="token operator">===</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Find route from the given room to another room.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>fromRoom</code></td><td>string, <a href="#Room">Room</a></td><td><p>Start room name or room object.</p>
+</td>
+</tr><tr><td><code>toRoom</code></td><td>string, <a href="#Room">Room</a></td><td><p>Finish room name or room object.</p>
+</td>
+</tr><tr><td><code>opts</code><br><em>optional</em></td><td>object</td><td><p>An object with the following options:
+                    <ul>
+                        <li>
+                            <div class="api-arg-title">routeCallback</div>
+                            <div class="api-arg-type">function</div>
+                            <div class="api-arg-desc">This callback accepts two arguments: <code>function(roomName, fromRoomName)</code>. It can be used to calculate the cost of entering that room. You can use this to do things like prioritize your own rooms, or avoid some rooms. You can return a floating point cost or <code>Infinity</code> to block the room.</div>
+                        </li>
+                    </ul></p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>The route array in the following format:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> exit<span class="token punctuation">:</span> FIND_EXIT_RIGHT<span class="token punctuation">,</span> room<span class="token punctuation">:</span> <span class="token string">'arena21'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> exit<span class="token punctuation">:</span> FIND_EXIT_BOTTOM<span class="token punctuation">,</span> room<span class="token punctuation">:</span> <span class="token string">'arena22'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">]</span></code></pre><p>Or one of the following error codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>ERR_NO_PATH</code></td><td>-2</td><td><p>Path can not be found.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Game-map-getRoomLinearDistance" class="api-property api-property--method  "><span class="api-property__name">Game.map.getRoomLinearDistance</span><span class="api-property__args">(roomName1, roomName2, [continuous])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">getRoomLinearDistance</span><span class="token punctuation">(</span><span class="token string">'W1N1'</span><span class="token punctuation">,</span> <span class="token string">'W4N2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 3</span>
+Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">getRoomLinearDistance</span><span class="token punctuation">(</span><span class="token string">'E65S55'</span><span class="token punctuation">,</span><span class="token string">'W65S55'</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 131</span>
+Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">getRoomLinearDistance</span><span class="token punctuation">(</span><span class="token string">'E65S55'</span><span class="token punctuation">,</span><span class="token string">'W65S55'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 11</span></code></pre><p>Get the linear distance (in rooms) between two rooms. You can use this function to estimate the energy cost of sending resources through terminals, or using observers and nukes.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>roomName1</code></td><td>string</td><td><p>The name of the first room.</p>
+</td>
+</tr><tr><td><code>roomName2</code></td><td>string</td><td><p>The name of the second room.</p>
+</td>
+</tr><tr><td><code>continuous</code><br><em>optional</em></td><td>boolean</td><td><p>Whether to treat the world map continuous on borders. Set to true if you want to calculate the trade or terminal send cost. Default is false.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-3"><a href="#Return-value-3" class="headerlink" title="Return value"></a>Return value</h3><p>A number of rooms between the given two rooms.</p>
+<h2 id="Game-map-getTerrainAt" class="api-property api-property--method  "><span class="api-property__name">Game.map.getTerrainAt</span><span class="api-property__args">(x, y, roomName)<br>(pos)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">getTerrainAt</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token string">'W10N10'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">getTerrainAt</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RoomPosition</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token string">'W10N10'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Get terrain type at the specified room position. This method works for any room in the world even if you have no access to it.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>X position in the room.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>Y position in the room.</p>
+</td>
+</tr><tr><td><code>roomName</code></td><td>string</td><td><p>The room name.</p>
+</td>
+</tr><tr><td><code>pos</code></td><td><a href="#RoomPosition">RoomPosition</a></td><td><p>The position object.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-4"><a href="#Return-value-4" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following string values:</p>
+<ul>
+                <li><code>plain</code></li>
+                <li><code>swamp</code></li>
+                <li><code>wall</code></li>
+            </ul>
+
+
+<h2 id="Game-map-getWorldSize" class="api-property api-property--method  "><span class="api-property__name">Game.map.getWorldSize</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<p>Returns the world size as a number of rooms between world corners. For example, for a world with rooms from W50N50 
+to E50S50 this method will return 102.</p>
+<h2 id="Game-map-isRoomAvailable" class="api-property api-property--method  "><span class="api-property__name">Game.map.isRoomAvailable</span><span class="api-property__args">(roomName)</span>
+        <div class="api-property__cpu api-property__cpu--2" title="This method has medium CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">if</span><span class="token punctuation">(</span>Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">isRoomAvailable</span><span class="token punctuation">(</span>room<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    creep<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>room<span class="token punctuation">.</span><span class="token function">getPositionAt</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Check if the room is available to move into.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>roomName</code></td><td>string</td><td><p>The room name.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-5"><a href="#Return-value-5" class="headerlink" title="Return value"></a>Return value</h3><p>A boolean value.</p>

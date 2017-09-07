@@ -1,0 +1,10 @@
+{
+    "extra": {
+        "indexFilePath": "screeps/index.html"
+    },
+    "name": "Screeps",
+    "revision": "0",
+    "sourceId": "com.kapeli",
+    "title": "Screeps",
+    "version": "3.20.1"
+}

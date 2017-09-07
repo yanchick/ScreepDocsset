@@ -1,0 +1,217 @@
+<h1 id="StructureTower"><a href="#StructureTower" class="headerlink" title="StructureTower"></a>StructureTower</h1><p><img src="img/tower.png" alt="" align="right"></p>
+<p>Remotely attacks or heals creeps, or repairs structures. Can be targeted to any object in 
+the room. However, its effectiveness linearly depends on the distance. Each action consumes energy.</p>
+<table class="table gameplay-info">
+    <tbody>
+    <tr>
+        <td colspan="2"><strong>Controller level</strong></td>
+    </tr>
+    <tr>
+        <td>1-2</td>
+        <td>—</td>
+    </tr>
+    <tr>
+        <td>3-4</td>
+        <td>1 tower</td>
+    </tr>
+    <tr>
+        <td>5-6</td>
+        <td>2 towers</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>3 towers</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>6 towers</td>
+    </tr>
+    <tr>
+        <td><strong>Cost</strong></td>
+        <td>5,000</td>
+    </tr>
+    <tr>
+        <td><strong>Hits</strong></td>
+        <td>3,000</td>
+    </tr>
+    <tr>
+        <td><strong>Capacity</strong></td>
+        <td>1,000</td>
+    </tr>
+    <tr>
+        <td><strong>Energy per action</strong></td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td><strong>Attack effectiveness</strong></td>
+        <td>600 hits at range ≤5 to 150 hits at range ≥20</td>
+    </tr>
+    <tr>
+        <td><strong>Heal effectiveness</strong></td>
+        <td>400 hits at range ≤5 to 100 hits at range ≥20</td>
+    </tr>
+    <tr>
+        <td><strong>Repair effectiveness</strong></td>
+        <td>800 hits at range ≤5 to 200 hits at range ≥20</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 id="pos" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">pos</span><span class="api-property__type"><a href="#RoomPosition">RoomPosition</a></span></h2>
+<p>An object representing the position of this object in the room.</p>
+<h2 id="room" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">room</span><span class="api-property__type"><a href="#Room">Room</a></span></h2>
+<p>The link to the Room object. May be undefined in case if an object is a flag or a construction site and is placed in a room that is not visible to you.</p>
+
+<h2 id="hits" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">hits</span><span class="api-property__type">number</span></h2>
+<p>The current amount of hit points of the structure.</p>
+<h2 id="hitsMax" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">hitsMax</span><span class="api-property__type">number</span></h2>
+<p>The total amount of hit points of the structure.</p>
+<h2 id="id" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">id</span><span class="api-property__type">string</span></h2>
+<p>A unique object identificator. You can use <a href="#Game.getObjectById"><code>Game.getObjectById</code></a> method to retrieve an object instance by its <code>id</code>.</p>
+<h2 id="structureType" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">structureType</span><span class="api-property__type">string</span></h2>
+<p>One of the <code>STRUCTURE_*</code> constants.</p>
+<h2 id="Structure-destroy" class="api-property api-property--method api-property--inherited "><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">destroy</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Destroy this structure immediately.</p>
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You are not the owner of this structure.</p>
+</td></tr>
+<tr><td><code>ERR_BUSY</code></td><td>-4</td><td><p>Hostile creeps are in the room.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Structure-isActive" class="api-property api-property--method api-property--inherited "><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">isActive</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--2" title="This method has medium CPU cost."></div>
+        </h2>
+<p>Check whether this structure can be used. If room controller level is insufficient, then this method will return false, and the structure will be highlighted with red in the game.</p>
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>A boolean value.</p>
+<h2 id="Structure-notifyWhenAttacked" class="api-property api-property--method api-property--inherited "><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">notifyWhenAttacked</span><span class="api-property__args">(enabled)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Toggle auto notification when the structure is under attack. The notification will be sent to your account email. Turned on by default.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>enabled</code></td><td>boolean</td><td><p>Whether to enable notification or disable.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You are not the owner of this structure.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p><code>enable</code> argument is not a boolean value.</p>
+</td></tr>
+</tbody></table>
+</p>
+  
+<h2 id="my" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#OwnedStructure">OwnedStructure</a></div><span class="api-property__name">my</span><span class="api-property__type">boolean</span></h2>
+<p>Whether this is your own structure.</p>
+<h2 id="owner" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#OwnedStructure">OwnedStructure</a></div><span class="api-property__name">owner</span><span class="api-property__type">object</span></h2>
+<p>An object with the structure’s owner info containing the following properties:</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>username</code></td><td>string</td><td><p>The name of the owner user.</p>
+</td>
+</tr></tbody></table>
+
+
+<h2 id="energy" class="api-property api-property--property "><span class="api-property__name">energy</span><span class="api-property__type">number</span></h2>
+<p>The amount of energy containing in this structure.</p>
+<h2 id="energyCapacity" class="api-property api-property--property "><span class="api-property__name">energyCapacity</span><span class="api-property__type">number</span></h2>
+<p>The total amount of energy this structure can contain.</p>
+<h2 id="attack" class="api-property api-property--method  "><span class="api-property__name">attack</span><span class="api-property__args">(target)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Remotely attack any creep in the room.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>target</code></td><td><a href="#Creep">Creep</a></td><td><p>The target creep.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>The tower does not have enough energy.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_TARGET</code></td><td>-7</td><td><p>The target is not a valid attackable object.</p>
+</td></tr>
+<tr><td><code>ERR_RCL_NOT_ENOUGH</code></td><td>-14</td><td><p>Room Controller Level insufficient to use this structure.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="heal" class="api-property api-property--method  "><span class="api-property__name">heal</span><span class="api-property__args">(target)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Remotely heal any creep in the room.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>target</code></td><td><a href="#Creep">Creep</a></td><td><p>The target creep.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>The tower does not have enough energy.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_TARGET</code></td><td>-7</td><td><p>The target is not a valid creep object.</p>
+</td></tr>
+<tr><td><code>ERR_RCL_NOT_ENOUGH</code></td><td>-14</td><td><p>Room Controller Level insufficient to use this structure.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="repair" class="api-property api-property--method  "><span class="api-property__name">repair</span><span class="api-property__args">(target)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Remotely repair any structure in the room.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>target</code></td><td><a href="#Structure">Structure</a></td><td><p>The target structure.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>The tower does not have enough energy.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_TARGET</code></td><td>-7</td><td><p>The target is not a valid repairable object.</p>
+</td></tr>
+<tr><td><code>ERR_RCL_NOT_ENOUGH</code></td><td>-14</td><td><p>Room Controller Level insufficient to use this structure.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="transferEnergy" class="api-property api-property--method  api-property--deprecated"><span class="api-property__name">transferEnergy</span><span class="api-property__args">(target, [amount])</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<div class="api-deprecated"><p>This method is deprecated and will be removed soon. Please use <a href="#Creep.withdraw"><code>Creep.withdraw</code></a> instead.</p>
+</div>
+<p>Transfer energy from the structure to a creep. The target has to be at adjacent square.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>target</code></td><td><a href="#Creep">Creep</a></td><td><p>The creep object which energy should be transferred to.</p>
+</td>
+</tr><tr><td><code>amount</code><br><em>optional</em></td><td>number</td><td><p>The amount of energy to be transferred. If omitted, all the remaining amount of energy will be used.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-3"><a href="#Return-value-3" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You are not the owner of the target creep, or there is a hostile rampart on top of the structure.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>The structure contains less energy than the given amount.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_TARGET</code></td><td>-7</td><td><p>The specified target object is not a creep.</p>
+</td></tr>
+<tr><td><code>ERR_FULL</code></td><td>-8</td><td><p>The target creep can not carry the given amount of energy.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_IN_RANGE</code></td><td>-9</td><td><p>The target creep is too far away.</p>
+</td></tr>
+</tbody></table>
+</p>

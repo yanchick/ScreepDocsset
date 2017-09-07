@@ -1,0 +1,77 @@
+<h1 id="StructureWall"><a href="#StructureWall" class="headerlink" title="StructureWall"></a>StructureWall</h1><p><img src="img/wall.png" alt="" align="right"></p>
+<p>Blocks movement of all creeps.</p>
+<table class="table gameplay-info">
+    <tbody>
+    <tr>
+        <td><strong>Controller level</strong></td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><strong>Cost</strong></td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td><strong>Hits when constructed</strong></td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td><strong>Max hits</strong></td>
+        <td>300,000,000</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 id="pos" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">pos</span><span class="api-property__type"><a href="#RoomPosition">RoomPosition</a></span></h2>
+<p>An object representing the position of this object in the room.</p>
+<h2 id="room" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">room</span><span class="api-property__type"><a href="#Room">Room</a></span></h2>
+<p>The link to the Room object. May be undefined in case if an object is a flag or a construction site and is placed in a room that is not visible to you.</p>
+
+<h2 id="hits" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">hits</span><span class="api-property__type">number</span></h2>
+<p>The current amount of hit points of the structure.</p>
+<h2 id="hitsMax" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">hitsMax</span><span class="api-property__type">number</span></h2>
+<p>The total amount of hit points of the structure.</p>
+<h2 id="id" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">id</span><span class="api-property__type">string</span></h2>
+<p>A unique object identificator. You can use <a href="#Game.getObjectById"><code>Game.getObjectById</code></a> method to retrieve an object instance by its <code>id</code>.</p>
+<h2 id="structureType" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">structureType</span><span class="api-property__type">string</span></h2>
+<p>One of the <code>STRUCTURE_*</code> constants.</p>
+<h2 id="Structure-destroy" class="api-property api-property--method api-property--inherited "><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">destroy</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Destroy this structure immediately.</p>
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You are not the owner of this structure.</p>
+</td></tr>
+<tr><td><code>ERR_BUSY</code></td><td>-4</td><td><p>Hostile creeps are in the room.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Structure-isActive" class="api-property api-property--method api-property--inherited "><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">isActive</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--2" title="This method has medium CPU cost."></div>
+        </h2>
+<p>Check whether this structure can be used. If room controller level is insufficient, then this method will return false, and the structure will be highlighted with red in the game.</p>
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>A boolean value.</p>
+<h2 id="Structure-notifyWhenAttacked" class="api-property api-property--method api-property--inherited "><div class="api-property__inherited">Inherited from <a href="#Structure">Structure</a></div><span class="api-property__name">notifyWhenAttacked</span><span class="api-property__args">(enabled)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<p>Toggle auto notification when the structure is under attack. The notification will be sent to your account email. Turned on by default.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>enabled</code></td><td>boolean</td><td><p>Whether to enable notification or disable.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You are not the owner of this structure.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p><code>enable</code> argument is not a boolean value.</p>
+</td></tr>
+</tbody></table>
+</p>
+
+<h2 id="ticksToLive" class="api-property api-property--property "><span class="api-property__name">ticksToLive</span><span class="api-property__type">number</span></h2>
+<p>The amount of game ticks when the wall will disappear (only for automatically placed border walls at the start of the game).</p>

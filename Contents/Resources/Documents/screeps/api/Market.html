@@ -1,0 +1,321 @@
+<h1 id="Game-market"><a href="#Game-market" class="headerlink" title="Game.market"></a>Game.market</h1><p>A global object representing the in-game market. You can use this object to track resource transactions to/from your terminals, and your buy/sell orders.</p>
+<p>Learn more about the market system from <a href="./market.html">this article</a>.</p>
+<h2 id="Game-market-credits" class="api-property api-property--property "><span class="api-property__name">Game.market.credits</span><span class="api-property__type">number</span></h2>
+<p>Your current credits balance.</p>
+<h2 id="Game-market-incomingTransactions" class="api-property api-property--property "><span class="api-property__name">Game.market.incomingTransactions</span><span class="api-property__type">array</span></h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token punctuation">[</span><span class="token punctuation">{</span>
+    transactionId <span class="token punctuation">:</span> <span class="token string">"56dec546a180ce641dd65960"</span><span class="token punctuation">,</span>
+    time <span class="token punctuation">:</span> <span class="token number">10390687</span><span class="token punctuation">,</span>
+    sender <span class="token punctuation">:</span> <span class="token punctuation">{</span>username<span class="token punctuation">:</span> <span class="token string">"Sender"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    recipient <span class="token punctuation">:</span> <span class="token punctuation">{</span>username<span class="token punctuation">:</span> <span class="token string">"Me"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    resourceType <span class="token punctuation">:</span> <span class="token string">"U"</span><span class="token punctuation">,</span>
+    amount <span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token keyword">from</span> <span class="token punctuation">:</span> <span class="token string">"W0N0"</span><span class="token punctuation">,</span>
+    to <span class="token punctuation">:</span> <span class="token string">"W10N10"</span><span class="token punctuation">,</span>
+    description <span class="token punctuation">:</span> <span class="token string">"trade contract #1"</span><span class="token punctuation">,</span>
+    order<span class="token punctuation">:</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">// optional</span>
+        id <span class="token punctuation">:</span> <span class="token string">"55c34a6b5be41a0a6e80c68b"</span><span class="token punctuation">,</span>
+        type <span class="token punctuation">:</span> <span class="token string">"sell"</span><span class="token punctuation">,</span>
+        price <span class="token punctuation">:</span> <span class="token number">2.95</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span></code></pre><p>An array of the last 100 incoming transactions to your terminals with the following format:</p>
+<h2 id="Game-market-outgoingTransactions" class="api-property api-property--property "><span class="api-property__name">Game.market.outgoingTransactions</span><span class="api-property__type">array</span></h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token punctuation">[</span><span class="token punctuation">{</span>
+    transactionId <span class="token punctuation">:</span> <span class="token string">"56dec546a180ce641dd65960"</span><span class="token punctuation">,</span>
+    time <span class="token punctuation">:</span> <span class="token number">10390687</span><span class="token punctuation">,</span>
+    sender <span class="token punctuation">:</span> <span class="token punctuation">{</span>username<span class="token punctuation">:</span> <span class="token string">"Me"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    recipient <span class="token punctuation">:</span> <span class="token punctuation">{</span>username<span class="token punctuation">:</span> <span class="token string">"Recipient"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    resourceType <span class="token punctuation">:</span> <span class="token string">"U"</span><span class="token punctuation">,</span>
+    amount <span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token keyword">from</span> <span class="token punctuation">:</span> <span class="token string">"W0N0"</span><span class="token punctuation">,</span>
+    to <span class="token punctuation">:</span> <span class="token string">"W10N10"</span><span class="token punctuation">,</span>
+    description <span class="token punctuation">:</span> <span class="token string">"trade contract #1"</span><span class="token punctuation">,</span>
+    order<span class="token punctuation">:</span> <span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">// optional</span>
+        id <span class="token punctuation">:</span> <span class="token string">"55c34a6b5be41a0a6e80c68b"</span><span class="token punctuation">,</span>
+        type <span class="token punctuation">:</span> <span class="token string">"sell"</span><span class="token punctuation">,</span>
+        price <span class="token punctuation">:</span> <span class="token number">2.95</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span></code></pre><p>An array of the last 100 outgoing transactions from your terminals with the following format:</p>
+<h2 id="Game-market-orders" class="api-property api-property--property "><span class="api-property__name">Game.market.orders</span><span class="api-property__type">object</span></h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token punctuation">{</span>
+    <span class="token string">"55c34a6b5be41a0a6e80c68b"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        id <span class="token punctuation">:</span> <span class="token string">"55c34a6b5be41a0a6e80c68b"</span><span class="token punctuation">,</span>
+        created <span class="token punctuation">:</span> <span class="token number">13131117</span><span class="token punctuation">,</span>
+        active<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        type <span class="token punctuation">:</span> <span class="token string">"sell"</span>
+        resourceType <span class="token punctuation">:</span> <span class="token string">"OH"</span><span class="token punctuation">,</span>
+        roomName <span class="token punctuation">:</span> <span class="token string">"W1N1"</span><span class="token punctuation">,</span>
+        amount <span class="token punctuation">:</span> <span class="token number">15821</span><span class="token punctuation">,</span>
+        remainingAmount <span class="token punctuation">:</span> <span class="token number">30000</span><span class="token punctuation">,</span>
+        totalAmount <span class="token punctuation">:</span> <span class="token number">50000</span><span class="token punctuation">,</span>
+        price <span class="token punctuation">:</span> <span class="token number">2.95</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"55c34a6b52411a0a6e80693a"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        id <span class="token punctuation">:</span> <span class="token string">"55c34a6b52411a0a6e80693a"</span><span class="token punctuation">,</span>
+        created <span class="token punctuation">:</span> <span class="token number">13134122</span><span class="token punctuation">,</span>
+        active<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        type <span class="token punctuation">:</span> <span class="token string">"buy"</span>
+        resourceType <span class="token punctuation">:</span> <span class="token string">"energy"</span><span class="token punctuation">,</span>
+        roomName <span class="token punctuation">:</span> <span class="token string">"W1N1"</span><span class="token punctuation">,</span>
+        amount <span class="token punctuation">:</span> <span class="token number">94000</span><span class="token punctuation">,</span>
+        remainingAmount <span class="token punctuation">:</span> <span class="token number">94000</span><span class="token punctuation">,</span>
+        totalAmount <span class="token punctuation">:</span> <span class="token number">94000</span>
+        price <span class="token punctuation">:</span> <span class="token number">0.45</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"55c34a6b5be41a0a6e80c123"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        id <span class="token punctuation">:</span> <span class="token string">"55c34a6b5be41a0a6e80c123"</span><span class="token punctuation">,</span>
+        created <span class="token punctuation">:</span> <span class="token number">13105123</span><span class="token punctuation">,</span>
+        active<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        type <span class="token punctuation">:</span> <span class="token string">"sell"</span>
+        resourceType <span class="token punctuation">:</span> <span class="token string">"token"</span><span class="token punctuation">,</span>
+        amount <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        remainingAmount <span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+        totalAmount <span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+        price <span class="token punctuation">:</span> <span class="token number">50000</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p>An object with your active and inactive buy/sell orders on the market.</p>
+<h2 id="Game-market-calcTransactionCost" class="api-property api-property--method  "><span class="api-property__name">Game.market.calcTransactionCost</span><span class="api-property__args">(amount, roomName1, roomName2)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> cost <span class="token operator">=</span> Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">calcTransactionCost</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span> <span class="token string">'W0N0'</span><span class="token punctuation">,</span> <span class="token string">'W10N5'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// -> 284 energy units</span></code></pre><p>Estimate the energy transaction cost of <a href="#StructureTerminal.send"><code>StructureTerminal.send</code></a> and <a href="#Game.market.deal"><code>Game.market.deal</code></a> methods. 
+The formula:</p>
+<pre class="highlight javascript tab-javascript nosidebar"><code>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span> amount <span class="token operator">*</span> <span class="token punctuation">(</span> <span class="token number">1</span> <span class="token operator">-</span> Math<span class="token punctuation">.</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token operator">-</span>distanceBetweenRooms<span class="token operator">/</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span></code></pre><table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>amount</code></td><td>number</td><td><p>Amount of resources to be sent.</p>
+</td>
+</tr><tr><td><code>roomName1</code></td><td>string</td><td><p>The name of the first room.</p>
+</td>
+</tr><tr><td><code>roomName2</code></td><td>string</td><td><p>The name of the second room.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>The amount of energy required to perform the transaction.</p>
+<h2 id="Game-market-cancelOrder" class="api-property api-property--method  "><span class="api-property__name">Game.market.cancelOrder</span><span class="api-property__args">(orderId)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">const</span> id <span class="token keyword">in</span> Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span>orders<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">cancelOrder</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Cancel a previously created order. The 5% fee is not returned.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>orderId</code></td><td>string</td><td><p>The order ID as provided in <code>Game.market.orders</code>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The order ID is not valid.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Game-market-changeOrderPrice" class="api-property api-property--method  "><span class="api-property__name">Game.market.changeOrderPrice</span><span class="api-property__args">(orderId, newPrice)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">changeOrderPrice</span><span class="token punctuation">(</span><span class="token string">'57bec1bf77f4d17c4c011960'</span><span class="token punctuation">,</span> <span class="token number">9.95</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Change the price of an existing order. If <code>newPrice</code> is greater than old price, you will be charged <code>(newPrice-oldPrice)*remainingAmount*0.05</code> credits.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>orderId</code></td><td>string</td><td><p>The order ID as provided in <code>Game.market.orders</code>.</p>
+</td>
+</tr><tr><td><code>newPrice</code></td><td>number</td><td><p>The new order price.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You are not the owner of the room&#39;s terminal or there is no terminal.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>You don&#39;t have enough credits to pay a fee.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The arguments provided are invalid.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Game-market-createOrder" class="api-property api-property--method  "><span class="api-property__name">Game.market.createOrder</span><span class="api-property__args">(type, resourceType, price, totalAmount, [roomName])</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">createOrder</span><span class="token punctuation">(</span>ORDER_SELL<span class="token punctuation">,</span> RESOURCE_GHODIUM<span class="token punctuation">,</span> <span class="token number">9.95</span><span class="token punctuation">,</span> <span class="token number">10000</span><span class="token punctuation">,</span> <span class="token string">"W1N1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Create a market order in your terminal. You will be charged <code>price*amount*0.05</code> credits when the order is placed. The maximum orders count is 50 per player. You can create an order at any time with any amount, it will be automatically activated and deactivated depending on the resource/credits availability.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td>string</td><td><p>The order type, either <code>ORDER_SELL</code> or <code>ORDER_BUY</code>.</p>
+</td>
+</tr><tr><td><code>resourceType</code></td><td>string</td><td><p>Either one of the <code>RESOURCE_*</code> constants or <code>SUBSCRIPTION_TOKEN</code>. If your Terminal doesn&#39;t have the specified resource, the order will be temporary inactive.</p>
+</td>
+</tr><tr><td><code>price</code></td><td>number</td><td><p>The price for one resource unit in credits. Can be a decimal number.</p>
+</td>
+</tr><tr><td><code>totalAmount</code></td><td>number</td><td><p>The amount of resources to be traded in total.</p>
+</td>
+</tr><tr><td><code>roomName</code><br><em>optional</em></td><td>string</td><td><p>The room where your order will be created. You must have your own Terminal structure in this room, otherwise the created order will be temporary inactive. This argument is not used when <code>resourceType</code> equals to <code>SUBSCRIPTION_TOKEN</code>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-3"><a href="#Return-value-3" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You are not the owner of the room&#39;s terminal or there is no terminal.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>You don&#39;t have enough credits to pay a fee.</p>
+</td></tr>
+<tr><td><code>ERR_FULL</code></td><td>-8</td><td><p>You cannot create more than 50 orders.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The arguments provided are invalid.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Game-market-deal" class="api-property api-property--method  "><span class="api-property__name">Game.market.deal</span><span class="api-property__args">(orderId, amount, [yourRoomName])</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">deal</span><span class="token punctuation">(</span><span class="token string">'57cd2b12cda69a004ae223a3'</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token string">"W1N1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> amountToBuy <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">,</span> maxTransferEnergyCost <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> orders <span class="token operator">=</span> Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">getAllOrders</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type<span class="token punctuation">:</span> ORDER_SELL<span class="token punctuation">,</span> resourceType<span class="token punctuation">:</span> RESOURCE_GHODIUM<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>orders<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> transferEnergyCost <span class="token operator">=</span> Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">calcTransactionCost</span><span class="token punctuation">(</span>
+        amountToBuy<span class="token punctuation">,</span> <span class="token string">'W1N1'</span><span class="token punctuation">,</span> orders<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>roomName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>transferEnergyCost <span class="token operator">&lt;</span> maxTransferEnergyCost<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">deal</span><span class="token punctuation">(</span>orders<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> amountToBuy<span class="token punctuation">,</span> <span class="token string">"W1N1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p>Execute a trade deal from your Terminal in <code>yourRoomName</code> to another player&#39;s Terminal using the specified buy/sell order. Your Terminal will be charged energy units of transfer cost regardless of the order resource type. You can use <a href="#calcTransactionCost"><code>Game.market.calcTransactionCost</code></a> method to estimate it. When multiple players try to execute the same deal, the one with the shortest distance takes precedence. You cannot execute more than 10 deals during one tick.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>orderId</code></td><td>string</td><td><p>The order ID as provided in <code>Game.market.getAllOrders</code>.</p>
+</td>
+</tr><tr><td><code>amount</code></td><td>number</td><td><p>The amount of resources to transfer.</p>
+</td>
+</tr><tr><td><code>yourRoomName</code><br><em>optional</em></td><td>string</td><td><p>The name of your room which has to contain an active Terminal with enough amount of energy. This argument is not used when the order resource type equals to <code>SUBSCRIPTION_TOKEN</code>.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-4"><a href="#Return-value-4" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_OWNER</code></td><td>-1</td><td><p>You don&#39;t have a terminal in the target room.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>You don&#39;t have enough credits or resource units.</p>
+</td></tr>
+<tr><td><code>ERR_FULL</code></td><td>-8</td><td><p>You cannot execute more than 10 deals during one tick.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The arguments provided are invalid.</p>
+</td></tr>
+<tr><td><code>ERR_TIRED</code></td><td>-11</td><td><p>The target terminal is still cooling down.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Game-market-extendOrder" class="api-property api-property--method  "><span class="api-property__name">Game.market.extendOrder</span><span class="api-property__args">(orderId, addAmount)</span>
+        <div class="api-property__cpu api-property__cpu--A" title="This method is an action that changes game state. It has additional 0.2 CPU cost added to its natural cost in case if OK code is returned."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">extendOrder</span><span class="token punctuation">(</span><span class="token string">'57bec1bf77f4d17c4c011960'</span><span class="token punctuation">,</span> <span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Add more capacity to an existing order. It will affect <code>remainingAmount</code> and <code>totalAmount</code> properties. You will be charged <code>price<em>addAmount</em>0.05</code> credits.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>orderId</code></td><td>string</td><td><p>The order ID as provided in <code>Game.market.orders</code>.</p>
+</td>
+</tr><tr><td><code>addAmount</code></td><td>number</td><td><p>How much capacity to add. Cannot be a negative value.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-5"><a href="#Return-value-5" class="headerlink" title="Return value"></a>Return value</h3><p>One of the following codes:
+<table class="api-return-codes"><thead><tr><th>constant</th><th>value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>OK</code></td><td>0</td><td><p>The operation has been scheduled successfully.</p>
+</td></tr>
+<tr><td><code>ERR_NOT_ENOUGH_RESOURCES</code></td><td>-6</td><td><p>You don&#39;t have enough credits to pay a fee.</p>
+</td></tr>
+<tr><td><code>ERR_INVALID_ARGS</code></td><td>-10</td><td><p>The arguments provided are invalid.</p>
+</td></tr>
+</tbody></table>
+</p>
+<h2 id="Game-market-getAllOrders" class="api-property api-property--method  "><span class="api-property__name">Game.market.getAllOrders</span><span class="api-property__args">([filter])</span>
+        <div class="api-property__cpu api-property__cpu--3" title="This method has high CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">getAllOrders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">getAllOrders</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type<span class="token punctuation">:</span> ORDER_SELL<span class="token punctuation">,</span> resourceType<span class="token punctuation">:</span> RESOURCE_GHODIUM<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> targetRoom <span class="token operator">=</span> <span class="token string">"W1N1"</span><span class="token punctuation">;</span>
+Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">getAllOrders</span><span class="token punctuation">(</span>order <span class="token operator">=</span><span class="token operator">></span> order<span class="token punctuation">.</span>resourceType <span class="token operator">==</span> RESOURCE_GHODIUM <span class="token operator">&amp;&amp;</span>
+    order<span class="token punctuation">.</span>type <span class="token operator">==</span> ORDER_SELL <span class="token operator">&amp;&amp;</span>
+    Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">calcTransactionCost</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span> targetRoom<span class="token punctuation">,</span> order<span class="token punctuation">.</span>roomName<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code><span class="token comment" spellcheck="true">// Output:</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">{</span>
+    id <span class="token punctuation">:</span> <span class="token string">"55c34a6b5be41a0a6e80c68b"</span><span class="token punctuation">,</span>
+    created <span class="token punctuation">:</span> <span class="token number">13131117</span><span class="token punctuation">,</span>
+    type <span class="token punctuation">:</span> <span class="token string">"sell"</span>
+    resourceType <span class="token punctuation">:</span> <span class="token string">"OH"</span><span class="token punctuation">,</span>
+    roomName <span class="token punctuation">:</span> <span class="token string">"W1N1"</span><span class="token punctuation">,</span>
+    amount <span class="token punctuation">:</span> <span class="token number">15821</span><span class="token punctuation">,</span>
+    remainingAmount <span class="token punctuation">:</span> <span class="token number">30000</span><span class="token punctuation">,</span>
+    price <span class="token punctuation">:</span> <span class="token number">2.95</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    id <span class="token punctuation">:</span> <span class="token string">"55c34a6b52411a0a6e80693a"</span><span class="token punctuation">,</span>
+    created <span class="token punctuation">:</span> <span class="token number">13134122</span><span class="token punctuation">,</span>
+    type <span class="token punctuation">:</span> <span class="token string">"buy"</span>
+    resourceType <span class="token punctuation">:</span> <span class="token string">"energy"</span><span class="token punctuation">,</span>
+    roomName <span class="token punctuation">:</span> <span class="token string">"W1N1"</span><span class="token punctuation">,</span>
+    amount <span class="token punctuation">:</span> <span class="token number">94000</span><span class="token punctuation">,</span>
+    remainingAmount <span class="token punctuation">:</span> <span class="token number">94000</span><span class="token punctuation">,</span>
+    price <span class="token punctuation">:</span> <span class="token number">0.45</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    id <span class="token punctuation">:</span> <span class="token string">"55c34a6b5be41a0a6e80c123"</span><span class="token punctuation">,</span>
+    created <span class="token punctuation">:</span> <span class="token number">13105123</span><span class="token punctuation">,</span>
+    type <span class="token punctuation">:</span> <span class="token string">"sell"</span>
+    resourceType <span class="token punctuation">:</span> <span class="token string">"token"</span><span class="token punctuation">,</span>
+    amount <span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+    remainingAmount <span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    price <span class="token punctuation">:</span> <span class="token number">50000</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span></code></pre><p>Get other players&#39; orders currently active on the market.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>filter</code><br><em>optional</em></td><td>object, function</td><td><p>An object or function that will filter the resulting list using the <a href="https://lodash.com/docs#filter" target="_blank" rel="external"><code>lodash.filter</code></a> method.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-6"><a href="#Return-value-6" class="headerlink" title="Return value"></a>Return value</h3><p>An orders array in the following form:</p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>The unique order ID.</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td>The order creation time in game ticks.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Either <code>ORDER_SELL</code> or <code>ORDER_BUY</code>.</td>
+</tr>
+<tr>
+<td><code>resourceType</code></td>
+<td>Either one of the <code>RESOURCE_*</code> constants or <code>SUBSCRIPTION_TOKEN</code>.</td>
+</tr>
+<tr>
+<td><code>roomName</code></td>
+<td>The room where this order is placed.</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>Currently available amount to trade.</td>
+</tr>
+<tr>
+<td><code>remainingAmount</code></td>
+<td>How many resources are left to trade via this order. </td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>The current price per unit.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Game-market-getOrderById" class="api-property api-property--method  "><span class="api-property__name">Game.market.getOrderById</span><span class="api-property__args">(id)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> order <span class="token operator">=</span> Game<span class="token punctuation">.</span>market<span class="token punctuation">.</span><span class="token function">getOrderById</span><span class="token punctuation">(</span><span class="token string">'55c34a6b5be41a0a6e80c123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Retrieve info for specific market order.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td>string</td><td><p>The order ID.</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-7"><a href="#Return-value-7" class="headerlink" title="Return value"></a>Return value</h3><p>An object with the order info. See
+<a href="#getAllOrders"><code>getAllOrders</code></a>
+for properties explanation.</p>

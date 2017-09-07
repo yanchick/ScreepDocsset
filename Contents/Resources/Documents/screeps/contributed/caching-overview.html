@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Caching Overview | Screeps Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.screeps.com/contributed/caching-overview.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://docs.screeps.com/contributed/caching-overview.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="http://docs.screeps.com/zh-tw/contributed/caching-overview.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://docs.screeps.com/zh-cn/contributed/caching-overview.html">
+    
+      <link rel="alternative" hreflang="ru" href="http://docs.screeps.com/ru/contributed/caching-overview.html">
+    
+      <link rel="alternative" hreflang="ko" href="http://docs.screeps.com/ko/contributed/caching-overview.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="./icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="./icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="./css/navy.css?1">
+  <link rel="stylesheet" href="./css/prism.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="./atom.xml" title="Screeps Documentation">
+  <!-- Open Graph -->
+  <meta name="description" content="Screeps is a performance centric game- the better your performance the more you can accomplish in each tick. Caching is an extremely important element in performance optimization, and Screeps provides">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Caching Overview">
+<meta property="og:url" content="http://docs.screeps.com/contributed/caching-overview.html">
+<meta property="og:site_name" content="Screeps Documentation">
+<meta property="og:description" content="Screeps is a performance centric game- the better your performance the more you can accomplish in each tick. Caching is an extremely important element in performance optimization, and Screeps provides">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-07T09:25:14.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Caching Overview">
+<meta name="twitter:description" content="Screeps is a performance centric game- the better your performance the more you can accomplish in each tick. Caching is an extremely important element in performance optimization, and Screeps provides">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="https://screeps.com" id="logo">Screeps</a>
+      <a href="./index.html" id="logo-docs">docs</a>
+    </h1>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <div id="header-main"></div>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name" id="top">Caching Overview</h1>
+                <a href="https://github.com/screeps/docs/edit/master/source/contributed/caching-overview.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                
+                <div class="article-author">Contributed by <a href="https://github.com/tedivm" target="_blank">tedivm</a> on <time datetime="2017-06-14T00:00:00.000Z">Jun 14, 2017</time></div>
+                
+                <p>Screeps is a performance centric game- the better your performance the more you can accomplish in each tick. Caching is an extremely important element in performance optimization, and Screeps provides it&#39;s own unique opportunities and challenges when it comes to cache.</p>
+<p>Caching is, at it&#39;s core, a simple concept- by saving the results of expensive code future calls are less expensive. Caching also has a secondary benefit that can be exploited, in that it allows functions to return results even if they shouldn&#39;t be able to. As an example caching the results of a pathfinding operation will let creeps reuse that optimal path even if visibility is lost to room along that path, which in turn provides both improved performance and resiliency.</p>
+<h2 id="Datastores" class="article-heading"><a href="#Datastores" class="headerlink" title="Datastores"></a>Datastores<a class="article-anchor" href="#Datastores" aria-hidden="true"></a></h2><h3 id="Memory" class="article-heading"><a href="#Memory" class="headerlink" title="Memory"></a>Memory<a class="article-anchor" href="#Memory" aria-hidden="true"></a></h3><p>The most common place to store cached data is in <a href="./global-objects.html#Memory-object">Memory</a>. This is the only option for true persistance- anything stored in <a href="./global-objects.html#Memory-object">Memory</a> is going to stay there until removed, so if a value is extremely expensive or must be saved this is the place to put it.</p>
+<p>There are two major drawbacks with <a href="./global-objects.html#Memory-object">Memory</a></p>
+<ul>
+<li>Space in <a href="./global-objects.html#Memory-object">Memory</a> is limited to 2048kb of space.</li>
+<li>JSON.parse is run on the <a href="./global-objects.html#Memory-object">Memory</a> string each tick it is accessed, which is more expensive the more data that is stored.</li>
+</ul>
+<p>For these reasons it makes sense to limit what is placed in <a href="./global-objects.html#Memory-object">Memory</a>.</p>
+<h3 id="Global" class="article-heading"><a href="#Global" class="headerlink" title="Global"></a>Global<a class="article-anchor" href="#Global" aria-hidden="true"></a></h3><p>The <a href="./game-loop.html">game loop</a> architecture allows you to define a &quot;loop&quot; function which gets run each tick. Additionally it allows you to define expensive one-time-run code in the outer scope. This is most commonly used to <code>require</code> modules-</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token comment" spellcheck="true">// executed on new global</span>
+<span class="token keyword">var</span> mod <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mod'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span>loop <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// executed every tick</span>
+    mod<span class="token punctuation">.</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Another example shows how this can be utilized for storing the results of an expensive function. After the first time the function is called the variable will be populated for future calls:</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token keyword">let</span> runExpensiveCodeResults <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token keyword">function</span> <span class="token function">runExpensiveCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>runExpensiveCodeResults<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        runExpensiveCodeResults <span class="token operator">=</span> <span class="token function">someExpensiveCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> runExpensiveCodeResults<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>These two examples have a drawback in that they are only run or defined when the code is loaded with &quot;require&quot; for the first time. You can have slightly cleaner code by accessing the <a href="https://nodejs.org/api/globals.html#globals_global" target="_blank" rel="external"><code>global</code></a> object, which is a special object in Node that is accessible everywhere.</p>
+<pre class="highlight undefined tab-undefined "><code><span class="token keyword">function</span> <span class="token function">runExpensiveCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>global<span class="token punctuation">.</span>runExpensiveCodeResults<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        global<span class="token punctuation">.</span>runExpensiveCodeResults <span class="token operator">=</span> <span class="token function">someExpensiveCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> global<span class="token punctuation">.</span>runExpensiveCodeResults<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>There are some severe limits to this.</p>
+<ul>
+<li>Each worker has it&#39;s own <code>global</code> state, and code will bounce between at least four nodes at a time. This means data placed in global one tick will only have a 25% chance of appear next (although it can be added again until it&#39;s on all four nodes, bringing the change up to 100%) and that deleted data could easily show up again in the next tick.</li>
+<li>The <code>global</code> object gets reset fairly regular, meaning all of the data will regularly disappear. The <code>global</code> object can not be considered persistent storage.</li>
+<li>Although the <code>global</code> object is reset often it is only reset on a consistent schedule. Data placed in it may last longer than expected.</li>
+</ul>
+<p>These limitions make the <code>global</code> object ideal for certain types of caching, such as when the result of a function is always going to be the same or if it doesn&#39;t matter when &quot;stale&quot; data is used. For cases where results may change and data gets invalidated meta data- such as a TTL or version identifier- will have to be stored alongside the results to facilitate that.</p>
+<h2 id="Require-Cache" class="article-heading"><a href="#Require-Cache" class="headerlink" title="Require Cache"></a>Require Cache<a class="article-anchor" href="#Require-Cache" aria-hidden="true"></a></h2><p>Every time <code>require</code> is called the results are cached. This reduces the load on the server and your script as it prevents the various javascript modules from having to be compiled every tick. The require cache itself is tied to the <code>global</code> cache and gets cleared at the same time, although there are some circumstances where the <code>require</code> cache will get cleared (fully or partially) while the <code>global</code> cache does not.</p>
+<p>From a performance standpoint the fact that the <code>require</code> and <code>global</code> caches clear at once means that <code>global resets</code> are particularly expensive events.</p>
+<h2 id="Tips" class="article-heading"><a href="#Tips" class="headerlink" title="Tips"></a>Tips<a class="article-anchor" href="#Tips" aria-hidden="true"></a></h2><ul>
+<li>Be extremely careful what you cache in Memory, as the Memory parse time can be expensive.</li>
+<li>Objects are more expensive to parse than strings. Converting items like <a href="./api/#RoomPosition">RoomPositions</a> to a flat string before caching and then converting back as needed can have a surprisingly large impact.</li>
+<li>For extremely large objects with repetitive data- such as <a href="api/#PathFinder-CostMatrix">CostMatrixes</a>- compression can save a lot of space. Players going this route should look into <a href="http://pieroxy.net/blog/pages/lz-string/index.html" target="_blank" rel="external">lzstring</a>, and should also make sure they utilize the <code>global</code> cache to minimize the amount of times the same costmatrix has to be decompressed.</li>
+<li>Traditionally speaking most caching systems put the ttl in the <code>set</code> function, but for Screeps it may make more sense to put it in the <code>get</code> function. This way the TTL can be adjusted based on need- for example a TTL on a cached costmatrix can be set to Infinity for rooms without visibility and then shortened again when it is so that the data is always available, even if it is a bit stale.</li>
+<li>Do not forget to add something to clear stale cache entries out or you may find your Memory slowly expanding over time.</li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-09-07T09:25:14.854Z" itemprop="dateModified">Last updated: Sep 07, 2017</time>
+                <a href="./contributed/modifying-prototypes.html" class="article-footer-prev"><i class="fa fa-chevron-left"></i><span>Modifying Prototypes</span></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Datastores"><span class="toc-text">Datastores</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory"><span class="toc-text">Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Global"><span class="toc-text">Global</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Require-Cache"><span class="toc-text">Require Cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+            
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Gameplay</strong><a href="./introduction.html" class="sidebar-link">Introduction</a><a href="./creeps.html" class="sidebar-link">Creeps</a><a href="./control.html" class="sidebar-link">Control</a><a href="./defense.html" class="sidebar-link">Defense</a><a href="./respawn.html" class="sidebar-link">Respawning</a><a href="./start-areas.html" class="sidebar-link">Start Areas</a><a href="./minerals.html" class="sidebar-link">Minerals</a><a href="./market.html" class="sidebar-link">Market</a><a href="./invaders.html" class="sidebar-link">NPC Invaders</a><a href="./power.html" class="sidebar-link">Power</a><strong class="sidebar-title">Scripting</strong><a href="./scripting-basics.html" class="sidebar-link">Scripting Basics</a><a href="./global-objects.html" class="sidebar-link">Global Objects</a><a href="./modules.html" class="sidebar-link">Modules</a><a href="./debugging.html" class="sidebar-link">Debugging</a><a href="./game-loop.html" class="sidebar-link">Game Loop</a><a href="./commit.html" class="sidebar-link">External Commit</a><a href="./simultaneous-actions.html" class="sidebar-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="sidebar-link">CPU Limit</a><strong class="sidebar-title">Other</strong><a href="./architecture.html" class="sidebar-link">Server-Side Architecture</a><a href="./subscription.html" class="sidebar-link">Why Subscription?</a><a href="./ptr.html" class="sidebar-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="sidebar-link">Third Party Tools</a><a href="./tos.html" class="sidebar-link">Terms of Service</a><a href="./privacy-policy.html" class="sidebar-link">Privacy Policy</a><strong class="sidebar-title">Resources</strong><a href="http://blog.screeps.com" class="sidebar-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="sidebar-link">Changelogs</a><a href="http://chat.screeps.com" class="sidebar-link">Chat</a><a href="https://screeps.com/forum/" class="sidebar-link">Forum</a><strong class="sidebar-title">Contributed Articles</strong><a href="./contributed/rules.html" class="sidebar-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="sidebar-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="sidebar-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="sidebar-link current">Caching Overview</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://zespia.tw/" target="_blank">Screeps</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/screeps/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    
+      <a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Gameplay</strong><a href="./introduction.html" class="mobile-nav-link">Introduction</a><a href="./creeps.html" class="mobile-nav-link">Creeps</a><a href="./control.html" class="mobile-nav-link">Control</a><a href="./defense.html" class="mobile-nav-link">Defense</a><a href="./respawn.html" class="mobile-nav-link">Respawning</a><a href="./start-areas.html" class="mobile-nav-link">Start Areas</a><a href="./minerals.html" class="mobile-nav-link">Minerals</a><a href="./market.html" class="mobile-nav-link">Market</a><a href="./invaders.html" class="mobile-nav-link">NPC Invaders</a><a href="./power.html" class="mobile-nav-link">Power</a><strong class="mobile-nav-title">Scripting</strong><a href="./scripting-basics.html" class="mobile-nav-link">Scripting Basics</a><a href="./global-objects.html" class="mobile-nav-link">Global Objects</a><a href="./modules.html" class="mobile-nav-link">Modules</a><a href="./debugging.html" class="mobile-nav-link">Debugging</a><a href="./game-loop.html" class="mobile-nav-link">Game Loop</a><a href="./commit.html" class="mobile-nav-link">External Commit</a><a href="./simultaneous-actions.html" class="mobile-nav-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="mobile-nav-link">CPU Limit</a><strong class="mobile-nav-title">Other</strong><a href="./architecture.html" class="mobile-nav-link">Server-Side Architecture</a><a href="./subscription.html" class="mobile-nav-link">Why Subscription?</a><a href="./ptr.html" class="mobile-nav-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="mobile-nav-link">Third Party Tools</a><a href="./tos.html" class="mobile-nav-link">Terms of Service</a><a href="./privacy-policy.html" class="mobile-nav-link">Privacy Policy</a><strong class="mobile-nav-title">Resources</strong><a href="http://blog.screeps.com" class="mobile-nav-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="mobile-nav-link">Changelogs</a><a href="http://chat.screeps.com" class="mobile-nav-link">Chat</a><a href="https://screeps.com/forum/" class="mobile-nav-link">Forum</a><strong class="mobile-nav-title">Contributed Articles</strong><a href="./contributed/rules.html" class="mobile-nav-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="mobile-nav-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="mobile-nav-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="mobile-nav-link current">Caching Overview</a>
+    
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+<!-- Algolia -->
+
+
+</body>
+</html>

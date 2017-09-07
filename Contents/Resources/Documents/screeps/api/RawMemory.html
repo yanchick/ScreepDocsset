@@ -1,0 +1,97 @@
+<h1 id="RawMemory"><a href="#RawMemory" class="headerlink" title="RawMemory"></a>RawMemory</h1><p>RawMemory object allows to implement your own memory stringifier instead of built-in serializer 
+based on <code>JSON.stringify</code>. It also allows to request up to 10 MB of additional memory 
+using asynchronous memory segments feature. </p>
+<p>You can also access memory segments of other players using methods below.</p>
+<h2 id="RawMemory-segments" class="api-property api-property--property "><span class="api-property__name">RawMemory.segments</span><span class="api-property__type">object</span></h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setActiveSegments</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// on the next tick</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RawMemory<span class="token punctuation">.</span>segments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RawMemory<span class="token punctuation">.</span>segments<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+RawMemory<span class="token punctuation">.</span>segments<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'{"foo": "bar", "counter": 15}'</span><span class="token punctuation">;</span></code></pre><p>An object with asynchronous memory segments available on this tick. Each object key is the segment ID with data in string values. Use <a href="#RawMemory.setActiveSegments"><code>setActiveSegments</code></a> to fetch segments on the next tick. Segments data is saved automatically in the end of the tick.</p>
+<h2 id="RawMemory-foreignSegment" class="api-property api-property--property "><span class="api-property__name">RawMemory.foreignSegment</span><span class="api-property__type">object</span></h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setActiveForeignSegment</span><span class="token punctuation">(</span><span class="token string">'player'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// on the next tick</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RawMemory<span class="token punctuation">.</span>foreignSegment<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// --> {"username": "player", "id": 40, "data": "Hello!"}</span></code></pre><p>An object with a memory segment of another player available on this tick. Use <a href="#RawMemory.setActiveForeignSegment"><code>setActiveForeignSegment</code></a> to fetch segments on the next tick. 
+The object consists of the following properties:</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>username</code></td><td>string</td><td><p>Another player&#39;s name.</p>
+</td>
+</tr><tr><td><code>id</code></td><td>number</td><td><p>The ID of the requested memory segment.</p>
+</td>
+</tr><tr><td><code>data</code></td><td>string</td><td><p>The segment contents.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="RawMemory-interShardSegment" class="api-property api-property--property "><span class="api-property__name">RawMemory.interShardSegment</span><span class="api-property__type">string</span></h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span>interShardSegment <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    creeps<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        Bob<span class="token punctuation">:</span> <span class="token punctuation">{</span>role<span class="token punctuation">:</span> <span class="token string">'claimer'</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// on another shard</span>
+<span class="token keyword">var</span> interShardData <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>RawMemory<span class="token punctuation">.</span>interShardSegment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>interShardData<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span>creep<span class="token punctuation">.</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    creep<span class="token punctuation">.</span>memory <span class="token operator">=</span> interShardData<span class="token punctuation">[</span>creep<span class="token punctuation">.</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">delete</span> interShardData<span class="token punctuation">.</span>creeps<span class="token punctuation">[</span>creep<span class="token punctuation">.</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+RawMemory<span class="token punctuation">.</span>interShardSegment <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>interShardData<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>A string with a shared memory segment available on every world shard. Maximum string length is 100 KB.</p>
+<p><strong>Warning:</strong> this segment is not safe for concurrent usage! All shards have shared access to the same instance of data. 
+When the segment contents is changed by two shards simultaneously, you may lose some data, since the segment string 
+value is written all at once atomically. You must implement your own system to determine when each shard is allowed to 
+rewrite the inter-shard memory, e.g. based on <a href="https://en.wikipedia.org/wiki/Mutual_exclusion" target="_blank" rel="external">mutual exclusions</a>.  </p>
+<h2 id="RawMemory-get" class="api-property api-property--method  "><span class="api-property__name">RawMemory.get</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">const</span> myMemory <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>RawMemory<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Get a raw string representation of the <code>Memory</code> object.</p>
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>Returns a string value.</p>
+<h2 id="RawMemory-set" class="api-property api-property--method  "><span class="api-property__name">RawMemory.set</span><span class="api-property__args">(value)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>myMemory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Set new <code>Memory</code> value.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>value</code></td><td>string</td><td><p>New memory value as a string.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="RawMemory-setActiveSegments" class="api-property api-property--method  "><span class="api-property__name">RawMemory.setActiveSegments</span><span class="api-property__args">(ids)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setActiveSegments</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Request memory segments using the list of their IDs. Memory segments will become available on the next tick in <a href="#RawMemory.segments"><code>segments</code></a> object.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td>array</td><td><p>An array of segment IDs. Each ID should be a number from 0 to 99. Maximum 10 segments can be active at the same time. Subsequent calls of <code>setActiveSegments</code> override previous ones.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="RawMemory-setActiveForeignSegment" class="api-property api-property--method  "><span class="api-property__name">RawMemory.setActiveForeignSegment</span><span class="api-property__args">(username, [id])</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setActiveForeignSegment</span><span class="token punctuation">(</span><span class="token string">'player'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setActiveForeignSegment</span><span class="token punctuation">(</span><span class="token string">'player'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setActiveForeignSegment</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Request a memory segment of another user. The segment should be marked by its owner as public using <a href="#RawMemory.setPublicSegments"><code>setPublicSegments</code></a>. 
+The segment data will become available on the next tick in <a href="#RawMemory.foreignSegment"><code>foreignSegment</code></a> object. 
+You can only have access to one foreign segment at the same time.   </p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>username</code></td><td>string | null</td><td><p>The name of another user. Pass <code>null</code> to clear the foreign segment.</p>
+</td>
+</tr><tr><td><code>id</code><br><em>optional</em></td><td>number</td><td><p>The ID of the requested segment from 0 to 99. If undefined, the user&#39;s default public segment is requested as set by <a href="#RawMemory.setDefaultPublicSegment"><code>setDefaultPublicSegment</code></a>.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="RawMemory-setDefaultPublicSegment" class="api-property api-property--method  "><span class="api-property__name">RawMemory.setDefaultPublicSegment</span><span class="api-property__args">(id)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setPublicSegments</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+RawMemory<span class="token punctuation">.</span><span class="token function">setDefaultPublicSegment</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setDefaultPublicSegment</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Set the specified segment as your default public segment. It will be returned if no <code>id</code> parameter is passed to <a href="#RawMemory.setActiveForeignSegment"><code>setActiveForeignSegment</code></a> by another user.   </p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td>number | null</td><td><p>The ID of the memory segment from 0 to 99. Pass <code>null</code> to remove your default public segment.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="RawMemory-setPublicSegments" class="api-property api-property--method  "><span class="api-property__name">RawMemory.setPublicSegments</span><span class="api-property__args">(ids)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setPublicSegments</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><pre class="highlight javascript tab-javascript "><code>RawMemory<span class="token punctuation">.</span><span class="token function">setPublicSegments</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Set specified segments as public. Other users will be able to request access to them using <a href="#RawMemory.setActiveForeignSegment"><code>setActiveForeignSegment</code></a>.     </p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td>array</td><td><p>An array of segment IDs. Each ID should be a number from 0 to 99. Subsequent calls of <code>setPublicSegments</code> override previous ones.</p>
+</td>
+</tr></tbody></table>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Modifying object prototypes | Screeps Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.screeps.com/contributed/modifying-prototypes.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://docs.screeps.com/contributed/modifying-prototypes.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="http://docs.screeps.com/zh-tw/contributed/modifying-prototypes.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://docs.screeps.com/zh-cn/contributed/modifying-prototypes.html">
+    
+      <link rel="alternative" hreflang="ru" href="http://docs.screeps.com/ru/contributed/modifying-prototypes.html">
+    
+      <link rel="alternative" hreflang="ko" href="http://docs.screeps.com/ko/contributed/modifying-prototypes.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="./icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="./icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="./css/navy.css?1">
+  <link rel="stylesheet" href="./css/prism.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="./atom.xml" title="Screeps Documentation">
+  <!-- Open Graph -->
+  <meta name="description" content="This article will discuss object prototypes and several ways that they can be used/modified to make your life a little easier in Screeps! What are prototypes?Prototypes are what allow for inheritance">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Modifying object prototypes">
+<meta property="og:url" content="http://docs.screeps.com/contributed/modifying-prototypes.html">
+<meta property="og:site_name" content="Screeps Documentation">
+<meta property="og:description" content="This article will discuss object prototypes and several ways that they can be used/modified to make your life a little easier in Screeps! What are prototypes?Prototypes are what allow for inheritance">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-07T09:25:14.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Modifying object prototypes">
+<meta name="twitter:description" content="This article will discuss object prototypes and several ways that they can be used/modified to make your life a little easier in Screeps! What are prototypes?Prototypes are what allow for inheritance">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="https://screeps.com" id="logo">Screeps</a>
+      <a href="./index.html" id="logo-docs">docs</a>
+    </h1>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <div id="header-main"></div>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name" id="top">Modifying object prototypes</h1>
+                <a href="https://github.com/screeps/docs/edit/master/source/contributed/modifying-prototypes.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                
+                <div class="article-author">Contributed by <a href="https://screeps.com/a/#!/profile/Helam" target="_blank">Helam</a> on <time datetime="2017-05-14T00:00:00.000Z">May 14, 2017</time></div>
+                
+                <p>This article will discuss object prototypes and several ways that they can be used/modified to make your life a little easier in Screeps!</p>
+<h2 id="What-are-prototypes" class="article-heading"><a href="#What-are-prototypes" class="headerlink" title="What are prototypes?"></a>What are prototypes?<a class="article-anchor" href="#What-are-prototypes" aria-hidden="true"></a></h2><p><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes" target="_blank" rel="external">Prototypes</a> are what allow for <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance" target="_blank" rel="external">inheritance</a> in Javascript and can be used in many powerful ways.</p>
+<p>Every object in Javascript has a link to another object called a <strong>prototype</strong> object from which it inherits properties and methods. Being another object itself, the prototype object may also have a link to another prototype object, creating a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">prototype chain</a>. Alternatively, a prototype may also be <code>null</code>.</p>
+<p>If you had created a creep named &quot;John&quot;, then <code>Game.creeps.John</code> would have a link to the <a href="http://docs.screeps.com/api/#Creep"><code>Creep</code></a> prototype. The <a href="http://docs.screeps.com/api/#Creep"><code>Creep</code></a> prototype has many useful properties and methods defined that you are familiar with such as <a href="http://docs.screeps.com/api/#Creep.name"><code>.name</code></a>, <a href="http://docs.screeps.com/api/#Creep.moveTo"><code>.moveTo()</code></a>, and <a href="http://docs.screeps.com/api/#Creep.harvest"><code>.harvest()</code></a>. All of these properties and methods are accessible to all of your creeps only because they are defined on the <a href="http://docs.screeps.com/api/#Creep"><code>Creep</code></a> prototype. All of your creep objects have a link to this prototype and therefore inherit from it. This is how all in game objects have their properties and methods defined. See more prototypes like <a href="http://docs.screeps.com/api/#Room"><code>Room</code></a>, <a href="http://docs.screeps.com/api/#Source"><code>Source</code></a>, and <a href="http://docs.screeps.com/api/#Structure"><code>Structure</code></a>.</p>
+<h2 id="Adding-methods-to-a-prototype" class="article-heading"><a href="#Adding-methods-to-a-prototype" class="headerlink" title="Adding methods to a prototype"></a>Adding methods to a prototype<a class="article-anchor" href="#Adding-methods-to-a-prototype" aria-hidden="true"></a></h2><p>The ability to add methods to a prototype is extremely useful, especially in Screeps. You can define a method once and it will be available to all of your creeps!</p>
+<p>When working with prototype methods it is important to understand that <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions" target="_blank" rel="external">functions</a> are/can be stored in variables and object properties just like numbers, objects, arrays, strings, and booleans. Creep methods like <a href="http://docs.screeps.com/api/#Creep.attack"><code>.attack()</code></a> or <a href="http://docs.screeps.com/api/#Creep.move"><code>.move()</code></a> are functions stored as properties of the <a href="http://docs.screeps.com/api/#Creep"><code>Creep</code></a> prototype.</p>
+<p>Because these functions are properties of an object just like any other, you can add new ones:</p>
+<pre class="highlight javascript tab-javascript "><code>Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>sayHello <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token comment" spellcheck="true">// In prototype functions, 'this' usually has the value of the object calling </span>
+    <span class="token comment" spellcheck="true">// the function. In this case that is whatever creep you are </span>
+    <span class="token comment" spellcheck="true">// calling '.sayHello()' on.</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p>After this code you could do something like <code>creep.sayHello();</code> on any of your creeps and they will greet you!</p>
+<p>You can also overwrite existing prototype methods:</p>
+<pre class="highlight javascript tab-javascript "><code>Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>suicide <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token string">"NO WAY!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p>The above code overwrites the normal <a href="http://docs.screeps.com/api/#Creep.suicide"><code>creep.suicide()</code></a> function so that instead of suiciding, the creep will voice his disagreement with the command.</p>
+<h3 id="Storing-the-original-method" class="article-heading"><a href="#Storing-the-original-method" class="headerlink" title="Storing the original method"></a>Storing the original method<a class="article-anchor" href="#Storing-the-original-method" aria-hidden="true"></a></h3><p>When you overwrite a prototype method you lose access to the original function. In Screeps losing access to a vital function such as <a href="http://docs.screeps.com/api/#Creep.move"><code>.move()</code></a> could be detrimental. Losing access to vital functions can be avoided by storing the original function in a different property before overwriting it so that it can be used later if needed.</p>
+<p>Before, when we overwrote the <a href="http://docs.screeps.com/api/#Creep.suicide"><code>.suicide()</code></a> function, we failed to store the original. This left us unable to really suicide a creep if needed. Lets overwrite <a href="http://docs.screeps.com/api/#Creep.suicide"><code>.suicide()</code></a> again but this time we&#39;ll do it a little differently.</p>
+<p>We will store the original function in a new property called <code>._suicide</code>. Placing an underscore before a property name is a Javascript naming convention intended to denote that the property is <a href="https://developer.mozilla.org/en-US/Add-ons/SDK/Guides/Contributor_s_Guide/Private_Properties" target="_blank" rel="external">private</a>.</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token comment" spellcheck="true">// Make sure we haven't already stored the original</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_suicide<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// Store the original method</span>
+    Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_suicide <span class="token operator">=</span> Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>suicide<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// Create our new function</span>
+    Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>suicide <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">// Add custom functionality</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`May </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> rest in peace.`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Call and return the original method</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_suicide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre><p>After running the above code, calling <code>creep.suicide()</code> on one of your creeps will cause a comforting message to appear in the console as well as the creep actually committing suicide.</p>
+<p>There are a number of important things to remember that are demonstrated in the above code:</p>
+<ul>
+<li>To ensure idempotence (executing the code multiple times has the same effect as executing it once), only store the original and place your new function if the original has not already been stored.</li>
+<li>Always remember to store the original method.</li>
+<li>When possible, always return the value returned by the original function in order to keep the new function as similar as possible to the original. Other code, both your own code and internal game code, may rely on the return values from the function you are modifying.</li>
+</ul>
+<h3 id="Working-with-arbitrary-arguments-list" class="article-heading"><a href="#Working-with-arbitrary-arguments-list" class="headerlink" title="Working with arbitrary arguments list"></a>Working with arbitrary arguments list<a class="article-anchor" href="#Working-with-arbitrary-arguments-list" aria-hidden="true"></a></h3><p>The previous example was a simple one because <a href="http://docs.screeps.com/api/#Creep.suicide"><code>Creep.prototype.suicide</code></a> does not take any parameters. It is very important to handle arguments correctly when overwriting prototype methods. </p>
+<p><a href="http://docs.screeps.com/api/#Creep.moveTo"><code>Creep.prototype.moveTo</code></a> is a good example of a method that requires careful handling of arguments when overwriting because it has two possible signatures: <code>(x, y, [opts])</code> OR <code>(target, [opts])</code>. The following examples will overwrite <a href="http://docs.screeps.com/api/#Creep.moveTo"><code>.moveTo()</code></a> so that it will record the amount of CPU used for movement for each creep. Each of the three examples will show a different way of handling arguments:</p>
+<ol>
+<li><p>Use your own arguments:</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_moveTo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_moveTo <span class="token operator">=</span> Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>moveTo<span class="token punctuation">;</span>
+ Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>moveTo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>myArg1<span class="token punctuation">,</span> myArg2<span class="token punctuation">,</span> myArg3<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`My moveTo with my own arguments!`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> startCpu <span class="token operator">=</span> Game<span class="token punctuation">.</span>cpu<span class="token punctuation">.</span><span class="token function">getUsed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token comment" spellcheck="true">// Call original function and store the return value</span>
+     <span class="token keyword">let</span> returnValue <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_moveTo</span><span class="token punctuation">(</span>myArg1<span class="token punctuation">,</span> myArg2<span class="token punctuation">,</span> myArg3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">let</span> endCpu <span class="token operator">=</span> Game<span class="token punctuation">.</span>cpu<span class="token punctuation">.</span><span class="token function">getUsed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> used <span class="token operator">=</span> endCpu <span class="token operator">-</span> startCpu<span class="token punctuation">;</span>
+
+     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU <span class="token operator">+</span><span class="token operator">=</span> used<span class="token punctuation">;</span>
+
+     <span class="token keyword">return</span> returnValue<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// return original value</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>Use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank" rel="external"><code>arguments</code></a> object available in every function:</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_moveTo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_moveTo <span class="token operator">=</span> Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>moveTo<span class="token punctuation">;</span>
+ Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>moveTo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`My moveTo using the arguments object!`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> startCpu <span class="token operator">=</span> Game<span class="token punctuation">.</span>cpu<span class="token punctuation">.</span><span class="token function">getUsed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token comment" spellcheck="true">// There is a short description of Function.apply() later</span>
+     <span class="token keyword">let</span> returnValue <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_moveTo<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">let</span> endCpu <span class="token operator">=</span> Game<span class="token punctuation">.</span>cpu<span class="token punctuation">.</span><span class="token function">getUsed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> used <span class="token operator">=</span> endCpu <span class="token operator">-</span> startCpu<span class="token punctuation">;</span>
+
+     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU <span class="token operator">+</span><span class="token operator">=</span> used<span class="token punctuation">;</span>
+
+     <span class="token keyword">return</span> returnValue<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank" rel="external">&quot;rest parameters&quot;</a>:</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_moveTo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_moveTo <span class="token operator">=</span> Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>moveTo<span class="token punctuation">;</span>
+ Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>moveTo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>myArgumentsArray<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`My moveTo using rest parameters!`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> startCpu <span class="token operator">=</span> Game<span class="token punctuation">.</span>cpu<span class="token punctuation">.</span><span class="token function">getUsed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">let</span> returnValue <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_moveTo<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> myArgumentsArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">let</span> endCpu <span class="token operator">=</span> Game<span class="token punctuation">.</span>cpu<span class="token punctuation">.</span><span class="token function">getUsed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> used <span class="token operator">=</span> endCpu <span class="token operator">-</span> startCpu<span class="token punctuation">;</span>
+
+     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>moveToCPU <span class="token operator">+</span><span class="token operator">=</span> used<span class="token punctuation">;</span>
+
+     <span class="token keyword">return</span> returnValue<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></li>
+</ol>
+<h4 id="Function-apply" class="article-heading"><a href="#Function-apply" class="headerlink" title="Function.apply"></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="external">Function.apply</a><a class="article-anchor" href="#Function-apply" aria-hidden="true"></a></h4><p><code>Function.apply(thisArg, argumentsArray)</code> calls a function with the specified <code>this</code> value and passes each element of the arguments array as an argument to the function.
+Example:</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> name <span class="token operator">=</span> <span class="token string">"Helam"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Hello my name is: "</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Will do the same thing as:</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> name <span class="token operator">=</span> <span class="token string">"Helam"</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> myArguments <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Hello my name is: "</span><span class="token punctuation">,</span> name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>console<span class="token punctuation">,</span> myArguments<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Also see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank" rel="external">Function.call</a>.</p>
+<h3 id="Other-examples" class="article-heading"><a href="#Other-examples" class="headerlink" title="Other examples"></a>Other examples<a class="article-anchor" href="#Other-examples" aria-hidden="true"></a></h3><h4 id="Spawn-createCreep-Automatic-naming" class="article-heading"><a href="#Spawn-createCreep-Automatic-naming" class="headerlink" title="Spawn.createCreep - Automatic naming"></a><a href="http://docs.screeps.com/api/#StructureSpawn.createCreep">Spawn.createCreep</a> - Automatic naming<a class="article-anchor" href="#Spawn-createCreep-Automatic-naming" aria-hidden="true"></a></h4><p>When you have a large amount of creeps, using the default automatic naming can consume a large amount of CPU. Naming them yourself can be one way to reduce your CPU usage.</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token comment" spellcheck="true">// Make sure the method has not already been overwritten</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>StructureSpawn<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_createCreep<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    StructureSpawn<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_createCreep <span class="token operator">=</span> StructureSpawn<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>createCreep<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// The original signature: createCreep(body, [name], [memory])</span>
+    <span class="token comment" spellcheck="true">// Make a new version with the signature createCreep(body, [memory])</span>
+    StructureSpawn<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>createCreep <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>body<span class="token punctuation">,</span> memory <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Memory<span class="token punctuation">.</span>myCreepNameCounter<span class="token punctuation">)</span> Memory<span class="token punctuation">.</span>myCreepNameCounter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Now we need to generate a name and make sure it hasnt been taken</span>
+        <span class="token keyword">let</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> canCreate<span class="token punctuation">;</span>
+        <span class="token keyword">do</span> <span class="token punctuation">{</span>
+            name <span class="token operator">=</span> <span class="token template-string"><span class="token string">`c</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Memory<span class="token punctuation">.</span>creepNameCounter<span class="token operator">++</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span>
+            canCreate <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">canCreateCreep</span><span class="token punctuation">(</span>body<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>canCreate <span class="token operator">===</span> ERR_NAME_EXISTS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Now we call the original function passing in our generated name and </span>
+        <span class="token comment" spellcheck="true">// returning the value</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_createCreep</span><span class="token punctuation">(</span>body<span class="token punctuation">,</span> name<span class="token punctuation">,</span> memory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><h4 id="StructureObserver-observeRoom-prevent-overriding-calls" class="article-heading"><a href="#StructureObserver-observeRoom-prevent-overriding-calls" class="headerlink" title="StructureObserver.observeRoom - prevent overriding calls"></a><a href="http://docs.screeps.com/api/#StructureObserver">StructureObserver.observeRoom</a> - prevent overriding calls<a class="article-anchor" href="#StructureObserver-observeRoom-prevent-overriding-calls" aria-hidden="true"></a></h4><p>Each subsequent call to <a href="http://docs.screeps.com/api/#StructureObserver.observeRoom"><code>.observeRoom</code></a> on the same observer in the same tick will override the previous one, and only the last one will actually execute, even though all of them may have returned <code>OK</code>. This is an example of how to modify that behavior so that subsequent calls return <code>ERR_BUSY</code> instead of overriding previous ones.</p>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>StructureObserver<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_observeRoom<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    StructureObserver<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>_observeRoom <span class="token operator">=</span> StructureObserver<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>observeRoom<span class="token punctuation">;</span>
+    StructureObserver<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>observeRoom <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>observing<span class="token punctuation">)</span> 
+            <span class="token keyword">return</span> ERR_BUSY<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> observeResult <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_observeRoom<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>observeResult <span class="token operator">===</span> OK<span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>observing <span class="token operator">=</span> roomName<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> observeResult<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><h2 id="Adding-properties-to-a-prototype" class="article-heading"><a href="#Adding-properties-to-a-prototype" class="headerlink" title="Adding properties to a prototype"></a>Adding properties to a prototype<a class="article-anchor" href="#Adding-properties-to-a-prototype" aria-hidden="true"></a></h2><p>Just like with prototype functions, there are also non-function prototype properties like <a href="http://docs.screeps.com/api/#Creep.name"><code>.name</code></a> from the <a href="http://docs.screeps.com/api/#Creep"><code>Creep</code></a> prototype or <a href="http://docs.screeps.com/api/#Structure.hits"><code>hits</code></a> from the <a href="http://docs.screeps.com/api/#Structure"><code>Structure</code></a> prototype. Theses properties are inherited from the prototypes to the game objects, allowing you to access them. You are not limited to the properties provided by the game&#39;s <a href="http://docs.screeps.com/api/">API</a>, you can create your own!!!</p>
+<p>There are many possibilities when creating custom properties, here we will outline only a few. Properties are added using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external"><code>Object.defineProperty</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties" target="_blank" rel="external"><code>Object.defineProperties</code></a>.</p>
+<p>We will create a custom property on the <a href="http://docs.screeps.com/api/#Room"><code>Room</code></a> prototype called <code>sources</code> that will contain an array of the energy sources in the room. We will do this 4 different ways to illustrate different features or possibilities when creating your own properties in Screeps.</p>
+<h3 id="Basic-property-with-getter-only-and-no-caching" class="article-heading"><a href="#Basic-property-with-getter-only-and-no-caching" class="headerlink" title="Basic property with getter only and no caching"></a>Basic property with getter only and no caching<a class="article-anchor" href="#Basic-property-with-getter-only-and-no-caching" aria-hidden="true"></a></h3><p>Note that <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external"><code>Object.defineProperty</code></a> takes 3 parameters:</p>
+<ol>
+<li>The object to which you are adding a property, commonly a prototype object. <code>Room.prototype</code> in these examples.</li>
+<li>The name of the property you are adding. <code>&#39;sources&#39;</code> in these examples but it could be anything like <code>&#39;foo&#39;</code> or <code>&#39;myProp&#39;</code>.</li>
+<li>An object containing options that define how the property behaves. See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external">MDN documentation</a> for a list of all possible options.<pre class="highlight javascript tab-javascript "><code>Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Room<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'sources'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">// This is the getter function, when you type room.sources it will have </span>
+ <span class="token comment" spellcheck="true">// the value returned by this function</span>
+ <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token comment" spellcheck="true">// Since we are defining the property on the Room prototype, 'this' in </span>
+     <span class="token comment" spellcheck="true">// the line below is whatever room object we are getting the .sources from</span>
+     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_SOURCES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true">// This makes it so the property doesn't show up when enumerating the properties </span>
+ <span class="token comment" spellcheck="true">// of the creep. If you arent sure, put false.</span>
+ enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true">// This makes the characteristics of the property modifiable and also makes </span>
+ <span class="token comment" spellcheck="true">// the property deletable. if you arent sure, put true.</span>
+ configurable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>This option is the most basic and is basically just a shortcut that replaces <code>room.find(FIND_SOURCES)</code> with <code>room.sources</code>, perhaps saving you some keystrokes but not much else. See the rest of the examples for better options.</li>
+</ol>
+<h3 id="Local-object-caching" class="article-heading"><a href="#Local-object-caching" class="headerlink" title="Local object caching"></a>Local object caching<a class="article-anchor" href="#Local-object-caching" aria-hidden="true"></a></h3><p>In the following code <code>this._sources</code> will have no value the first time the getter function is called, so it will find the value and store it so that the next time you access the property it will return the stored value.
+Values stored this way do not last between ticks, see the memory caching option to see how to remedy this.
+Note that we are using <code>._sources</code> with an <code>_</code> to store the value and not just plain <code>.sources</code>. This is because trying to access <code>.sources</code> will call the getter function again and cause an infinite loop!</p>
+<pre class="highlight javascript tab-javascript "><code>Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Room<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'sources'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_sources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>_sources <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_SOURCES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_sources<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h3 id="Adding-a-setter" class="article-heading"><a href="#Adding-a-setter" class="headerlink" title="Adding a setter"></a>Adding a setter<a class="article-anchor" href="#Adding-a-setter" aria-hidden="true"></a></h3><p>This version adds a setter function. If you want to be able to assign your custom property a value then you must add a setter, otherwise you will get an error when assigning a value. In this particular case you would not set room.sources to anything because the getter value does the setting for you but we will show how to do the setter anyway.</p>
+<pre class="highlight javascript tab-javascript "><code>Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Room<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'sources'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_sources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>_sources <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_SOURCES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_sources<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// We set the stored private variable so the next time the getter is called </span>
+        <span class="token comment" spellcheck="true">// it returns this new value</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_sources <span class="token operator">=</span> newValue<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h3 id="Memory-caching" class="article-heading"><a href="#Memory-caching" class="headerlink" title="Memory caching"></a>Memory caching<a class="article-anchor" href="#Memory-caching" aria-hidden="true"></a></h3><p>In this version we will add memory caching so that the stored value will last between ticks. While useful in this particular example, memory caching may not always be appropriate. Remember that the more objects you store in memory, the more CPU must be spent parsing it!</p>
+<p>Because the sources in a room do not change, adding memory caching in this example allows you to store the sources for the room once and never have to call <code>room.find(FIND_SOURCES)</code> again unless the memory value gets deleted.</p>
+<pre class="highlight javascript tab-javascript "><code>Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Room<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'sources'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// If we dont have the value stored locally</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_sources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// If we dont have the value stored in memory</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>sourceIds<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">// Find the sources and store their id's in memory, </span>
+                    <span class="token comment" spellcheck="true">// NOT the full objects</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>sourceIds <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>FIND_SOURCES<span class="token punctuation">)</span>
+                                        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>source <span class="token operator">=</span><span class="token operator">></span> source<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// Get the source objects from the id's in memory and store them locally</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>_sources <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>sourceIds<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>id <span class="token operator">=</span><span class="token operator">></span> Game<span class="token punctuation">.</span><span class="token function">getObjectById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// return the locally stored value</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_sources<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// when storing in memory you will want to change the setter</span>
+        <span class="token comment" spellcheck="true">// to set the memory value as well as the local value</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>sources <span class="token operator">=</span> newValue<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>source <span class="token operator">=</span><span class="token operator">></span> source<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_sources <span class="token operator">=</span> newValue<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>It is critical in situations like this that you only store the id&#39;s of the objects in memory, and use <a href="http://docs.screeps.com/api/#Game.getObjectById"><code>Game.getObjectById(id)</code></a> to get the fresh objects every tick. Storing the full objects in memory not only causes much higher memory usage and therefore CPU usage, but also can cause bugs related to stale information in old objects. See <a href="http://docs.screeps.com/global-objects.html#Storing-game-objects-in-memory">Storing game objects in memory</a>.</p>
+<h3 id="Other-examples-1" class="article-heading"><a href="#Other-examples-1" class="headerlink" title="Other examples"></a>Other examples<a class="article-anchor" href="#Other-examples-1" aria-hidden="true"></a></h3><h4 id="Creep-prototype-isFull-are-your-carry-parts-full" class="article-heading"><a href="#Creep-prototype-isFull-are-your-carry-parts-full" class="headerlink" title="Creep.prototype.isFull - are your carry parts full?"></a>Creep.prototype.isFull - are your carry parts full?<a class="article-anchor" href="#Creep-prototype-isFull-are-your-carry-parts-full" aria-hidden="true"></a></h4><p>A simple example of adding a property to your creeps. Can be used like <code>if (creep.isFull)</code>. This is a good example of when memory caching would not be useful, because the amount of resources in carry parts can change between ticks and would invalidate the memory value.</p>
+<pre class="highlight javascript tab-javascript "><code>Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Creep<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'isFull'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_isFull<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>_isFull <span class="token operator">=</span> _<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>carry<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>carryCapacity<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_isFull<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h4 id="Source-memory-Adding-memory-to-things" class="article-heading"><a href="#Source-memory-Adding-memory-to-things" class="headerlink" title="Source.memory - (Adding memory to things)"></a>Source.memory - (Adding memory to things)<a class="article-anchor" href="#Source-memory-Adding-memory-to-things" aria-hidden="true"></a></h4><p>A little more advanced, adds a <code>.memory</code> property to all sources. This can easily be modified to add a <code>.memory</code> property to any prototype you desire.</p>
+<pre class="highlight javascript tab-javascript "><code>Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Source<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'memory'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>_<span class="token punctuation">.</span><span class="token function">isUndefined</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>mySourcesMemory<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Memory<span class="token punctuation">.</span>mySourcesMemory <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>_<span class="token punctuation">.</span><span class="token function">isObject</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>mySourcesMemory<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> undefined<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> Memory<span class="token punctuation">.</span>mySourcesMemory<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> 
+                Memory<span class="token punctuation">.</span>mySourcesMemory<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>_<span class="token punctuation">.</span><span class="token function">isUndefined</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>mySourcesMemory<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Memory<span class="token punctuation">.</span>mySourcesMemory <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>_<span class="token punctuation">.</span><span class="token function">isObject</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>mySourcesMemory<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'Could not set source memory'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Memory<span class="token punctuation">.</span>mySourcesMemory<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h4 id="Source-freeSpaceCount-How-many-creeps-can-you-fit-near-that-source" class="article-heading"><a href="#Source-freeSpaceCount-How-many-creeps-can-you-fit-near-that-source" class="headerlink" title="Source.freeSpaceCount - How many creeps can you fit near that source?"></a>Source.freeSpaceCount - How many creeps can you fit near that source?<a class="article-anchor" href="#Source-freeSpaceCount-How-many-creeps-can-you-fit-near-that-source" aria-hidden="true"></a></h4><p>This example builds on the previous example and uses your new <code>source.memory</code> property to cache a <code>.freeSpaceCount</code> property on your sources that returns a number telling you how many spots are around the source that are not natural walls.</p>
+<pre class="highlight javascript tab-javascript "><code>Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Source<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'freeSpaceCount'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_freeSpaceCount <span class="token operator">==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>freeSpaceCount <span class="token operator">==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">let</span> freeSpaceCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>x <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                    <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>y <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>Game<span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">getTerrainAt</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token punctuation">.</span>roomName<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">'wall'</span><span class="token punctuation">)</span>
+                                freeSpaceCount<span class="token operator">++</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>freeSpaceCount <span class="token operator">=</span> freeSpaceCount<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>_freeSpaceCount <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>memory<span class="token punctuation">.</span>freeSpaceCount<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_freeSpaceCount<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    configurable<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-09-07T09:25:14.854Z" itemprop="dateModified">Last updated: Sep 07, 2017</time>
+                <a href="./contributed/advanced_grunt.html" class="article-footer-prev"><i class="fa fa-chevron-left"></i><span>Advanced Grunt Usage</span></a><a href="./contributed/caching-overview.html" class="article-footer-next"><span>Caching Overview</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-are-prototypes"><span class="toc-text">What are prototypes?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-methods-to-a-prototype"><span class="toc-text">Adding methods to a prototype</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Storing-the-original-method"><span class="toc-text">Storing the original method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Working-with-arbitrary-arguments-list"><span class="toc-text">Working with arbitrary arguments list</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Function-apply"><span class="toc-text">Function.apply</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other-examples"><span class="toc-text">Other examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spawn-createCreep-Automatic-naming"><span class="toc-text">Spawn.createCreep - Automatic naming</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StructureObserver-observeRoom-prevent-overriding-calls"><span class="toc-text">StructureObserver.observeRoom - prevent overriding calls</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-properties-to-a-prototype"><span class="toc-text">Adding properties to a prototype</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-property-with-getter-only-and-no-caching"><span class="toc-text">Basic property with getter only and no caching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-object-caching"><span class="toc-text">Local object caching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adding-a-setter"><span class="toc-text">Adding a setter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory-caching"><span class="toc-text">Memory caching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other-examples-1"><span class="toc-text">Other examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Creep-prototype-isFull-are-your-carry-parts-full"><span class="toc-text">Creep.prototype.isFull - are your carry parts full?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Source-memory-Adding-memory-to-things"><span class="toc-text">Source.memory - (Adding memory to things)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Source-freeSpaceCount-How-many-creeps-can-you-fit-near-that-source"><span class="toc-text">Source.freeSpaceCount - How many creeps can you fit near that source?</span></a></li></ol></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+            
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Gameplay</strong><a href="./introduction.html" class="sidebar-link">Introduction</a><a href="./creeps.html" class="sidebar-link">Creeps</a><a href="./control.html" class="sidebar-link">Control</a><a href="./defense.html" class="sidebar-link">Defense</a><a href="./respawn.html" class="sidebar-link">Respawning</a><a href="./start-areas.html" class="sidebar-link">Start Areas</a><a href="./minerals.html" class="sidebar-link">Minerals</a><a href="./market.html" class="sidebar-link">Market</a><a href="./invaders.html" class="sidebar-link">NPC Invaders</a><a href="./power.html" class="sidebar-link">Power</a><strong class="sidebar-title">Scripting</strong><a href="./scripting-basics.html" class="sidebar-link">Scripting Basics</a><a href="./global-objects.html" class="sidebar-link">Global Objects</a><a href="./modules.html" class="sidebar-link">Modules</a><a href="./debugging.html" class="sidebar-link">Debugging</a><a href="./game-loop.html" class="sidebar-link">Game Loop</a><a href="./commit.html" class="sidebar-link">External Commit</a><a href="./simultaneous-actions.html" class="sidebar-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="sidebar-link">CPU Limit</a><strong class="sidebar-title">Other</strong><a href="./architecture.html" class="sidebar-link">Server-Side Architecture</a><a href="./subscription.html" class="sidebar-link">Why Subscription?</a><a href="./ptr.html" class="sidebar-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="sidebar-link">Third Party Tools</a><a href="./tos.html" class="sidebar-link">Terms of Service</a><a href="./privacy-policy.html" class="sidebar-link">Privacy Policy</a><strong class="sidebar-title">Resources</strong><a href="http://blog.screeps.com" class="sidebar-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="sidebar-link">Changelogs</a><a href="http://chat.screeps.com" class="sidebar-link">Chat</a><a href="https://screeps.com/forum/" class="sidebar-link">Forum</a><strong class="sidebar-title">Contributed Articles</strong><a href="./contributed/rules.html" class="sidebar-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="sidebar-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="sidebar-link current">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="sidebar-link">Caching Overview</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://zespia.tw/" target="_blank">Screeps</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/screeps/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    
+      <a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Gameplay</strong><a href="./introduction.html" class="mobile-nav-link">Introduction</a><a href="./creeps.html" class="mobile-nav-link">Creeps</a><a href="./control.html" class="mobile-nav-link">Control</a><a href="./defense.html" class="mobile-nav-link">Defense</a><a href="./respawn.html" class="mobile-nav-link">Respawning</a><a href="./start-areas.html" class="mobile-nav-link">Start Areas</a><a href="./minerals.html" class="mobile-nav-link">Minerals</a><a href="./market.html" class="mobile-nav-link">Market</a><a href="./invaders.html" class="mobile-nav-link">NPC Invaders</a><a href="./power.html" class="mobile-nav-link">Power</a><strong class="mobile-nav-title">Scripting</strong><a href="./scripting-basics.html" class="mobile-nav-link">Scripting Basics</a><a href="./global-objects.html" class="mobile-nav-link">Global Objects</a><a href="./modules.html" class="mobile-nav-link">Modules</a><a href="./debugging.html" class="mobile-nav-link">Debugging</a><a href="./game-loop.html" class="mobile-nav-link">Game Loop</a><a href="./commit.html" class="mobile-nav-link">External Commit</a><a href="./simultaneous-actions.html" class="mobile-nav-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="mobile-nav-link">CPU Limit</a><strong class="mobile-nav-title">Other</strong><a href="./architecture.html" class="mobile-nav-link">Server-Side Architecture</a><a href="./subscription.html" class="mobile-nav-link">Why Subscription?</a><a href="./ptr.html" class="mobile-nav-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="mobile-nav-link">Third Party Tools</a><a href="./tos.html" class="mobile-nav-link">Terms of Service</a><a href="./privacy-policy.html" class="mobile-nav-link">Privacy Policy</a><strong class="mobile-nav-title">Resources</strong><a href="http://blog.screeps.com" class="mobile-nav-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="mobile-nav-link">Changelogs</a><a href="http://chat.screeps.com" class="mobile-nav-link">Chat</a><a href="https://screeps.com/forum/" class="mobile-nav-link">Forum</a><strong class="mobile-nav-title">Contributed Articles</strong><a href="./contributed/rules.html" class="mobile-nav-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="mobile-nav-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="mobile-nav-link current">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="mobile-nav-link">Caching Overview</a>
+    
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+<!-- Algolia -->
+
+
+</body>
+</html>

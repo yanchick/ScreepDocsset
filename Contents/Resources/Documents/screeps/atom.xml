@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Screeps Documentation</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://docs.screeps.com/"/>
+  <updated>2017-09-07T09:25:14.854Z</updated>
+  <id>http://docs.screeps.com/</id>
+  
+  <author>
+    <name>Screeps</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://docs.screeps.com/test/"/>
+    <id>http://docs.screeps.com/test/</id>
+    <published>2017-09-07T09:25:14.854Z</published>
+    <updated>2017-09-07T09:25:14.854Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

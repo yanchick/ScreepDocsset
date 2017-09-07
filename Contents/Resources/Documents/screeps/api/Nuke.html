@@ -1,0 +1,33 @@
+<h1 id="Nuke"><a href="#Nuke" class="headerlink" title="Nuke"></a>Nuke</h1><p>A nuke landing position. This object cannot be removed or modified. You can find incoming nukes in the room using the <code>FIND_NUKES</code> constant.</p>
+<table class="table gameplay-info">
+    <tbody>
+    <tr>
+        <td><strong>Landing time</strong></td>
+        <td>50,000 ticks</td>
+    </tr>
+    <tr>
+        <td><strong>Effect</strong></td>
+        <td>All creeps, construction sites and dropped resources in the room are removed immediately, even inside ramparts. Damage to structures:
+            <ul>
+                <li>10,000,000 hits at the landing position;</li>
+                <li>5,000,000 hits to all structures in 5x5 area.</li>
+            </ul>
+            <p>Note that you can stack multiple nukes from different rooms at the same target position to increase damage.</p>
+            <p>If the room is in safe mode, then the safe mode is cancelled immediately, and the safe mode cooldown is reset to 0.</p>
+            <p>The room controller is hit by triggering <code>upgradeBlocked</code> period, which means it is unavailable to activate safe mode again within the next 200 ticks.</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 id="pos" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">pos</span><span class="api-property__type"><a href="#RoomPosition">RoomPosition</a></span></h2>
+<p>An object representing the position of this object in the room.</p>
+<h2 id="room" class="api-property api-property--property api-property--inherited"><div class="api-property__inherited">Inherited from <a href="#RoomObject">RoomObject</a></div><span class="api-property__name">room</span><span class="api-property__type"><a href="#Room">Room</a></span></h2>
+<p>The link to the Room object. May be undefined in case if an object is a flag or a construction site and is placed in a room that is not visible to you.</p>
+
+<h2 id="id" class="api-property api-property--property "><span class="api-property__name">id</span><span class="api-property__type">string</span></h2>
+<p>A unique object identificator. You can use <a href="#Game.getObjectById"><code>Game.getObjectById</code></a> method to retrieve an object instance by its <code>id</code>.</p>
+<h2 id="launchRoomName" class="api-property api-property--property "><span class="api-property__name">launchRoomName</span><span class="api-property__type">string</span></h2>
+<p>The name of the room where this nuke has been launched from.</p>
+<h2 id="timeToLand" class="api-property api-property--property "><span class="api-property__name">timeToLand</span><span class="api-property__type">number</span></h2>
+<p>The remaining landing time.</p>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Market System | Screeps Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.screeps.com/market.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="http://docs.screeps.com/market.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="http://docs.screeps.com/zh-tw/market.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="http://docs.screeps.com/zh-cn/market.html">
+    
+      <link rel="alternative" hreflang="ru" href="http://docs.screeps.com/ru/market.html">
+    
+      <link rel="alternative" hreflang="ko" href="http://docs.screeps.com/ko/market.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="./icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="./icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="./css/navy.css?1">
+  <link rel="stylesheet" href="./css/prism.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="./atom.xml" title="Screeps Documentation">
+  <!-- Open Graph -->
+  <meta name="description" content="The market in Screeps allows to trade various resources between players by means of special structures called Terminals. They are able to instantly transfer resources to other rooms at any distance. T">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Market System">
+<meta property="og:url" content="http://docs.screeps.com/market.html">
+<meta property="og:site_name" content="Screeps Documentation">
+<meta property="og:description" content="The market in Screeps allows to trade various resources between players by means of special structures called Terminals. They are able to instantly transfer resources to other rooms at any distance. T">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-07T09:25:14.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Market System">
+<meta name="twitter:description" content="The market in Screeps allows to trade various resources between players by means of special structures called Terminals. They are able to instantly transfer resources to other rooms at any distance. T">
+  <!-- Google Analytics -->
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="https://screeps.com" id="logo">Screeps</a>
+      <a href="./index.html" id="logo-docs">docs</a>
+    </h1>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+    <div id="header-main"></div>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name" id="top">Market System</h1>
+                <a href="https://github.com/screeps/docs/edit/master/source/market.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                
+                <p>The market in Screeps allows to trade various resources between players by means of special structures called <a href="./api/#StructureTerminal">Terminals</a>. They are able to instantly transfer resources to other rooms at any distance.</p>
+<p>Trading on this market requires the in-game currency called <strong>Credits</strong>. Your credits are tied to your account and serve to execute your market orders.</p>
+<blockquote class="note info"><p>In order to get your first credits, deal with someone who already has a market buy order.</p>
+</blockquote>
+<h2 id="Market-orders" class="article-heading"><a href="#Market-orders" class="headerlink" title="Market orders"></a>Market orders<a class="article-anchor" href="#Market-orders" aria-hidden="true"></a></h2><p>The market system is based on <strong>sell and buy orders</strong> tied to your terminals. By creating an order, you designate the terminal, type, and amount of the resource to sell or buy, as well as its price for one unit in credits. Each placed order is visible to all the players in all the game world at the <a href="https://screeps.com/a/#!/market" target="_blank" rel="external">Market</a> page or via API method <a href="./api/#Market.getAllOrders"><code>Game.market.getAllOrders</code></a>. Creating any order is subject to a 5% fee in credits.</p>
+<p>To execute a trade, the second party also has to have a terminal to receive the resource (when buying from a sell order) or to send out (when selling to a buy order). You complete a trade by using the market interface or the method <a href="./api/#Market.deal"><code>Game.market.deal</code></a> and designating the other player&#39;s order, your terminal, and the amount of resources wanted. Then the two terminals automatically carry out the transaction, the buyer&#39;s account is charged with the corresponding amount of credits, and this amount is passed to the seller.</p>
+<blockquote class="note info"><p>The energy expenses to transfer resources from one terminal to another are always on the party who executes the deal rather than the order&#39;s owner, even in the case of buying a resource upon a sell order. The same is true for terminal cooldown.</p>
+</blockquote>
+<p>An order cannot be executed until the selling terminal has enough resource to sell, or the user has enough credits to buy. Until that happens, the order remains inactive.</p>
+<h2 id="Examples" class="article-heading"><a href="#Examples" class="headerlink" title="Examples"></a>Examples<a class="article-anchor" href="#Examples" aria-hidden="true"></a></h2><p>Here are a few examples to understand the underlying mechanics.</p>
+<ul>
+<li>Assume that the player Alice creates a buy order for 1000 units of utrium acid at the price 10 Cr a unit. To create this order, Alice designates her terminal in the room W1N1 and instantly pays a 500 Cr fee.</li>
+<li>Player Bob discovers Alice&#39;s order and decides to sell 200 units of utrium acid from his reserves. Bob&#39;s terminal is in the room W4N2, i.e. 3 rooms away. Therefore, his expenses on sending 200 units of the resource will be 60 of energy. Bob executes the trade on the given order, and 200 of ultrium acid are automatically transported from W4N2 to W1N1, Bob gets 2,000 Cr, and Bob&#39;s terminal in W4N2 loses 60 energy units.</li>
+<li>Now Bob wants to spend these credits and buy some energy from the player Charlie who offers it through his sell order in the room W1N5 at the price of 0.5 Cr per unit. The 2,000 Cr that Bob earned get him 4,000 energy units. However, the 4-room distance requires covering energy costs of 1,600 energy units. This amount should have been in the Bob&#39;s terminal prior to the trade deal execution. Charlie gets 2,000 Cr and doesn&#39;t spend any energy on the transfer.</li>
+</ul>
+<p>This story results in the following balance shift between the players involved:</p>
+<ul>
+<li>Alice (created a buy order, 1000 utrium acid): +200 utrium acid, -500 credits.</li>
+<li>Charlie (sell order, energy): -4000 energy, +2000 credits.</li>
+<li>Bob (dealer): -200 utrium acid, +4000-60-1600 energy, +2000-2000 credits.</li>
+</ul>
+<h2 id="NPC-Terminals" class="article-heading"><a href="#NPC-Terminals" class="headerlink" title="NPC Terminals"></a>NPC Terminals<a class="article-anchor" href="#NPC-Terminals" aria-hidden="true"></a></h2><p>All the “highway crossroads” between sectors (i.e. in the rooms W0N0, W10N0, W10N10, etc.) contain neutral NPC Terminals. You can trade with these terminals the same way as with real players using the market interface or the object <a href="./api/#Game.market"><code>Game.market</code></a>. The orders in NPC terminals have limited resources amounts and get replenished according to a set of rules. Although they don’t boast the most competitive prices, they allow you to convert your resource surplus into credits, and vice versa.</p>
+<h2 id="Subscription-Tokens" class="article-heading"><a href="#Subscription-Tokens" class="headerlink" title="Subscription Tokens"></a>Subscription Tokens<a class="article-anchor" href="#Subscription-Tokens" aria-hidden="true"></a></h2><p>There are important objects to trade in Screeps: <strong>Subscription Tokens</strong>. Upon its activation, such a token allows its user to get 60 CPU subscription days in Screeps. A subscription token does not exist as an object in the game world, it belongs to an account and is subject to direct trade between players for credits through the same market orders system but without designating trading terminals.</p>
+<p>You can buy a subscription token the same way as a regular CPU subscription. It is placed into your account, and you can sell it as a virtual item to another player.</p>
+<p>Hence, those players who want to share their resources with others can play Screeps as a free-to-play game! Subscription tokens trading is also possible via the <a href="http://steamcommunity.com/market/listings/464350/Subscription%20Token" target="_blank" rel="external">Steam Community Market</a> allowing to trade purchased tokens for real currency using your Steam Wallet.</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-09-07T09:25:14.854Z" itemprop="dateModified">Last updated: Sep 07, 2017</time>
+                <a href="./minerals.html" class="article-footer-prev"><i class="fa fa-chevron-left"></i><span>Minerals</span></a><a href="./invaders.html" class="article-footer-next"><span>NPC Invaders</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Market-orders"><span class="toc-text">Market orders</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Examples"><span class="toc-text">Examples</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NPC-Terminals"><span class="toc-text">NPC Terminals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Subscription-Tokens"><span class="toc-text">Subscription Tokens</span></a></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+            
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="sidebar-link">Overview</a><strong class="sidebar-title">Gameplay</strong><a href="./introduction.html" class="sidebar-link">Introduction</a><a href="./creeps.html" class="sidebar-link">Creeps</a><a href="./control.html" class="sidebar-link">Control</a><a href="./defense.html" class="sidebar-link">Defense</a><a href="./respawn.html" class="sidebar-link">Respawning</a><a href="./start-areas.html" class="sidebar-link">Start Areas</a><a href="./minerals.html" class="sidebar-link">Minerals</a><a href="./market.html" class="sidebar-link current">Market</a><a href="./invaders.html" class="sidebar-link">NPC Invaders</a><a href="./power.html" class="sidebar-link">Power</a><strong class="sidebar-title">Scripting</strong><a href="./scripting-basics.html" class="sidebar-link">Scripting Basics</a><a href="./global-objects.html" class="sidebar-link">Global Objects</a><a href="./modules.html" class="sidebar-link">Modules</a><a href="./debugging.html" class="sidebar-link">Debugging</a><a href="./game-loop.html" class="sidebar-link">Game Loop</a><a href="./commit.html" class="sidebar-link">External Commit</a><a href="./simultaneous-actions.html" class="sidebar-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="sidebar-link">CPU Limit</a><strong class="sidebar-title">Other</strong><a href="./architecture.html" class="sidebar-link">Server-Side Architecture</a><a href="./subscription.html" class="sidebar-link">Why Subscription?</a><a href="./ptr.html" class="sidebar-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="sidebar-link">Third Party Tools</a><a href="./tos.html" class="sidebar-link">Terms of Service</a><a href="./privacy-policy.html" class="sidebar-link">Privacy Policy</a><strong class="sidebar-title">Resources</strong><a href="http://blog.screeps.com" class="sidebar-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="sidebar-link">Changelogs</a><a href="http://chat.screeps.com" class="sidebar-link">Chat</a><a href="https://screeps.com/forum/" class="sidebar-link">Forum</a><strong class="sidebar-title">Contributed Articles</strong><a href="./contributed/rules.html" class="sidebar-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="sidebar-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="sidebar-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="sidebar-link">Caching Overview</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2017 <a href="https://zespia.tw/" target="_blank">Screeps</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/screeps/docs" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    
+      <a href="./api/" class=api-link><span>API Reference</span><img src="/img/link-external.svg"></a><a href="./index.html" class="mobile-nav-link">Overview</a><strong class="mobile-nav-title">Gameplay</strong><a href="./introduction.html" class="mobile-nav-link">Introduction</a><a href="./creeps.html" class="mobile-nav-link">Creeps</a><a href="./control.html" class="mobile-nav-link">Control</a><a href="./defense.html" class="mobile-nav-link">Defense</a><a href="./respawn.html" class="mobile-nav-link">Respawning</a><a href="./start-areas.html" class="mobile-nav-link">Start Areas</a><a href="./minerals.html" class="mobile-nav-link">Minerals</a><a href="./market.html" class="mobile-nav-link current">Market</a><a href="./invaders.html" class="mobile-nav-link">NPC Invaders</a><a href="./power.html" class="mobile-nav-link">Power</a><strong class="mobile-nav-title">Scripting</strong><a href="./scripting-basics.html" class="mobile-nav-link">Scripting Basics</a><a href="./global-objects.html" class="mobile-nav-link">Global Objects</a><a href="./modules.html" class="mobile-nav-link">Modules</a><a href="./debugging.html" class="mobile-nav-link">Debugging</a><a href="./game-loop.html" class="mobile-nav-link">Game Loop</a><a href="./commit.html" class="mobile-nav-link">External Commit</a><a href="./simultaneous-actions.html" class="mobile-nav-link">Simultaneous Actions</a><a href="./cpu-limit.html" class="mobile-nav-link">CPU Limit</a><strong class="mobile-nav-title">Other</strong><a href="./architecture.html" class="mobile-nav-link">Server-Side Architecture</a><a href="./subscription.html" class="mobile-nav-link">Why Subscription?</a><a href="./ptr.html" class="mobile-nav-link">Public Test Realm (PTR)</a><a href="./third-party.html" class="mobile-nav-link">Third Party Tools</a><a href="./tos.html" class="mobile-nav-link">Terms of Service</a><a href="./privacy-policy.html" class="mobile-nav-link">Privacy Policy</a><strong class="mobile-nav-title">Resources</strong><a href="http://blog.screeps.com" class="mobile-nav-link">Blog</a><a href="http://blog.screeps.com/categories/Changelogs/" class="mobile-nav-link">Changelogs</a><a href="http://chat.screeps.com" class="mobile-nav-link">Chat</a><a href="https://screeps.com/forum/" class="mobile-nav-link">Forum</a><strong class="mobile-nav-title">Contributed Articles</strong><a href="./contributed/rules.html" class="mobile-nav-link">Contribution Rules</a><a href="./contributed/advanced_grunt.html" class="mobile-nav-link">Advanced Grunt Usage</a><a href="./contributed/modifying-prototypes.html" class="mobile-nav-link">Modifying Prototypes</a><a href="./contributed/caching-overview.html" class="mobile-nav-link">Caching Overview</a>
+    
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+<!-- Algolia -->
+
+
+</body>
+</html>

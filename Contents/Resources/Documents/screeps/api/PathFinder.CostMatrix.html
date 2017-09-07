@@ -1,0 +1,61 @@
+<h1 id="PathFinder-CostMatrix"><a href="#PathFinder-CostMatrix" class="headerlink" title="PathFinder.CostMatrix"></a>PathFinder.CostMatrix</h1><p>Container for custom navigation cost data. By default <code>PathFinder</code> will only consider 
+terrain data (plain, swamp, wall) — if you need to route around obstacles such as buildings 
+or creeps you must put them into a <code>CostMatrix</code>. Generally you will create your <code>CostMatrix</code>
+ from within <code>roomCallback</code>. If a non-0 value is found in a room&#39;s CostMatrix then that value 
+ will be used instead of the default terrain cost. You should avoid using large values in your 
+ CostMatrix and terrain cost flags. For example, running <code>PathFinder.search</code> with 
+ <code>{ plainCost: 1, swampCost: 5 }</code> is faster than running it with <code>{plainCost: 2, swampCost: 10 }</code> 
+ even though your paths will be the same.</p>
+<h2 id="constructor" class="api-property   "><span class="api-property__name">constructor</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--undefined" title="undefined"></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> costs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PathFinder<span class="token punctuation">.</span>CostMatrix</span><span class="token punctuation">;</span></code></pre><p>Creates a new CostMatrix containing 0&#39;s for all positions. </p>
+<h2 id="set" class="api-property api-property--method  "><span class="api-property__name">set</span><span class="api-property__args">(x, y, cost)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> costs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PathFinder<span class="token punctuation">.</span>CostMatrix</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> pos <span class="token operator">=</span> Game<span class="token punctuation">.</span>spawns<span class="token punctuation">[</span><span class="token string">'Spawn1'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>pos<span class="token punctuation">;</span>
+costs<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>pos<span class="token punctuation">.</span>x<span class="token punctuation">,</span> pos<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Can't walk over a building</span></code></pre><p>Set the cost of a position in this CostMatrix.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>X position in the room.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>Y position in the room.</p>
+</td>
+</tr><tr><td><code>cost</code></td><td>number</td><td><p>Cost of this position. Must be a whole number. A cost of 0 will use the terrain cost for that tile. A cost greater than or equal to 255 will be treated as unwalkable.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="get" class="api-property api-property--method  "><span class="api-property__name">get</span><span class="api-property__args">(x, y)</span>
+        <div class="api-property__cpu api-property__cpu--0" title="This method has insignificant CPU cost."></div>
+        </h2>
+<p>Get the cost of a position in this CostMatrix.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>x</code></td><td>number</td><td><p>X position in the room.</p>
+</td>
+</tr><tr><td><code>y</code></td><td>number</td><td><p>Y position in the room.</p>
+</td>
+</tr></tbody></table>
+
+<h2 id="clone" class="api-property api-property--method  "><span class="api-property__name">clone</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<p>Copy this CostMatrix into a new CostMatrix with the same data.</p>
+<h3 id="Return-value"><a href="#Return-value" class="headerlink" title="Return value"></a>Return value</h3><p>A new CostMatrix instance.</p>
+<h2 id="serialize" class="api-property api-property--method  "><span class="api-property__name">serialize</span><span class="api-property__args">()</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> costs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PathFinder<span class="token punctuation">.</span>CostMatrix</span><span class="token punctuation">;</span>
+Memory<span class="token punctuation">.</span>savedMatrix <span class="token operator">=</span> costs<span class="token punctuation">.</span><span class="token function">serialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Returns a compact representation of this CostMatrix which can be stored via <code>JSON.stringify</code>.</p>
+<h3 id="Return-value-1"><a href="#Return-value-1" class="headerlink" title="Return value"></a>Return value</h3><p>An array of numbers. There&#39;s not much you can do with the numbers besides store them for later.</p>
+<h2 id="PathFinder-CostMatrix-deserialize" class="api-property api-property--method  "><span class="api-property__name">PathFinder.CostMatrix.deserialize</span><span class="api-property__args">(val)</span>
+        <div class="api-property__cpu api-property__cpu--1" title="This method has low CPU cost."></div>
+        </h2>
+<pre class="highlight javascript tab-javascript "><code><span class="token keyword">let</span> costs <span class="token operator">=</span> PathFinder<span class="token punctuation">.</span>CostMatrix<span class="token punctuation">.</span><span class="token function">deserialize</span><span class="token punctuation">(</span>Memory<span class="token punctuation">.</span>savedMatrix<span class="token punctuation">)</span></code></pre><p>Static method which deserializes a new CostMatrix using the return value of <code>serialize</code>.</p>
+<table><thead><tr><th>parameter</th><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>val</code></td><td>object</td><td><p>Whatever <code>serialize</code> returned</p>
+</td>
+</tr></tbody></table>
+
+<h3 id="Return-value-2"><a href="#Return-value-2" class="headerlink" title="Return value"></a>Return value</h3><p>Returns new
+<code>CostMatrix</code>
+instance.</p>
